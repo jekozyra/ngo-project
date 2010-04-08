@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  acronym: MyString
+  name: MyString
+  contact_name: MyString
+  contact_position: MyString
+  contact_address: MyString
+  country_id: 1
+  district: 1
+  contact_phone: MyString
+  contact_email: MyString
+  sector_id: 1
+
+two:
+  acronym: MyString
+  name: MyString
+  contact_name: MyString
+  contact_position: MyString
+  contact_address: MyString
+  country_id: 1
+  district: 1
+  contact_phone: MyString
+  contact_email: MyString
+  sector_id: 1

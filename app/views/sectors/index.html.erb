@@ -1,0 +1,20 @@
+<h1>Listing sectors</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% @sectors.each do |sector| %>
+  <tr>
+    <td><%=h sector.name %></td>
+    <td><%= link_to 'Show', sector %></td>
+    <td><%= link_to 'Edit', edit_sector_path(sector) %></td>
+    <td><%= link_to 'Destroy', sector, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New sector', new_sector_path %>

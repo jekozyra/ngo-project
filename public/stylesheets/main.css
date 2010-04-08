@@ -1,0 +1,434 @@
+/* SSWL color scheme, by mike taylor==>
+ light green (map): #D5E6D5 | light blue (search bar): #3F4C6B | dark blue: #232A3A | tan (form bg): #EFEED1 | "burnt orange": #CC3300 | gray: #BFBCB7
+ 
+ homepage buttons
+ search (blue): #3F4C6B | add (green): #347A30 | contest (red): #AA2B00
+ 
+ <=======================================*/
+*{margin:0;padding:0;}
+body{background-color:#fff;}
+body,p,ol,td{font-size:13px;line-height:18px;}
+h1{font-size:2em;color:#CC3300;padding:15px;clear:left;}
+h2,h3,h4{color:#cc3300;}
+h1+a{margin:10px 0 10px 25px !important;background-color:inherit !important;}
+pre{background-color:#eee;padding:10px;font-size:11px;}
+a{color:#000;}
+a:visited{color:#666;}
+a:hover{color:#00628B;}
+.fieldWithErrors{padding:2px;background-color:red;display:table;}
+
+/*================'show' page stuff======================*/
+#detailsPage{margin:0 auto;width:650px;}
+#detailsPage h1{padding:40px 0pt 15px 0;}
+#detailsPage label{width:20%;}
+
+/*================'new' form stuff======================*/
+#newForm{margin:0 auto;width:650px;}
+#newForm h1{padding:40px 0pt 15px 0;}
+.buttonHolder{padding-right:5px;padding-bottom:5px;}
+#newForm label+input{width:49.3%;}
+#addTime select{float:right;width:49.3%;clear:right;margin:3px 19px 0 0;}
+#addDate select{float:right;clear:right;margin:3px 19px 0 0;}
+#errorExplanation{width:400px;border:2px solid red;padding:7px;padding-bottom:12px;margin-bottom:20px;background-color:#f0f0f0;}
+#errorExplanation h2{text-align:left;font-weight:bold;padding:5px 5px 5px 15px;font-size:12px;margin:-7px;background-color:#c00;color:#fff;}
+#errorExplanation p{color:#333;margin-bottom:0;padding:5px;}
+#errorExplanation ul li{font-size:12px;list-style-type:none;}
+div.uploadStatus{margin:5px;}
+div.progressBar{margin:5px;}
+div.progressBar div.border{background-color:#fff;border:1px solid gray;width:100%;}
+div.progressBar div.background{background-color:#333;height:18px;width:0%;}
+table,td{font:12px Verdana,Geneva,Arial,Helvetica,sans-serif;}
+table{width:100%;border-collapse:collapse;margin:15px 0 0 0;float:inherit;}
+th,td{text-align:left;padding:.5em;border:1px solid #fff;}
+th{background:#3F4C6B url(/images/tr_back.gif) repeat-x;color:#fff;text-transform:capitalize;}
+td{background:#e5f1f4;}
+
+/* tablecloth styles */
+tr.even td{background:#e5f1f4;}
+tr.odd td{background:#f8fbfc;}
+th.over,tr.even th.over,tr.odd th.over{background:#74C15D;}
+th.down,tr.even th.down,tr.odd th.down{background:#5D9B4B;}
+th.selected,tr.even th.selected,tr.odd th.selected{}
+td.over,tr.even td.over,tr.odd td.over{background:#6DB457;}
+td.down,tr.even td.down,tr.odd td.down{background:#4E823D;color:#fff;}
+td.selected,tr.even td.selected,tr.odd td.selected{background:#4E823D;color:#fff;}
+/* use this if you want to apply different styleing to empty table cells*/
+td.empty,tr.odd td.empty,tr.even td.empty{background:#7B8079;}
+
+
+body {font-size: small;font-family: "Lucida Grande", Tahoma, Arial, Verdana, sans-serif;margin: 0 auto;}
+img {border-style: none;}
+a {text-decoration: none;color: #CC3300;}
+a:visited {color: #AA2B00;}
+#wrapper {margin: 0 auto;}
+#searchForm, #addPage {position: relative;top: 50px;border: 0 #fff;padding: 0 15px 15px 15px;margin: 0 auto;background-color: #fff;width: 700px;height: 100%;clear: both;}
+#results { /* this contains the results table  */
+    float: left;clear: left;margin: 0;width: 100%;}
+.header-link a{color:#fff;}
+.header-link a:hover{color:#e5f1f4;}
+#results h2 {color: #cc3300;padding-left: 15px;}
+#results th:first-child, #results td:first-child {padding-left: 20px;}
+
+/* adapted from
+TableCloth
+by Alen Grakalic
+*/
+/* general styles */
+table,td{font:12px Verdana,Geneva,Arial,Helvetica,sans-serif;}
+table{width:100%;border-collapse:collapse;margin:0;float:inherit;}
+th,td{text-align:left;padding:.5em;border:1px solid #fff;}
+th{background:#3F4C6B url(/images/tr_back.gif) repeat-x;color:#fff;text-transform:capitalize;}
+td{background:#e5f1f4;}
+th:first-child,td:first-child{padding-left:20px;}
+
+/*==============="Add" page==================================================*/
+
+#addPage h1 {font-size: 2.2em;margin-left: 0px;padding-left: 2px;border-bottom: 1px solid #CC3300;}
+#addPage ul {position: relative;top: 30px;left: 15px;}
+#addPage ul li {padding: 1.2% 1% 0 1%;margin: 0 0 3.5% 15%;font-size: 1.9em;color: #000000;list-style-image: url(/images/green_bullet.png);position: relative;}
+#addPage ul li a {position: relative;bottom: 7px;}
+.outline {border: 1px solid #d9d7ac;margin-bottom: 4px;}
+p.label {font-size: 110%;}
+p.label span {color: #666;font-size: 90%;}
+.help { /*position the help icon to the right of the relevant section*/
+    float: right;clear: left;position: relative;bottom: 25px;right: 31px;}
+.helpFirst {float: right;clear: left;position: relative;bottom: 16px;right: 32px;}
+
+
+/*======google map styles====================================================*/
+
+#map_canvas {width: 100%;height: 59.5em;position:relative;}
+#legend-btn {text-align:center;font-size:12px;font-family: Arial, Helvetica; font-weight:bold;height:16px;width:65px;position:relative;left:234px;top:1px;border-style: solid; border-color: rgb(52, 86, 132) rgb(108, 157, 223) rgb(108, 157, 223) rgb(52, 86, 132); border-width: 1px;background-color:#fff;}
+#legend-btn:hover {cursor:pointer;}
+#legend-btn.on {background-color: #d20217; color: #fff;}
+#legend-container {position:absolute;right:8px;top:111px;width:300px;height:auto;}
+#legend {background-color:#fff;border:1px solid #999;display:none;padding:8px 15px;}
+#map_canvas {position:relative;width:auto;height: 1000px;}
+#legend-contents{margin:10px;}
+#legend-contents p{font-weight: bold;}
+#legend-contents img{margin:0 10px 0 0;}
+
+/*=============Zebra Striping==============================*/
+
+tr.alt td {background-color: #f8fbfc;}
+
+/* removing this for now*/
+/*tr:hover td {background-color: #A3D694;} */
+
+/* Uni-Form by Dragan Babic - http://dnevnikeklektika.com/,http://draganbabic.com/ */
+/* Some rights reserved - http://creativecommons.org/licenses/by-sa/2.5/ */
+/* It is suggested not to edit this file directly,but rather the uni-form.css provided in the Uni-Form zip archive */
+form,form div{margin:0;padding:0;position:relative;width:100%;overflow:hidden;}
+/* Some generals */
+fieldset{border:none;margin:0;padding:0;}
+fieldset legend{margin:0;padding:0;}
+.ctrlHolder{/* This is the main unit that contains our form elements */
+overflow:hidden;margin:0;padding:0;clear:both;}
+.ctrlHolder td{background:#ffffff;}
+.buttonHolder{overflow:hidden;clear:both;}
+.resetButton{}
+.submitButton{}
+.inlineLabel,.inlineLabels .inlineLabel,.blockLabels .inlineLabel{width:auto;float:none;margin:0 1em 0 0;display:inline;}
+.inlineLabel input{width:100%;}
+.focused{/* For highlighting the rows on input focus */}
+/* ########################################################################## */
+/* Styles for form controls where labels are in line with the input elements */
+/* Set the class of the parent (preferably to a fieldset) to .inlineLabels */
+.inlineLabels .ctrlHolder{}
+.inlineLabels label,.inlineLabels .label{float:left;margin:.3em 2% 0 0;padding:0;line-height:100%;position:relative;}
+.inlineLabels .textInput,.inlineLabels .fileUpload{float:left;}
+.inlineLabels .fileUpload{}
+.inlineLabels .selectInput{float:left;}
+.inlineLabels textarea{float:left;}
+.inlineLabels .formHint{clear:both;}
+/* inlineLabels esthetics */
+.inlineLabels .formHint strong{}
+/* ########################################################################## */
+/* Styles for form controls where labels are above the input elements */
+/* Set the class of the parent (preferably to a fieldset) to .blockLabels */
+.blockLabels .ctrlHolder{}
+.blockLabels label,.blockLabels .label{display:block;float:none;margin:.3em 0;padding:0;line-height:100%;width:auto;}
+.blockLabels .label{float:left;margin-right:3em;}
+.blockLabels .inlineLabel{position:relative;top:.15em;}
+.blockLabels .textInput,.blockLabels .fileUpload{float:left;}
+.blockLabels .fileUpload{}
+.blockLabels .selectInput{display:block;}
+.blockLabels textarea{float:left;display:block;}
+.blockLabels .formHint{float:right;margin:0;clear:none;}
+/* blockLabels esthetics */
+.blockLabels .ctrlHolder{}
+.blockLabels .focused{}
+/* ########################################################################## */
+/* Focus pseudoclasses */
+.ctrlHolder .textInput:focus{}
+div.focused .textInput:focus{}
+div.focused .formHint{}
+/* Required fields asterisk styling,use if needed */
+label em,.label em{display:block;position:absolute;left:100%;font-style:normal;font-weight:bold;}
+.blockLabels label em,.blockLabels .label em{position:static;display:inline;}
+/* ########################################################################## */
+/* Messages */
+#errorMsg,.error{}
+#errorMsg dt,#errorMsg h3{}
+#errorMsg dd{}
+#errorMsg ol{}
+#errorMsg ol li{}
+.errorField{}
+/* ########################################################################## */
+/* Add the following classes to your fieldsets (preferably) if you want columns */
+.col{float:left;}
+.columnLeft{float:left;}
+.columnRight{float:right;}
+
+
+/* Generals */
+fieldset{margin:1em 0;border-bottom:1px solid #d9d7ac;border-top:1px solid #d9d7ac;}
+fieldset legend{font-size:150%;font-family:inherit;color:#14212b;}
+#submitRadios{padding-left:340px;}
+.ctrlHolder{/* This is the main unit that contains our form elements */
+padding:7px;}
+.ctrlHolder label{font-variant:small-caps;}
+.more-properties{font-variant:normal !important;}
+.buttonHolder{text-align:right;/* Recommended */}
+.buttonHolder input{margin:10px 10px 0 0;}
+.focused{background:#d9d7ac;}
+/*
+/* .inlineLabels */
+.inlineLabels label,.inlineLabels .label{width:45%;/* Required property */}
+.inlineLabels .textInput,.inlineLabels .fileUpload{width:45%;/* Required property */}
+.inlineLabels .selectInput{width:45%;/* Required property */}
+.inlineLabels textarea{width:49.3%;/* Required property */
+height:12em;}
+.inlineLabels .formHint{margin-top:0;margin-left:47%;}
+.inlineLabels table{width:45%;margin:0px;padding:0px;}
+/* .blockLabels */
+.blockLabels .textInput,.blockLabels .fileUpload{width:53%;/* Required property */}
+.blockLabels .selectInput{display:block;width:53.5%;/* Required property */}
+.blockLabels textarea{width:53%;/* Required property */
+height:12em;}
+.blockLabels .formHint{width:45%;/* Required property */}
+/* Columns */
+.col{width:47.9%;/* Required property */
+margin:0 2% 0 0;}
+.columnLeft{width:49%;/* Required property */}
+.columnRight{width:49%;/* Required property */}
+/* Messages */
+#errorMsg{background:#ffdfdf;border:1px solid #df7d7d;border-width:1px 0;margin:0 0 1em 0;padding:1em;}
+.error{background:#ffdfdf;border:1px solid #df7d7d;border-width:1px 0;}
+#errorMsg dt,#errorMsg h3{margin:0 0 .5em 0;font-size:110%;line-height:100%;font-weight:bold;}
+#errorMsg dd{margin:0;padding:0;}
+#errorMsg ol{margin:0;padding:0;}
+#errorMsg ol li{margin:0;padding:2px;list-style-position:inside;border-bottom:1px dotted #df7d7d;position:relative;}
+.errorField{color:#af4c4c;margin:0 0 6px 0;padding:4px;background:#ffbfbf;}
+
+/* thickbox */
+
+/* ----------------------------------------------------------------------------------------------------------------*/
+/* ---------->>> thickbox specific link and font settings <<<------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------------------------------------*/
+#TB_window{font:12px Arial,Helvetica,sans-serif;color:#333333;}
+#TB_secondLine{font:10px Arial,Helvetica,sans-serif;color:#666666;}
+#TB_window a:link{color:#666666;}
+#TB_window a:visited{color:#666666;}
+#TB_window a:hover{color:#000;}
+#TB_window a:active{color:#666666;}
+#TB_window a:focus{color:#666666;}
+/* ----------------------------------------------------------------------------------------------------------------*/
+/* ---------->>> thickbox settings <<<-----------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------------------------------------*/
+#TB_overlay{position:fixed;z-index:100;top:0px;left:0px;height:100%;width:100%;}
+.TB_overlayMacFFBGHack{background:url(../images/macFFBgHack.png) repeat;}
+.TB_overlayBG{background-color:#000;filter:alpha(opacity=75);-moz-opacity:0.75;opacity:0.75;}
+* html #TB_overlay{/* ie6 hack */
+position:absolute;height:expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight :document.body.offsetHeight + 'px');}
+#TB_window{position:fixed;background:#ffffff;z-index:102;color:#000000;display:none;border:4px solid #525252;text-align:left;top:50%;left:50%;}
+* html #TB_window{/* ie6 hack */
+position:absolute;margin-top:expression(0 - parseInt(this.offsetHeight / 2) + (TBWindowMargin = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop) + 'px');}
+#TB_window img#TB_Image{display:block;margin:15px 0 0 15px;border-right:1px solid #ccc;border-bottom:1px solid #ccc;border-top:1px solid #666;border-left:1px solid #666;}
+#TB_caption{height:25px;padding:7px 30px 10px 25px;float:left;}
+#TB_closeWindow{height:25px;padding:11px 25px 10px 0;float:right;}
+#TB_closeAjaxWindow{padding:7px 10px 5px 0;margin-bottom:1px;text-align:right;float:right;}
+#TB_ajaxWindowTitle{float:left;padding:7px 0 5px 10px;margin-bottom:1px;}
+#TB_title{background-color:#e8e8e8;height:27px;}
+#TB_ajaxContent{clear:both;padding:2px 15px 15px 15px;overflow:auto;text-align:left;line-height:1.4em;}
+#TB_ajaxContent.TB_modal{padding:15px;}
+#TB_ajaxContent p{padding:5px 0px 5px 0px;}
+#TB_load{position:fixed;display:none;height:13px;width:208px;z-index:103;top:50%;left:50%;margin:-6px 0 0 -104px;/* -height/2 0 0 -width/2 */}
+* html #TB_load{/* ie6 hack */
+position:absolute;margin-top:expression(0 - parseInt(this.offsetHeight / 2) + (TBWindowMargin = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop) + 'px');}
+#TB_HideSelect{z-index:99;position:fixed;top:0;left:0;background-color:#fff;border:none;filter:alpha(opacity=0);-moz-opacity:0;opacity:0;height:100%;width:100%;}
+* html #TB_HideSelect{/* ie6 hack */
+position:absolute;height:expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight :document.body.offsetHeight + 'px');}
+#TB_iframeContent{clear:both;border:none;margin-bottom:-1px;margin-top:1px;_margin-bottom:1px;}
+
+/* search.css */
+body{line-height:normal;}
+div.ctrlHolder select{width:49.7%;}
+#gloss_contains{width:48.7%}
+#firstField,#secondField{border-top:none;}
+#secondField{}
+#firstField+div.ctrlHolder{float:right;}
+#languageButtons, #propertyButtons, #pvButtons, .dottedLine{border-bottom:1px dotted #d9d7ac;margin-top:8px;margin-bottom:6px;}
+label.hide{color:#fff;}
+#searchIn label select{width:80%;margin-top:-3px;}
+.buttonHolder input{margin:6px 0 0 0;}
+.buttonHolder input.nudge{margin:6px 12px 0 0;}
+.ctrlHolder span{padding:0 5px 0 5px;width:70%;text-align:center;}
+#searchFor{font-variant:small-caps;font-size:1em;}
+#searchFor label{color:#CC3300;font-variant:normal;text-align:left;margin-left:-7px;margin-bottom:8px;margin-top:-3px;}
+.ctrlHolder label{font-variant:small-caps;}
+
+#advancedOptions{font-size:1em;padding-bottom:5px;clear:both;float:right;}
+#advancedOptions label{color:#CC3300; font-variant:small-caps;margin-left:130px;}
+
+
+/* login */
+input#login-submit {margin-left:400px;}
+
+/* help css */
+#help-select {position: absolute; right: 0;top:75px;}
+#helpContent {background-color: #fff;margin: 0 auto;padding: 50px 10px;width: 700px;position:relative;}
+#helpContent .property {padding: 4px 0 4px 30px;margin: -8px 0 8px 50px;border: 1px dashed #1974D2;background: #EFEED1;	color: #A9B2C3;}
+#helpContent .property p {padding: 0;margin: 0;}
+#helpContent .property p span {padding-left: 40px;}
+#helpContent h1 {	margin-left: 0;padding-left: 0;}
+#helpContent h4 {margin: 10px 0 8px 0;padding: 5px 0 0 2px;border-top:1px solid #EFEED1;font-variant: small-caps;}
+#helpContent h1+h4 {padding-top: 10px;margin-top: 5px;}
+pre {margin: 0;	padding: 0;font-size: 1em;font-family: "Courier New", Courier, monospace;color: #333;background-color: #EFEED1;}
+#helpContent p {padding: 0 0 8px 4px;margin-bottom: 8px;}
+#helpContent ul {padding-left: 50px;margin-bottom: 8px;}
+
+
+/* about page */
+#stats {overflow:auto;}
+#stats ul {width:300px;float:left;padding-left:5px;}
+#stats li {list-style-type:none;line-height:150%;font-size:1.1em;}
+#stats ul+ul {margin-left:80px;}
+
+/* toolbar */
+#toolbar {position:relative;font: normal 13px 'Trebuchet MS', 'Arial' !important;margin: 0;padding: 0;width: 100%;height: 32px;background-color: #3F4C6B;}
+#toolbar ul {line-height: 24px;list-style: none;margin: 0;padding: 0 10px;}
+#toolbar li {display: inline;}
+
+#toolbar a {height: 22px;color: #fff;float: left;padding: 4px 3px 4px 22px;margin-left:10px;background: transparent url(../images/toolbar_sprite.png) no-repeat 0 7px;}
+#toolbar a:hover {border-bottom:1px dashed #fff;color:#AA2B00;}
+#toolbar .home-link a {background-position: 3px -73px;}
+#toolbar .search-link a {background-position:0 -33px;}
+#toolbar .properties-link a {background-position: 0 -233px;}
+#toolbar .languages-link a {background-position: 0 -193px;}
+#toolbar .add-link a {background-position: 0 -272px;}
+#toolbar .edit-link a {background-position: 0 -351px;}
+#toolbar .forums-link a {background-position: 0 -388px;}
+#toolbar .glossary-link a, #toolbar .help-link a {background-position: 2px -112px;}
+#toolbar .contributors-link a {background-position: 0 -152px;}
+
+
+/*===='REDBAR' CSS, for whole site and a little extra for map_it.html.erb====*/
+
+#titleHeader { /* for pages with results-like info, this is the title header, just below toolbar */
+    height: 54px;width: 100%;background: #CC3300 url(/images/redBarBG.jpg) repeat-x;clear: both;}
+#titleHeader h2 {color:#fff;}
+
+.floatLeft {float: left;}
+.floatLeftWhite {float: left; color: white; font-size: 170%; padding-top: 12px; padding-left: 24px; padding-bottom: 0px; padding-right:30px;}
+
+#results-links {position:relative;font: normal 13px 'Trebuchet MS', 'Arial' !important;margin: 0;padding: 0;width: 100%;height: 24px;padding-top:3px;}
+#results-links ul {line-height: 24px;list-style: none;margin: 0;padding: 0 10px;padding-left:20px;}
+#results-links li {display: inline;}
+
+#results-links a {height: 22px;color: #fff;float: left;padding: 12px 0px 4px 22px;background: transparent url(../images/search_results_sprite.png) no-repeat 0 10px; margin-right:20px;}
+#results-links a:hover {color:#347A30;border-bottom:1px dashed #fff;}
+#results-links .map-it-link a {background-position: -3px 10px;}
+#results-links .download-results-link a {background-position:-2px -57px;}
+#results-links .clustering-link a {background-position: -3px -25px;}
+
+
+
+.floatRight {float: right;}
+.floatRight + a { /* this is for the Map It anchor link text */
+    color: #fff;position: relative;top: 22%;left: 46px;}
+.myfloatRight { /* this is for the Download Results anchor link text */
+    color: #fff;position: relative;top: 22%;left: 80px;}
+.myfloatFarRight { /* this is for the Download Results anchor link text */
+		color: #fff;position: relative;top: 22%;left: 110px;}
+
+
+#login {position:absolute;right:10px;top:40px;}
+#login {font-size:14px;}
+#login a {color: #3F4C6B; font-weight: bold;}
+.help-link, .about-link, .contributors-link, .glossary-link {float:right;}
+
+/* admin control panel */
+#control-panel {width:770px;margin:0 auto;}
+#control-panel li {list-style-type:none;line-height:150%;font-size:1.2em;}
+#control-panel h1 {padding:0;margin:15px 0;}
+#control-panel ul, #control-panel .module {padding:10px;margin-right:10px;float:left;width:350px;border:1px solid #ccc;-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;-moz-box-shadow: #ccc 0px 3px 3px;-webkit-box-shadow: #ccc 0px 3px 3px;}
+#control-panel #stats {height:235px;}
+#control-panel #pie {padding:10px;}
+#control-panel .module {margin-top:10px;}
+
+/* login */
+input#login-submit {margin-left:533px;}
+fieldset.login {padding: 15px 0;}
+
+#flash-notice {border:1px solid green;width:650px;background-color:#3c3;margin:15px auto;height:40px;color:#fff;-moz-border-radius:3px;-webkit-border-radius:3px;}
+#flash-notice h3 {color:#fff;padding: 11px;}
+
+#flash-warning {border:1px solid #FFCC33;width:650px;background-color:#FDE910;margin:15px auto;height:40px;color:#fff;-moz-border-radius:3px;-webkit-border-radius:3px;}
+#flash-warning h3 {color:#000;padding: 11px;}
+
+.form-button {float:right;margin:0 16px;}
+
+
+iframe #toolbar {display:none;}
+iframe #wrapper {margin: 10px 20px;}
+
+#index-footer {margin-left: 10px;}
+
+.indentedExample {padding-left:10px;}
+
+/*================'new' form stuff======================*/
+#newsfeed-page{margin:0 auto;width:650px;}
+#newsfeed-page h1{padding:40px 0pt 25px 0;}
+#newsfeed-page h1 {padding-bottom:15px;}
+
+#newsfeed{margin:1em 0; border-bottom:1px solid #d9d7ac; border-top:1px solid #d9d7ac; padding: 5px 0px;}
+#newsfeed li{list-style-type:none; line-height:150%; border-bottom:1px dashed #d9d7ac;}
+
+.universalImplicationsRadios{font-size:10px;}
+
+#similarityTree{margin:20px auto;width:800px;}
+#similarityTree img{border-bottom:1px solid #d9d7ac;border-top:1px solid #d9d7ac;padding:10px 0px;}
+#similarityTree a:hover {color:#347A30;border-bottom:1px solid #347A30;}
+
+.details-link a{color:#00628B;border-bottom:1px solid #00628B !important;}
+
+.flickr_pagination {
+	text-align: right;
+	padding: .2em;
+	padding-top: .5em;}
+.flickr_pagination a, .flickr_pagination span {
+	padding: .2em .4em; }
+.flickr_pagination span.disabled {
+	color: #AAA; }
+.flickr_pagination span.current {
+	font-weight: bold;
+	color: #CC3300; }
+.flickr_pagination a {
+	border: 1px solid #DDDDDD;
+	color: #347A30;
+	text-decoration: none; }
+.flickr_pagination a:hover, .flickr_pagination a:focus {
+  border-color: #003366;
+  background: #347A30;
+  color: white; }
+.flickr_pagination .page_info {
+	color: #aaa;
+	padding-top: .8em; }
+.flickr_pagination .prev_page, .flickr_pagination .next_page {
+	border-width: 2px; }
+.flickr_pagination .prev_page {
+	margin-right: 0.5em; }
+.flickr_pagination .next_page {
+	margin-left: 0.5em; }
+

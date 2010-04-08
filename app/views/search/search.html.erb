@@ -1,0 +1,35 @@
+<div id="titleHeader">
+	<h1 class="floatLeftWhite">Af-Pak NGO Database: Search Results</h1>
+</div>
+
+<div id="results">
+	<table summary="query results">
+
+		<tr>
+			<th class="header-link"><%= link_to "Acronym", :controller => "search", :action => "search", :sort_by => "acronym" %></th>
+			<th class="header-link"><%= link_to "Name", :controller => "search", :action => "search", :sort_by => "name" %></th>
+			<th>Sector</th>
+			<th class="header-link"><%= link_to "Country", :controller => "search", :action => "search", :sort_by => "country" %></th>
+			<th class="header-link"><%= link_to "District", :controller => "search", :action => "search", :sort_by => "district" %></th>
+			<th>Affiliation</th>
+			<th>NGO Details</th>
+		</tr>
+		
+		<!-- Could be moved into partial in the future -->
+		<% for result in @search %>
+		<tr class="<%= cycle('alt', '') %>">
+			<td width="50px"><%= result.acronym %></td>
+			<td width="300px"><%= result.name %></td>
+			<td><%= result.sector_names %></td>
+			<td><%= result.country_name %></td>
+			<td><%= result.district_name %></td>
+			<td><%= result.affiliation_names %></td>
+			<td width="100px"><%= link_to 'View Details', result, :class => 'details-link' %></td>
+		</tr>
+
+		<% end %>
+	</table>
+	
+	<%= will_paginate %>
+
+</div>

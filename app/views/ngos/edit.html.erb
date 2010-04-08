@@ -1,0 +1,24 @@
+<div id="newForm">
+
+	<h1>Editing NGO</h1>
+
+	<% form_for(@ngo) do |f| %>
+	  <%= f.error_messages %>
+
+		<fieldset class="inlineLabels">
+
+			<%= render 'fields', :f => f %>
+
+	  	<div class="buttonHolder">
+	    	<%= f.submit 'Update' %>
+	  	</div>
+
+		</fieldset>
+		
+	<% end %>
+
+
+	<%= link_to 'Show', @ngo %> |
+	<%= link_to 'Back', ngos_path %>
+
+</div>

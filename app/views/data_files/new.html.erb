@@ -1,0 +1,21 @@
+<div id="newForm">
+
+	<h1>New Data File</h1>
+
+	<% form_for:data_file , :url => {:controller => 'data_files', :action => 'create' }, :html => { :multipart => true, :method => :post } do |f| %>
+	
+	  <%= f.error_messages %>
+
+		<fieldset class="inlineLabels">
+
+			<%= render 'fields', :f => f %>
+
+	  	<div class="buttonHolder">
+	    	<%= f.submit 'Create' %>
+	  	</div>
+
+		</fieldset>
+		
+	<% end %>
+
+</div>

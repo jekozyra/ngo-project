@@ -1,0 +1,52 @@
+<div class="ctrlHolder">
+  <%= f.label :acronym %>
+  <%= f.text_field :acronym %>
+</div>
+<div class="ctrlHolder">
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+<div class="ctrlHolder">
+  <%= f.label :country_id, 'Country' %>
+	<%= collection_select :ngo, :country_id, @countries, :id, :name %>
+</div>
+<%= observe_field 'ngo_country_id',
+	:url => { :action => :update_districts }, 
+	:update => 'district_list',
+	:with => 'ngo_country_id'
+%>
+<div class="ctrlHolder" id="district_list">
+	<%= render :partial => 'districts', :locals => {:f => f, :districts => @districts }%>
+</div>
+<div class="ctrlHolder">
+  <%= f.label :sectors, 'Sector(s)' %>
+	<%= collection_select :ngo, :sector_ids, @sectors, :id, :name, {}, :size => 7, :multiple => true %>
+</div>
+<div class="ctrlHolder">
+  <%= f.label :contact_name %>
+  <%= f.text_field :contact_name %>
+</div>
+<div class="ctrlHolder">
+  <%= f.label :contact_position %>
+  <%= f.text_field :contact_position %>
+</div>
+<div class="ctrlHolder">
+  <%= f.label :contact_address %>
+  <%= f.text_field :contact_address %>
+</div>
+<div class="ctrlHolder">
+  <%= f.label :contact_phone %>
+  <%= f.text_field :contact_phone %>
+</div>
+<div class="ctrlHolder">
+  <%= f.label :contact_email %>
+  <%= f.text_field :contact_email %>
+</div>
+<div class="ctrlHolder">
+  <%= f.label :affiliations, 'Affiliation' %>
+	<%= collection_select :ngo, :affiliation_ids, @affiliations, :id, :name, {}, :size => 5, :multiple => true %>
+</div>
+<div class="ctrlHolder">
+  <%= f.label :auto_update, "Auto-update?" %>
+  <%= f.check_box :auto_update %>
+</div>

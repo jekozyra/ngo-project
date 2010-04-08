@@ -1,0 +1,42 @@
+<div id="titleHeader">
+	<h1 class="floatLeftWhite">Af-Pak NGO Database: NGOs</h1>
+</div>
+
+<div id="results">
+
+	<table>
+	
+	  <tr>
+	    <th width="50px">Acronym</th>
+	    <th width="350px">Name</th>
+	    <th>Country</th>
+	    <th>District</th>
+		 	<th>Sector(s)</th>
+			<th>Affiliation</th>
+	    <th>Auto-update?</th>
+		  <th>Details</th>	
+			<th>Edit</th>	
+			<th>Destroy</th>	
+	  </tr>
+
+	<% @ngos.each do |ngo| %>
+	  <tr>
+	    <td width="50px"><%= ngo.acronym %></td>
+	    <td width="350px"><%= ngo.name %></td>
+	    <td><%= ngo.country.name %></td>
+	    <td><%= ngo.district.name %></td>
+		  <td width="350px"><%= ngo.sector_names %></td>
+			<td><%= ngo.affiliation_names %></td>
+		  <td><%= ngo.auto_update_value %></td>
+	    <td><%= link_to 'Details', ngo %></td>
+	    <td><%= link_to 'Edit', edit_ngo_path(ngo) %></td>
+	    <td><%= link_to 'Destroy', ngo, :confirm => 'Are you sure?', :method => :delete %></td>
+	  </tr>
+	<% end %>
+	</table>
+<br />
+<%= will_paginate %>
+<br />
+
+<%= link_to '+ Add New NGO', new_ngo_path %>
+</div>

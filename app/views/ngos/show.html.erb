@@ -1,0 +1,69 @@
+<div id="detailsPage">
+
+	<h1>NGO Details</h1>
+
+	<fieldset class="inlineLabels">
+
+		<div class="ctrlHolder">
+		  <label>Acronym:</label>
+		  <%= @ngo.acronym %>
+		</div>
+
+		<div class="ctrlHolder">
+		  <label>Name:</label>
+		  <%= @ngo.name %>
+		</div>
+
+		<div class="ctrlHolder">
+		  <label>Country:</label>
+		  <%= @ngo.country_name %>
+		</div>
+
+		<div class="ctrlHolder">
+		  <label>District:</label>
+		  <%= @ngo.district_name %>
+		</div>
+
+		<div class="ctrlHolder">
+		  <label>Sector:</label>
+		  <%= @ngo.sector_names %>
+		</div>
+
+		<div class="ctrlHolder">
+		  <label>Affiliation:</label>
+		  <%= @ngo.affiliation_names %>
+		</div>
+
+		<div class="ctrlHolder">
+		  <label>Contact name:</label>
+		  <%= @ngo.contact_name %>
+		</div>
+
+		<div class="ctrlHolder">
+		  <label>Contact position:</label>
+		  <%= @ngo.contact_position %>
+		</div>
+
+		<div class="ctrlHolder">
+		  <label>Contact address:</label>
+		  <%= @ngo.contact_address %>
+		</div>
+
+		<div class="ctrlHolder">
+		  <label>Contact phone:</label>
+		  <%= @ngo.contact_phone %>
+		</div>
+
+		<div class="ctrlHolder">
+		  <label>Contact email:</label>
+		  <%= @ngo.contact_email %>
+		</div>
+			
+	</fieldset>
+		
+
+	<%= link_to 'Edit', edit_ngo_path(@ngo) %> |
+	<%= link_to 'Back', ngos_path %>
+	
+</div>
+

@@ -1,0 +1,2 @@
+<%= label_tag 'district_name', 'District(s)' %>
+<%= collection_select :district, :name, districts, :id, :name, {}, :size => 5, :multiple => true %>
