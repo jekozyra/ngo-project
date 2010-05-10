@@ -38,14 +38,14 @@ ActiveRecord::Schema.define(:version => 20100326090624) do
   create_table "ngos", :force => true do |t|
     t.string   "acronym"
     t.string   "name"
+    t.integer  "country_id"
+    t.integer  "district_id"
     t.string   "contact_name"
     t.string   "contact_position"
     t.string   "contact_address"
-    t.integer  "country_id"
-    t.integer  "district_id"
     t.string   "contact_phone"
     t.string   "contact_email"
-    t.integer  "sector_id"
+    t.boolean  "auto_update",      :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
