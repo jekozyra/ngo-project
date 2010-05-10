@@ -3,6 +3,22 @@ Dir['vendor/plugins/*/recipes/*.rb'].each { |plugin| load(plugin) }
 
 load 'config/deploy' # remove this line to skip loading any of the default tasks
 
+=begin
+namespace :deploy do
+
+  task :start, :roles => :app do
+    run "rm -rf /home/#{user}/public_html;ln -s #{current_path}/public /home/#{user}/public_html"
+  end
+
+  task :restart, :roles => :app do
+    run "#{current_path}/script/process/reaper --dispatcher=dispatch.fcgi"
+  end
+
+end
+=end
+
+
+
 # ========================
 # For mod_rails apps
 # ========================
@@ -11,16 +27,18 @@ load 'config/deploy' # remove this line to skip loading any of the default tasks
 # files should *never* go into subversion for security reasons.
 
 namespace :deploy do
-   task :start, :roles => :app do
-     run "touch #{deploy_to}/current/tmp/restart.txt"
-   end
-   
-   task :restart, :roles => :app do
-     run "touch #{deploy_to}/current/tmp/restart.txt"
-   end
- 
-   task :after_symlink, :roles => :app do
-     run "rm -f ~/public_html;ln -s #{deploy_to}/current/public ~/public_html"
-     run "ln -s #{deploy_to}/shared/database.yml #{deploy_to}/current/config/database.yml"
-   end
- end
+  task :start, :roles => :app do
+    run "touch #{deploy_to}/current/tmp/restart.txt"
+  end
+  
+  task :restart, :roles => :app do
+    run "touch #{deploy_to}/current/tmp/restart.txt"
+  end
+
+  task :after_symlink, :roles => :app do
+    run "rm -f ~/public_html;ln -s #{deploy_to}/current/public ~/public_html"
+    run "ln -s #{deploy_to}/shared/database.yml #{deploy_to}/current/config/database.yml"
+    run "chmod +x #{deploy_to}/current/lib/af_scraper.rb"
+  end
+end
+
