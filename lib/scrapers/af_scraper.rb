@@ -1,3 +1,6 @@
+#!/usr/bin/env ruby
+
+ENV['RAILS_ENV'] = 'production'
 
 require '../../config/environment' #only if you are using this within a rails app
 require 'rexml/document'
