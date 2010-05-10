@@ -1,6 +1,6 @@
 <div id="searchForm">
 	<% form_tag :controller => "search", :action => "search" do %>
-		<h2>Af-Pak NGO Database: Search</h2>
+		<h2>Afghanistan and Pakistan NGO Database: Search</h2>
 		<fieldset class="inlineLabels">
 			<div class="ctrlHolder" ><%= label_tag 'ngo_name', 'NGO Name/Acronym'%><%= text_field_tag 'ngo_name', nil %></div>
 			<div class="ctrlHolder"><%= label_tag 'country_name', 'Country(s)' %><%= collection_select :country, :name, @countries, :id, :name, {}, :size => 5, :multiple => true %></div>
