@@ -1,4 +1,6 @@
-require '../config/environment' #only if you are using this within a rails app
+#!/usr/bin/env ruby
+
+#require '../config/environment' #only if you are using this within a rails app
 require 'rexml/document'
 require 'rubygems'
 require 'hpricot'
