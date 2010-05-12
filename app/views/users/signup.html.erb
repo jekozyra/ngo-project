@@ -1,0 +1,37 @@
+<div id="newForm">
+
+	<h1>Sign up</h1>
+
+	<% form_for(@user) do |f| %>
+	  <%= f.error_messages %>
+	
+		<fieldset class="inlineLabels">
+
+	  <div class="ctrlHolder">
+	    <%= f.label :email %>
+	    <%= f.text_field :email %>
+	  </div>
+	  <div class="ctrlHolder">
+	    <%= f.label :first_name %>
+	    <%= f.text_field :first_name %>
+	  </div>
+	  <div class="ctrlHolder">
+	    <%= f.label :last_name %>
+	    <%= f.text_field :last_name %>
+	  </div>
+	  <div class="ctrlHolder">
+	    <%= f.label :password, 'Password' %>
+	    <%= f.password_field :password %>
+	  </div>
+	  <div class="ctrlHolder">
+	    <%= f.label :password_confirmation, 'Confirm Password' %>
+	    <%= f.password_field :password_confirmation %>
+	  </div>
+	  <div class="buttonHolder">
+	    <%= f.submit 'Join' %>
+	  </div>
+	
+		</fieldset>
+	<% end %>
+
+</div>

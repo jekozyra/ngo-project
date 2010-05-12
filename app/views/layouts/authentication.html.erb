@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>The Mashera Project</title>
+  <%= stylesheet_link_tag 'main' %>
+  <%= javascript_include_tag :defaults %>
+</head>
+<body>
+	<div id="wrapper">
+		<% if flash[:notice] %>
+		  	<div id="flash-notice">
+				<h3><%= flash[:notice] %></h3>
+			</div>
+		<% elsif flash[:warning] %>
+		  	<div id="flash-warning">
+				<h3><%= flash[:warning] %></h3>
+			</div>
+		<% elsif flash[:error] %>
+		  	<div id="flash-error">
+				<h3><%= flash[:error] %></h3>
+			</div>			
+		<% end %>
+
+		<%= yield %>
+		<div id="footer">
+			Copyright &copy; 2008 The Mashera Project, all rights reserved.
+		</div>
+	</div>
+</body>
+</html>

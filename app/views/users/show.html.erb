@@ -1,0 +1,36 @@
+<div id="detailsPage">
+	
+	<h1>User Details</h1>
+	
+	<fieldset class="inlineLabels">
+		
+		<div class="ctrlHolder">
+		  <label>Email:</label>
+		  <%=h @user.email %>
+		</div>
+
+		<div class="ctrlHolder">
+		  <label>Name:</label>
+		  <%= @user.full_name %>
+		</div>
+		
+		<div class="ctrlHolder">
+		  <label>User Type:</label>
+		  <%= @user.user_type %>
+		</div>
+		
+		<div class="ctrlHolder">
+		  <label>Approved:</label>
+		  <% if @user.approved %>
+				Yes
+			<% else %>
+				No
+			<% end %>
+		</div>
+
+	</fieldset>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
+
+</div>

@@ -1,0 +1,40 @@
+<div id="newForm">
+	
+	<h1>Edit user</h1>
+
+	<% form_for(@user) do |f| %>
+		<%= f.error_messages %>
+	
+		<fieldset class="inlineLabels">
+
+	  <div class="ctrlHolder">
+	    <%= f.label :email %>
+	    <%= f.text_field :email %>
+	  </div>
+	  <div class="ctrlHolder">
+	    <%= f.label :first_name %>
+	    <%= f.text_field :first_name %>
+	  </div>
+	  <div class="ctrlHolder">
+	    <%= f.label :last_name %>
+	    <%= f.text_field :last_name %>
+	  </div>
+	  <div class="ctrlHolder">
+	    <%= f.label :user_type %>
+			<%= f.select :user_type, ["user", "admin"], {:selected => @user.user_type} %>
+	  </div>
+		<div class="ctrlHolder">
+		  <%= f.label :approved, "Approved?" %>
+		  <%= f.check_box :approved %>
+		</div>
+	  <div class="buttonHolder">
+	    <%= f.submit 'Update' %>
+	  </div>
+
+		</fieldset>
+	<% end %>
+
+	<%= link_to 'Show', @user %> |
+	<%= link_to 'Back', users_path %>
+
+</div>

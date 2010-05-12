@@ -1,0 +1,7 @@
+<div id="login">
+	<% if !logged_in? %>
+		<%= link_to('Login', :controller => "authentication", :action => "login")%>
+	<% else %>
+		<%= link_to('Logout', :controller => "authentication", :action => "logout")%>
+	<% end %>
+</div>
