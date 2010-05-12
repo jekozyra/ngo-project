@@ -1,4 +1,8 @@
 class CountriesController < ApplicationController
+  
+  before_filter :authorize
+  before_filter :admin_authorize
+  
   # GET /countries
   # GET /countries.xml
   def index

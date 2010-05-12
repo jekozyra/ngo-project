@@ -1,8 +1,8 @@
 <div id="searchForm">
 	<% form_tag :controller => "search", :action => "search" do %>
-		<h2>Afghanistan and Pakistan NGO Database: Search</h2>
+		<h2>Search The Mashera Project</h2>
 		<fieldset class="inlineLabels">
-			<div class="ctrlHolder" ><%= label_tag 'ngo_name', 'NGO Name/Acronym'%><%= text_field_tag 'ngo_name', nil %></div>
+			<div class="ctrlHolder" ><%= label_tag 'ngo_name', 'NGO Name/Acronym'%><%= text_field_tag 'ngo_name', nil, :size => 45 %></div>
 			<div class="ctrlHolder"><%= label_tag 'country_name', 'Country(s)' %><%= collection_select :country, :name, @countries, :id, :name, {}, :size => 5, :multiple => true %></div>
 			<div class="ctrlHolder" id="district_list"><%= render :partial => "list_districts", :locals => {:districts => @districts} %></div>
 			<%= observe_field "country_name",
@@ -12,7 +12,7 @@
 			%>
 			<div class="ctrlHolder"><%= label_tag 'sector_name', 'Sector' %><%= collection_select :sector, :name, @sectors, :id, :name, {}, :size => 7, :multiple => true %></div>
 			<div class="ctrlHolder"><%= label_tag 'affiliation_name', 'Affiliation(s)' %><%= collection_select :affiliation, :name, @affiliations, :id, :name, {}, :size => 5, :multiple => true %></div>
-			<div class="buttonHolder"><input type="reset" value="Reset"><%= submit_tag 'Search' %></div>
+			<div class="buttonHolder"><input type="reset" value="Reset" /><%= submit_tag 'Search' %></div>
 		</fieldset>
 	<% end %>
 </div>

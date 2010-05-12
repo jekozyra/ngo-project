@@ -1,4 +1,8 @@
 class DistrictsController < ApplicationController
+  
+  before_filter :authorize
+  before_filter :admin_authorize
+  
   # GET /districts
   # GET /districts.xml
   def index

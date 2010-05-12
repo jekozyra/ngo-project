@@ -30,10 +30,19 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address  => "mail.themasheraproject.org",
+    :port  => 26, 
+    :domain => "themasheraproject.org",
+    :user_name  => "accounts@themasheraproject.org",
+    :password  => "lw0rdr0",
+    :authentication  => :login
+  }
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
-  config.time_zone = 'UTC'
+  config.time_zone = 'Eastern Time (US & Canada)'
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]

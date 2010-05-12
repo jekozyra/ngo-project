@@ -1,5 +1,5 @@
 <div id="titleHeader">
-	<h1 class="floatLeftWhite">Af-Pak NGO Database: Search Results</h1>
+	<h1 class="floatLeftWhite">The Mashera Project: Results</h1>
 </div>
 
 <div id="results">
@@ -24,7 +24,7 @@
 			<td><%= result.country_name %></td>
 			<td><%= result.district_name %></td>
 			<td><%= result.affiliation_names %></td>
-			<td width="100px"><%= link_to 'View Details', result, :class => 'details-link' %></td>
+			<td width="100px"><%= link_to 'View Details', {:controller => "ngos", :action => "view_details", :id => result}, {:class => 'details-link'} %></td>
 		</tr>
 
 		<% end %>

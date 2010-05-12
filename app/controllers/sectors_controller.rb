@@ -1,4 +1,8 @@
 class SectorsController < ApplicationController
+  
+  before_filter :authorize
+  before_filter :admin_authorize
+  
   # GET /sectors
   # GET /sectors.xml
   def index

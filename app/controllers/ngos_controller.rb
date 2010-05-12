@@ -1,5 +1,8 @@
 class NgosController < ApplicationController
   
+  before_filter :authorize
+  before_filter :admin_authorize, :except => ["view_details"]
+  
   layout 'main_layout'
   
   # GET /ngos
@@ -92,6 +95,17 @@ class NgosController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(ngos_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  
+  # GET /ngos/1
+  # GET /ngos/1.xml
+  def view_details
+    @ngo = Ngo.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
     end
   end
   

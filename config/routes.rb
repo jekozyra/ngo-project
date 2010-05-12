@@ -1,4 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
+  
+  map.login 'login', :controller => 'authentication', :action => 'login'
+  map.signup 'signup', :controller => 'users', :action => 'signup'
+  map.approved_users 'users/approved', :controller => 'users', :action => 'approved'
+  map.unapproved_users 'users/unapproved', :controller => 'users', :action => 'unapproved'
+  map.signup_thanks 'signup_thanks', :controller => 'users', :action => 'signup_thanks'
+
+  
+  map.resources :users
+
   map.resources :sectors
 
   map.resources :districts

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100326090624) do
+ActiveRecord::Schema.define(:version => 20100511080056) do
 
   create_table "affiliations", :force => true do |t|
     t.string   "name"
@@ -57,6 +57,18 @@ ActiveRecord::Schema.define(:version => 20100326090624) do
 
   create_table "sectors", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "hashed_password"
+    t.string   "salt"
+    t.string   "user_type"
+    t.boolean  "approved",        :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

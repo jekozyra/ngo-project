@@ -36,12 +36,20 @@
 
 		<div class="ctrlHolder">
 		  <label>Contact name:</label>
-		  <%= @ngo.contact_name %>
+			<% unless @ngo.contact_name.nil? or @ngo.contact_name == "" %>
+				<%= @ngo.contact_name %>
+			<% else %>
+				---
+			<% end %>
 		</div>
 
 		<div class="ctrlHolder">
 		  <label>Contact position:</label>
-		  <%= @ngo.contact_position %>
+			<% unless @ngo.contact_position.nil? or @ngo.contact_position == "" %>
+				<%= @ngo.contact_position %>
+			<% else %>
+				---
+			<% end %>
 		</div>
 
 		<div class="ctrlHolder">

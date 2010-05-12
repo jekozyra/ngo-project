@@ -1,5 +1,7 @@
 class SearchController < ApplicationController
   
+  before_filter :authorize
+  
   layout 'main_layout'
   
   def index
