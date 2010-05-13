@@ -13,7 +13,7 @@ class MailMan < ActionMailer::Base
 
   def user_approved(user)
     subject    'Welcome to the Mashera Project'
-    recipients 'Jillyh0@gmail.com'
+    recipients user.email
     from       'accounts@themasheraproject.org'
     sent_on    Time.now
     content_type 'text/html'
