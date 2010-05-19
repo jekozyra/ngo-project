@@ -3,6 +3,8 @@ class DistrictsController < ApplicationController
   before_filter :authorize
   before_filter :admin_authorize
   
+  layout 'main_layout'
+  
   # GET /districts
   # GET /districts.xml
   def index
