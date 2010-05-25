@@ -1,16 +1,22 @@
-<h1>Editing country</h1>
+<div id="newForm">
 
-<% form_for(@country) do |f| %>
-  <%= f.error_messages %>
+	<h1>Editing country</h1>
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+	<% form_for(@country) do |f| %>
+	<fieldset class="inlineLabels">
+	  <%= f.error_messages %>
 
-<%= link_to 'Show', @country %> |
-<%= link_to 'Back', countries_path %>
+	  <div class="ctrlHolder">
+	    <%= f.label :name %><br />
+	    <%= f.text_field :name %>
+	  </div>
+	  <div class="buttonHolder">
+	    <%= f.submit 'Update' %>
+	  </div>
+	</fieldset>
+	<% end %>
+
+	<%= link_to 'Show', @country %> |
+	<%= link_to 'Back', countries_path %>
+
+</div>

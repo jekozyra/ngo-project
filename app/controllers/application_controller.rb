@@ -20,7 +20,6 @@ class ApplicationController < ActionController::Base
   
   # make sure that people are logged in to use the system
   def authorize
-    puts session[:user_id]
 	  if session[:user_id].nil?
 		  session[:original_uri] = request.request_uri
 		  redirect_to(login_path)

@@ -12,6 +12,9 @@ class SearchController < ApplicationController
   end
   
   def search
+    
+    @display_option = params[:display_option]
+    
     if(params.member?("country"))
     	@countries = params[:country][:name]
     	country_array = @countries
@@ -110,9 +113,56 @@ class SearchController < ApplicationController
     end
     sql += @sort_by
     
-    @search = Ngo.paginate_by_sql(sql, :page => params[:page], :per_page => 50)
+    if @display_option == "table"
+      @search = Ngo.paginate_by_sql(sql, :page => params[:page], :per_page => 50)
+    elsif @display_option == "location_map"
+      @search = Ngo.find_by_sql(sql)
+      location_map(@search)
+    else
+      @search = Ngo.find_by_sql(sql)
+    end
     
-  end
+  end # end function search
+  
+  
+  # do the location mapping
+  def location_map(search_results)
+    
+    @latlongs = []
+    @latlong = []
+    
+    search_results.each do |result|
+      unless result.district_id.nil? or result.country_id.nil?
+        result.affiliations.each do |affiliation|
+          group_name = ""
+
+          #puts affiliation.name
+
+          if affiliation.name == "Afghanistan" or affiliation.name == "Pakistan"
+            group_name = affiliation.name
+            country_name = result.country.name
+            district_name = result.district.name
+          else
+            district_name = result.district.name
+            group_name = "Other"
+            country_name = "Other"
+          end
+
+          @latlong << {"country" => country_name,
+                       "lat" => result.district.latlong.split(",")[0],
+                       "lng" => result.district.latlong.split(",")[1],
+                       "group" => group_name}
+        end
+      end
+    end # end search_results.each loop
+
+    my_file = File.open("#{RAILS_ROOT}/public/data/map.json", File::WRONLY|File::TRUNC|File::CREAT)
+    my_file.puts "{ \"markers\":" + @latlong.to_json.to_s + "}"
+    my_file.close
+
+   # render :text => @latlong.to_json
+  end # end function location_map
+  
   
   def results
   end

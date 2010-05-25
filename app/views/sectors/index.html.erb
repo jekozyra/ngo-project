@@ -1,14 +1,19 @@
-<h1>Listing sectors</h1>
+<div id="titleHeader">
+	<h1 class="floatLeftWhite">The Mashera Project: Sectors</h1>
+</div>
 
 <table>
   <tr>
     <th>Name</th>
+	  <th>Details</th>	
+		<th>Edit</th>	
+		<th>Destroy</th>
   </tr>
 
 <% @sectors.each do |sector| %>
   <tr>
-    <td><%=h sector.name %></td>
-    <td><%= link_to 'Show', sector %></td>
+    <td><%= sector.name %></td>
+    <td><%= link_to 'Details', sector %></td>
     <td><%= link_to 'Edit', edit_sector_path(sector) %></td>
     <td><%= link_to 'Destroy', sector, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>

@@ -3,6 +3,8 @@ class CountriesController < ApplicationController
   before_filter :authorize
   before_filter :admin_authorize
   
+  layout 'main_layout'
+  
   # GET /countries
   # GET /countries.xml
   def index

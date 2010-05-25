@@ -1,13 +1,31 @@
-<p>
-  <b>Name:</b>
-  <%=h @district.name %>
-</p>
+<div id="newForm">
+	
+	<h1>District Details</h1>
+	
+	<fieldset class="inlineLabels">
+		
+		<div class="ctrlHolder">
+		  <b>District Name:</b>
+		  <%= @district.name %>
+		</div>
 
-<p>
-  <b>Country:</b>
-  <%=h @district.country_id %>
-</p>
+		<div class="ctrlHolder">
+		  <b>Country:</b>
+		  <%= @district.country.name %>
+		</div>
 
+		<div class="ctrlHolder">
+		  <b>Geo Data:</b>
+		  <%= @district.latlong %>
+		</div>
+		
+		<div class="ctrlHolder">
+		  <b>ISO 3166-2:</b>
+		  <%= @district.iso_code %>
+		</div>
 
-<%= link_to 'Edit', edit_district_path(@district) %> |
-<%= link_to 'Back', districts_path %>
+	</fieldset>
+
+	<%= link_to 'Edit', edit_district_path(@district) %> |
+	<%= link_to 'Back', districts_path %>
+</div>

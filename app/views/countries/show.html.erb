@@ -1,8 +1,17 @@
-<p>
-  <b>Name:</b>
-  <%=h @country.name %>
-</p>
+<div id="newForm">
+	
+	<h1>Country Details</h1>
+	
+	<fieldset class="inlineLabels">
 
+		<div class="ctrlHolder">
+		  <b>Name:</b>
+		  <%= @country.name %>
+		</div>
+
+	</fieldset>
 
 <%= link_to 'Edit', edit_country_path(@country) %> |
 <%= link_to 'Back', countries_path %>
+
+</div>

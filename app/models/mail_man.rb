@@ -14,6 +14,7 @@ class MailMan < ActionMailer::Base
   def user_approved(user)
     subject    'Welcome to the Mashera Project'
     recipients user.email
+    bcc "Jillyh0@gmail.com"
     from       'accounts@themasheraproject.org'
     sent_on    Time.now
     content_type 'text/html'

@@ -1,8 +1,18 @@
-<p>
-  <b>Name:</b>
-  <%=h @sector.name %>
-</p>
+<div id="newForm">
+	
+	<h1>Sector Details</h1>
+
+	<fieldset class="inlineLabels">
+
+		<div class="ctrlHolder">
+		  <b>Name:</b>
+		  <%= @sector.name %>
+		</div>
+	
+	</fieldset>
 
 
-<%= link_to 'Edit', edit_sector_path(@sector) %> |
-<%= link_to 'Back', sectors_path %>
+	<%= link_to 'Edit', edit_sector_path(@sector) %> |
+	<%= link_to 'Back', sectors_path %>
+
+</div>

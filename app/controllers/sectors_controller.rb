@@ -3,10 +3,12 @@ class SectorsController < ApplicationController
   before_filter :authorize
   before_filter :admin_authorize
   
+  layout 'main_layout'
+  
   # GET /sectors
   # GET /sectors.xml
   def index
-    @sectors = Sector.all
+    @sectors = Sector.find(:all, :order => "name")
 
     respond_to do |format|
       format.html # index.html.erb

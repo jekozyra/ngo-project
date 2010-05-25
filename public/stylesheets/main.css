@@ -386,3 +386,30 @@ fieldset.login {
 	margin-left: 0.5em; }
 
 
+/*======google map styles====================================================*/
+
+#map_canvas {width: 100%;height: 59.5em;position:relative;}
+#legend-btn {
+	text-align:center;
+	font-size:12px;
+	font-family: Arial, Helvetica;
+	font-weight:bold;
+	height:16px;
+	width:65px;
+	position:relative;
+	left:183px;
+	top:1px;
+	border-style: solid;
+	border-color: rgb(52, 86, 132) rgb(108, 157, 223) rgb(108, 157, 223) rgb(52, 86, 132);
+	border-width: 1px;
+	background-color:#fff;
+}
+#legend-btn:hover {cursor:pointer;}
+#legend-btn.on {background-color: #d20217; color: #fff;}
+#legend-container {position:absolute;right:8px;top:111px;width:250px;height:auto;}
+#legend {background-color:#fff;border:1px solid #999;display:none;padding:8px 15px;}
+#map_canvas {position:relative;width:auto;height: 1000px;}
+#legend-contents{margin:10px;}
+#legend-contents p{font-weight: bold;}
+#legend-contents img{margin:0 10px 0 0;}
+

@@ -1,16 +1,25 @@
-<h1>Listing districts</h1>
+<div id="titleHeader">
+	<h1 class="floatLeftWhite">The Mashera Project: Districts</h1>
+</div>
 
 <table>
   <tr>
     <th>Name</th>
     <th>Country</th>
+		<th>Geo Data</th>
+		<th>ISO 3166-2</th>
+		<th>Details</th>
+		<th>Edit</th>
+		<th>Destroy</th>
   </tr>
 
 <% @districts.each do |district| %>
   <tr>
     <td><%= district.name %></td>
     <td><%= district.country.name %></td>
-    <td><%= link_to 'Show', district %></td>
+		<td><%= district.latlong %></td>
+		<td><%= district.iso_code %></td>
+    <td><%= link_to 'Details', district %></td>
     <td><%= link_to 'Edit', edit_district_path(district) %></td>
     <td><%= link_to 'Destroy', district, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
