@@ -23,9 +23,9 @@ function init(){
 		//set up custom icon
 		var baseIcon = new GIcon();
 		baseIcon.image = "/images/icons/group.png";
-		baseIcon.shadow = "http://www.google.com/mapfiles/shadow50.png";
+		//baseIcon.shadow = "http://www.google.com/mapfiles/shadow50.png";
 		baseIcon.iconSize = new GSize(20, 34);
-		baseIcon.shadowSize = new GSize(37, 34);
+		//baseIcon.shadowSize = new GSize(37, 34);
 		baseIcon.iconAnchor = new GPoint(9, 34);
 		baseIcon.infoWindowAnchor = new GPoint(10, 0);
 		
@@ -93,8 +93,8 @@ jQuery(document).ready(function() {
 				jQuery('<p>').html('<img src="/images/icons/group' + g + '.png\" />' + this + " - " + groupCount[g]).appendTo('#legend-contents');
 			});
 			//add the country to the legend
-			var country = json.markers[0].country.replace(/\|/, "\t\|\t")
-			jQuery('#legend-contents').prepend('<strong>'+country+'</strong>');
+			//var country = json.markers[0].country //.replace(/\|/, "\t\|\t")
+			//jQuery('#legend-contents').prepend('<strong>'+country+'</strong>');
 						
 			jQuery('#legend-container').show();
 			jQuery('#legend').show();

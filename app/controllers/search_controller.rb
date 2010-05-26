@@ -130,28 +130,43 @@ class SearchController < ApplicationController
     
     @latlongs = []
     @latlong = []
+    used_districts = []
+    used_affiliations = []
     
     search_results.each do |result|
       unless result.district_id.nil? or result.country_id.nil?
         result.affiliations.each do |affiliation|
-          group_name = ""
+          unless used_districts.include?(result.district_id) and used_affiliations.include?(affiliation.id)
+            group_name = ""
+            
+            used_districts << result.district_id
 
-          #puts affiliation.name
+            if affiliation.name == "Afghanistan" or affiliation.name == "Pakistan"
+              group_name = affiliation.name
+              country_name = result.country.name
+              district_name = result.district.name
+              used_affiliations << affiliation.name.downcase
+              if affiliation.name == "Pakistan"
+                lng = (result.district.latlong.split(",")[1].to_f - 0.13).to_s
+              else
+                lng = result.district.latlong.split(",")[1]
+              end       
+            else
+              district_name = result.district.name
+              group_name = "Other"
+              country_name = "Other"
+              used_affiliations << "other"
+              lng = (result.district.latlong.split(",")[1].to_f + 0.13).to_s
+            end
+            
+            lat = result.district.latlong.split(",")[0]
 
-          if affiliation.name == "Afghanistan" or affiliation.name == "Pakistan"
-            group_name = affiliation.name.downcase
-            country_name = result.country.name
-            district_name = result.district.name
-          else
-            district_name = result.district.name
-            group_name = "other"
-            country_name = "Other"
-          end
+            @latlong << {"country" => country_name,
+                         "lat" => lat,
+                         "lng" => lng,
+                         "group" => group_name}
 
-          @latlong << {"country" => country_name,
-                       "lat" => result.district.latlong.split(",")[0],
-                       "lng" => result.district.latlong.split(",")[1],
-                       "group" => group_name}
+          end # end unless districts.include?(result.district_id) and affiliations.include?(affiliation.id)
         end
       end
     end # end search_results.each loop
