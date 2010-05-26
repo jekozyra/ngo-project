@@ -33,7 +33,7 @@ function init(){
 		function addMarker(lat, lng, country, group){
 			var point = new GLatLng(lat, lng);
 			var icon = new GIcon(baseIcon);
-			icon.image = "/images/icons/group" + group + ".png";
+			icon.image = "http://themasheraproject.org/images/icons/group" + group + ".png";
 			var marker = new GMarker(point, icon);
 			//click on icons to get info window
 			//GEvent.addListener(marker, "click", function(){
