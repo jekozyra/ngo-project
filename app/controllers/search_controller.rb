@@ -139,12 +139,12 @@ class SearchController < ApplicationController
           #puts affiliation.name
 
           if affiliation.name == "Afghanistan" or affiliation.name == "Pakistan"
-            group_name = affiliation.name
+            group_name = affiliation.name.downcase
             country_name = result.country.name
             district_name = result.district.name
           else
             district_name = result.district.name
-            group_name = "Other"
+            group_name = "other"
             country_name = "Other"
           end
 
