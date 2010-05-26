@@ -93,7 +93,7 @@ jQuery(document).ready(function() {
 				jQuery('<p>').html('<img src="http://themasheraproject.org/images/icons/group' + g + '.png\" />' + this + " - " + groupCount[g]).appendTo('#legend-contents');
 			});
 			//add the country to the legend
-			var country = json.markers[0].country.replace(/\|/, "\t\|\t")
+			var country = json.markers[0].group //country.replace(/\|/, "\t\|\t")
 			jQuery('#legend-contents').prepend('<strong>'+country+'</strong>');
 						
 			jQuery('#legend-container').show();
