@@ -22,7 +22,7 @@ function init(){
 		
 		//set up custom icon
 		var baseIcon = new GIcon();
-		baseIcon.image = "http://themasheraproject.org/images/icons/group.png";
+		baseIcon.image = "/images/icons/group.png";
 		baseIcon.shadow = "http://www.google.com/mapfiles/shadow50.png";
 		baseIcon.iconSize = new GSize(20, 34);
 		baseIcon.shadowSize = new GSize(37, 34);
@@ -33,7 +33,7 @@ function init(){
 		function addMarker(lat, lng, country, group){
 			var point = new GLatLng(lat, lng);
 			var icon = new GIcon(baseIcon);
-			icon.image = "http://themasheraproject.org/images/icons/group" + group + ".png";
+			icon.image = "/images/icons/group" + group + ".png";
 			var marker = new GMarker(point, icon);
 			//click on icons to get info window
 			//GEvent.addListener(marker, "click", function(){
@@ -90,10 +90,10 @@ jQuery(document).ready(function() {
 			});
 			//add an icon for each unique group
 			jQuery.each(uniqueGroups, function(g){
-				jQuery('<p>').html('<img src="http://themasheraproject.org/images/icons/group' + g + '.png\" />' + this + " - " + groupCount[g]).appendTo('#legend-contents');
+				jQuery('<p>').html('<img src="/images/icons/group' + g + '.png\" />' + this + " - " + groupCount[g]).appendTo('#legend-contents');
 			});
 			//add the country to the legend
-			var country = json.markers[0].group //country.replace(/\|/, "\t\|\t")
+			var country = json.markers[0].country.replace(/\|/, "\t\|\t")
 			jQuery('#legend-contents').prepend('<strong>'+country+'</strong>');
 						
 			jQuery('#legend-container').show();
