@@ -1,6 +1,18 @@
-<div id="map_canvas"></div>
-<div id="legend-container">
-	<div id="legend-btn">Legend</div>
-	<div id="legend">
-	<div id="legend-contents"></div>
+<div id="page">
+	
+	<div id="map_canvas"></div>
+	<div id="results-panel">
+		<div id="results-panel-title">
+			<h3>Search Results</h3>
+			<span id="results-panel-btn">Hide</span>
+		</div>
+		<div id="results-panel-contents">
+			<%= render :partial => "results_panel_results", :locals => {:search => search} %>
+		</div>
+	</div>
+	<div id="legend-container">
+		<div id="legend-btn">Legend</div>
+		<div id="legend-contents"></div>
+	</div>
+	
 </div>

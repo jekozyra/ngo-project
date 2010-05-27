@@ -45,7 +45,7 @@ jQuery(document).ready(function() {
 	jQuery('#legend-container').hide
 	
 	jQuery('#legend-btn').click(function(){
-		jQuery('#legend').toggle(70);
+		jQuery('#legend-contents').toggle(70);
 	});
 	
 	jQuery.getJSON("/data/map.json",function(json){
@@ -55,7 +55,12 @@ jQuery(document).ready(function() {
 		});
 						
 		jQuery('#legend-container').show();
-		jQuery('#legend').show();
 		jQuery('#legend-contents').show();
+		
+		jQuery('#results-panel-btn').click(function(){
+			jQuery('#results-panel-contents').toggle(70);
+			jQuery('#results-panel-btn').text(jQuery('#results-panel-btn').text() == 'Show' ? 'Hide' : 'Show');
+		});
+		
 	});
 });

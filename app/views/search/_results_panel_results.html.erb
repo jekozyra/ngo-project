@@ -1,0 +1,5 @@
+<ul>
+<% for result in search %>
+	<li><%= link_to "#{result.acronym} - #{result.name}", {:controller => "ngos", :action => "view_details", :id => result}, {:class => 'results-panel-link'} %></li>
+<% end %>
+</ul>
