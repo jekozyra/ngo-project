@@ -148,11 +148,10 @@ class SearchController < ApplicationController
             group_name = affiliation.name
             country_name = result.country.name
             district_name = result.district.name
-            #used_affiliations << affiliation.name.downcase
             if affiliation.name == "Pakistan"
               lng = (result.district.latlong.split(",")[1].to_f + 0.14).to_s
             else
-              lng = (result.district.latlong.split(",")[1].to_f - 0.14).to_s
+              lng = (result.district.latlong.split(",")[1].to_f - 0.13).to_s
             end       
           else
             district_name = result.district.name
