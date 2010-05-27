@@ -16,7 +16,12 @@ function initialize() {
   var myOptions = {
     zoom: 5,
     center: latlng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    navigationControl: true,
+    navigationControlOptions: {
+        style: google.maps.NavigationControlStyle.ZOOM_PAN,
+        position: google.maps.ControlPosition.TOP_RIGHT
+    }
   };
   var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 	place_marker(map);
