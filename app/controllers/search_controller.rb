@@ -118,6 +118,7 @@ class SearchController < ApplicationController
     elsif @display_option == "location_map"
       @search = Ngo.find_by_sql(sql)
       location_map(@search)
+      render :layout => 'maps_layout'
     else
       @search = Ngo.find_by_sql(sql)
     end

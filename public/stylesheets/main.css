@@ -213,6 +213,52 @@ div.ctrlHolder select{width:49.7%;}
 	width:650px;
 }
 
+#map_canvas{
+	position:relative;
+	width:auto;
+	height:950px;
+}
+
+#legend-container{
+	position:absolute;
+	right:8px;
+	top:111px;
+	width:250px;
+	height:auto;
+}
+
+#results-panel{
+	position:absolute;
+	left:0;
+	top:60px;
+	width:350px;
+	background:#fff;
+}
+
+#results-panel-contents{
+	height:900px;
+	overflow:auto;
+	padding:4px 10px;
+	border-right:1px solid #000;
+	border-bottom:1px solid #000;
+}
+
+#result-panel-contents li{
+	margin:10px;
+	padding:10px;
+}
+
+#results-panel-title{
+	position:relative;
+	padding:4px 10px;
+}
+
+#legend-contents{
+	background-color:#fff;
+	border:1px solid #999;
+	padding:10px 18px;
+}
+
 .buttonHolder{
 	padding-right:5px;
 	padding-bottom:5px;
@@ -312,8 +358,6 @@ fieldset.login {
 	color:#00628B;
 }
 
-
-
 .header-link a{
 	color:#fff;
 }
@@ -386,10 +430,40 @@ fieldset.login {
 	margin-right: 0.5em; }
 .pagination .next_page {
 	margin-left: 0.5em; }
+	
+#result-panel-contents{
+	border-right:1px solid #000;
+	border-bottom:1px solid #000;
+}
 
+#result-panel-contents ul{
+	list-style:none;
+}
+
+#results-panel-title{
+	background:#3f4c6b;
+	color:#fff;
+}
+
+#results-panel-title h3{
+	background:#3f4c6b;
+	color:#fff;
+	font-variant:small-caps;
+}
+
+#results-panel ul{
+	list-style:none;
+}
+
+#legend-contents p{
+	font-weight: bold;
+}
+
+#legend-contents img{
+	margin:0 0 0 0;
+}
 
 /*======google map styles====================================================*/
-#map_canvas {width:100%;height: 59.5em;position:relative;}
 #legend-btn {
 	text-align:center;
 	font-size:12px;
@@ -408,42 +482,19 @@ fieldset.login {
 #legend-btn:hover {cursor:pointer;}
 #legend-btn.on {background-color: #d20217; color: #fff;}
 
-#legend-container {position:absolute;right:8px;top:111px;width:250px;height:auto;}
 
-#map_canvas {position:relative;width:auto;height: 1000px;}
 
-#legend-contents {background-color:#fff;border:1px solid #999;padding:10px 18px;}
-#legend-contents p{font-weight: bold;}
-#legend-contents img{margin:0 0 0 0;}
 
-#results-panel {position:absolute;left:0;top:60px;width:350px;background:#fff;}
-#results-panel ul{
-	list-style:none;
-}
-#results-panel-title{position:relative; padding:4px 10px;}
-#results-panel-title{
-	background:#3f4c6b;
-	color:#fff;
-	text-transform:capitalize;
-}
-#results-panel-title h3{
-	background:#3f4c6b;
-	color:#fff;
-	font-variant:small-caps;
-}
-#results-panel-contents{
-	height:956px;
-	overflow:auto;
-	border-right:1px solid #000;
-	border-bottom:1px solid #000;
-	padding:4px 10px;
-}
 
-#result-panel-contents ul{
-	list-style:none;
-}
+
+
+
+
+
+
+
 
 .results-panel-link a{
 	color:#00628B;
-	text-decoration: underline
 }
+

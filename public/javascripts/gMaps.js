@@ -31,7 +31,6 @@ function initialize() {
 		
 };
 
-
 //when the site has finished loading, start up the init() function
 window.onload = initialize;
 
