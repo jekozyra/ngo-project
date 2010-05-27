@@ -1,9 +1,16 @@
-<div id="titleHeader">
-	<h1 class="floatLeftWhite">The Mashera Project: Results</h1>
-</div>
-
 <% if @display_option == "table" %>
+	<div id="titleHeader">
+		<h1 class="floatLeftWhite">The Mashera Project: Results</h1>
+	</div>
 	<%= render :partial => "table_results", :locals => {:search => @search} %>
-<% else %>
+<% elsif @display_option = "location_map" %>
+	<div id="titleHeader">
+		<h1 class="floatLeftWhite">The Mashera Project: Location Map</h1>
+	</div>
 	<%= render :partial => "location_map_results", :locals => {:search => @search} %>
+<% else %>
+	<div id="titleHeader">
+		<h1 class="floatLeftWhite">The Mashera Project: Location Map</h1>
+	</div>
+	<%= render :partial => "location_map_results", :locals => {:search => @search} %>	
 <% end %>

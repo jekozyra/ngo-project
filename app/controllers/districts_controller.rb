@@ -8,7 +8,7 @@ class DistrictsController < ApplicationController
   # GET /districts
   # GET /districts.xml
   def index
-    @districts = District.find(:all, :order => "name")
+    @districts = District.find(:all, :order => "iso_code")
 
     respond_to do |format|
       format.html # index.html.erb

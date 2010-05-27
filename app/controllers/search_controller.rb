@@ -130,49 +130,55 @@ class SearchController < ApplicationController
     
     @latlongs = []
     @latlong = []
-    used_districts = []
-    used_affiliations = []
+    @legend_info = { "Afghanistan" => {"group" => "Afghanistan", "count" => 0}, "Pakistan" => {"group" => "Pakistan", "count" => 0}, "Other" => {"group" => "Other", "count" => 0} }
+    used_districts_affiliations = {}    
     
     search_results.each do |result|
       unless result.district_id.nil? or result.country_id.nil?
+                
+        if used_districts_affiliations[result.district_id].nil?
+          used_districts_affiliations[result.district_id] = []
+        end
+        
         result.affiliations.each do |affiliation|
-          unless used_districts.include?(result.district_id) and used_affiliations.include?(affiliation.id)
-            group_name = ""
             
-            used_districts << result.district_id
+          group_name = ""
 
-            if affiliation.name == "Afghanistan" or affiliation.name == "Pakistan"
-              group_name = affiliation.name
-              country_name = result.country.name
-              district_name = result.district.name
-              used_affiliations << affiliation.name.downcase
-              if affiliation.name == "Pakistan"
-                lng = (result.district.latlong.split(",")[1].to_f - 0.13).to_s
-              else
-                lng = result.district.latlong.split(",")[1]
-              end       
+          if affiliation.name == "Afghanistan" or affiliation.name == "Pakistan"
+            group_name = affiliation.name
+            country_name = result.country.name
+            district_name = result.district.name
+            #used_affiliations << affiliation.name.downcase
+            if affiliation.name == "Pakistan"
+              lng = (result.district.latlong.split(",")[1].to_f + 0.14).to_s
             else
-              district_name = result.district.name
-              group_name = "Other"
-              country_name = "Other"
-              used_affiliations << "other"
-              lng = (result.district.latlong.split(",")[1].to_f + 0.13).to_s
-            end
-            
+              lng = (result.district.latlong.split(",")[1].to_f - 0.14).to_s
+            end       
+          else
+            district_name = result.district.name
+            group_name = "Other"
+            country_name = "Other"
+            lng = result.district.latlong.split(",")[1]
+          end
+          
+          @legend_info[group_name]["count"] += 1
+                      
+          unless used_districts_affiliations[result.district_id].include?(group_name)
+            used_districts_affiliations[result.district_id] << group_name
             lat = result.district.latlong.split(",")[0]
 
             @latlong << {"country" => country_name,
-                         "lat" => lat,
-                         "lng" => lng,
-                         "group" => group_name}
-
-          end # end unless districts.include?(result.district_id) and affiliations.include?(affiliation.id)
+                        "lat" => lat,
+                        "lng" => lng,
+                        "group" => group_name}
+          end
         end
       end
     end # end search_results.each loop
-
+    
+    @latlong.sort!{|item1, item2| item1["group"] <=> item2["group"]}
     my_file = File.open("#{RAILS_ROOT}/public/data/map.json", File::WRONLY|File::TRUNC|File::CREAT)
-    my_file.puts "{ \"markers\":" + @latlong.to_json.to_s + "}"
+    my_file.puts "{\"markers\":" + @latlong.to_json.to_s + ",\"legend_info\":" + @legend_info.to_json.to_s + "}"
     my_file.close
 
    # render :text => @latlong.to_json
