@@ -58,6 +58,7 @@ jQuery(document).ready(function() {
 		
 		jQuery('#results-panel-btn').click(function(){
 			jQuery('#results-panel-contents').toggle(70);
+			jQuery('#results-panel-h3').toggle(70);
 			jQuery('#results-panel-btn').text(jQuery('#results-panel-btn').text() == 'Show' ? 'Hide' : 'Show');
 		});
 		

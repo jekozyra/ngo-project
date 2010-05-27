@@ -1,7 +1,8 @@
 <ul>
 <% for result in search %>
-	<li><%= link_to "#{result.acronym} - #{result.name}", {:controller => "ngos", :action => "view_details", :id => result}, {:class => 'results-panel-link'} %><br />
-		<span class="result-panel-info"><%= "#{result.district.name}, #{result.country.name}" %></span>
+	<li>
+		<%= link_to "#{result.acronym}", {:controller => "ngos", :action => "view_details", :id => result}, {:class => 'results-panel-link'} %><br />
+		<span class="results-panel-info"><%= "#{result.name}" %><br /><%= "#{result.district.name}, #{result.country.name}" %></span>
 	</li>
 <% end %>
 </ul>

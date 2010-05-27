@@ -236,16 +236,18 @@ div.ctrlHolder select{width:49.7%;}
 }
 
 #results-panel-contents{
-	height:900px;
+	height:901px;
 	overflow:auto;
-	padding:4px 10px;
+	margin-top:4px;
+	padding-left:45px;
+	padding-bottom:2px;
+	/*padding:4px 10px;*/
 	border-right:1px solid #000;
 	border-bottom:1px solid #000;
 }
 
 #result-panel-contents li{
-	margin:10px;
-	padding:10px;
+	margin-bottom:5px;
 }
 
 #results-panel-title{
@@ -262,6 +264,10 @@ div.ctrlHolder select{width:49.7%;}
 .buttonHolder{
 	padding-right:5px;
 	padding-bottom:5px;
+}
+
+.results-panel-info p{
+
 }
 
 /*========================================================*/
@@ -452,7 +458,7 @@ fieldset.login {
 }
 
 #results-panel ul{
-	list-style:none;
+	list-style:decimal;
 }
 
 #legend-contents p{
@@ -461,6 +467,15 @@ fieldset.login {
 
 #legend-contents img{
 	margin:0 0 0 0;
+}
+
+.results-panel-link a{
+	color:#00628B;
+	text-decoration:underline !important;
+}
+
+.results-panel-info{
+	font-size:12px;
 }
 
 /*======google map styles====================================================*/
@@ -483,18 +498,4 @@ fieldset.login {
 #legend-btn.on {background-color: #d20217; color: #fff;}
 
 
-
-
-
-
-
-
-
-
-
-
-
-.results-panel-link a{
-	color:#00628B;
-}
 
