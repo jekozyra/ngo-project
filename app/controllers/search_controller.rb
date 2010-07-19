@@ -5,6 +5,10 @@ class SearchController < ApplicationController
   layout 'main_layout'
   
   def index
+    
+#    puts "********************"
+#    puts link_to(:controller => "search", :action => "index")
+    
     @districts = []
     @countries = Country.find(:all, :order => "name")
     @sectors = Sector.find(:all, :order => "name")
@@ -12,7 +16,7 @@ class SearchController < ApplicationController
   end
   
   def search
-    
+        
     @display_option = params[:display_option]
     
     if(params.member?("country"))
@@ -123,6 +127,8 @@ class SearchController < ApplicationController
       @search = Ngo.find_by_sql(sql)
     end
     
+    return @search
+    
   end # end function search
   
   
@@ -170,7 +176,10 @@ class SearchController < ApplicationController
             @latlong << {"country" => country_name,
                         "lat" => lat,
                         "lng" => lng,
-                        "group" => group_name}
+                        "group" => group_name,
+                        "district" => result.district.name,
+                        "district_id" => result.district_id,
+                        "country_id" => result.country_id}
           end
         end
       end
@@ -185,6 +194,13 @@ class SearchController < ApplicationController
   end # end function location_map
   
   
+  def specify
+    search_results = search
+    update_results_list(search_results)
+    #render :partial => "results_panel_results", :locals => {:search => search_results}
+  end # end function specify
+  
+  
   def results
   end
   
@@ -193,6 +209,15 @@ class SearchController < ApplicationController
     country_ids = params[:country_name].split(",")
     @districts = District.find(:all, :conditions => ["country_id IN (?)", country_ids], :order => "name")
     render :partial => "list_districts", :locals => {:districts => @districts}
+  end
+  
+  private
+  
+  def update_results_list(search_results)
+    render :update do |page|
+      page.replace_html 'results-panel-contents' , :partial => 'results_panel_results', :locals => {:search => search_results}
+      page.show 'results-panel-contents'
+    end
   end
   
 end

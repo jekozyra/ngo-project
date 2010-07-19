@@ -6,65 +6,67 @@
 
 		<div class="ctrlHolder">
 		  <label>Acronym:</label>
-		  <%= @ngo.acronym %>
+		  <%= @ngo.show_acronym %>
 		</div>
 
 		<div class="ctrlHolder">
 		  <label>Name:</label>
-		  <%= @ngo.name %>
+		  <%= @ngo.show_name %>
 		</div>
 
 		<div class="ctrlHolder">
 		  <label>Country:</label>
-		  <%= @ngo.country_name %>
+		  <%= @ngo.show_country %>
 		</div>
 
 		<div class="ctrlHolder">
 		  <label>District:</label>
-		  <%= @ngo.district_name %>
+		  <%= @ngo.show_district %>
 		</div>
 
 		<div class="ctrlHolder">
 		  <label>Sector:</label>
-		  <%= @ngo.sector_names %>
+		  <%= @ngo.show_sectors %>
 		</div>
 
 		<div class="ctrlHolder">
 		  <label>Affiliation:</label>
-		  <%= @ngo.affiliation_names %>
+		  <%= @ngo.show_affiliations %>
 		</div>
 
 		<div class="ctrlHolder">
 		  <label>Contact name:</label>
-			<% unless @ngo.contact_name.nil? or @ngo.contact_name == "" %>
-				<%= @ngo.contact_name %>
-			<% else %>
-				---
-			<% end %>
+			<%= @ngo.show_contact_name %>
 		</div>
 
 		<div class="ctrlHolder">
 		  <label>Contact position:</label>
-			<% unless @ngo.contact_position.nil? or @ngo.contact_position == "" %>
-				<%= @ngo.contact_position %>
-			<% else %>
-				---
-			<% end %>
+			<%= @ngo.show_contact_position %>
 		</div>
 
 		<div class="ctrlHolder">
 		  <label>Contact address:</label>
-		  <%= @ngo.contact_address %>
+		  <%= @ngo.show_contact_address %>
 		</div>
 
 		<div class="ctrlHolder">
 		  <label>Contact phone:</label>
-		  <%= @ngo.contact_phone %>
+		  <%= @ngo.show_contact_phone %>
+		</div>
+
+		<div class="ctrlHolder">
+		  <label>Contact fax:</label>
+		  <%= @ngo.show_contact_fax %>
 		</div>
 
 		<div class="ctrlHolder">
 		  <label>Contact email:</label>
-		  <%= @ngo.contact_email %>
+		  <%= @ngo.show_contact_email %>
+		</div>
+		
+		<div class="ctrlHolder">
+		  <label>Website:</label>
+		  <%= @ngo.show_website %>
 		</div>
 			
 	</fieldset>

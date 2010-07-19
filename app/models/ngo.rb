@@ -5,39 +5,52 @@ class Ngo < ActiveRecord::Base
   has_and_belongs_to_many :affiliations
   has_and_belongs_to_many :sectors
   
-  def country_name
-    if self.country_id.nil?
-      "---"
-    else
-      self.country.name
-    end
+  
+  def show_acronym
+    self.acronym.nil? ? "---" : self.acronym
   end
   
-  def district_name
-    if self.district_id.nil?
-      "---"
-    else
-      self.district.name
-    end
+  def show_name
+    self.name.nil? ? "---" : self.name
   end
   
-  def affiliation_name
-    if self.affiliation_id.nil?
-      "---"
-    else
-      self.affiliation.name
-    end
+  def show_country
+    self.country_id.nil? ? "---" : self.country.name
   end
   
-  def sector_name
-    if self.sector_id.nil?
-      "---"
-    else
-      self.sector.name
-    end
+  def show_district
+    self.district_id.nil? ? "---" : self.district.name
   end
   
-  def sector_names
+  def show_contact_name
+    self.contact_name.nil? ? "---" : self.contact_name
+  end
+  
+  def show_contact_position
+    self.contact_position.nil? ? "---" : self.contact_position
+  end
+  
+  def show_contact_address
+    self.contact_address.nil? ? "---" : self.contact_address
+  end
+  
+  def show_contact_phone
+    self.contact_phone.nil? ? "---" : self.contact_phone
+  end
+  
+  def show_contact_fax
+    self.contact_fax.nil? ? "---" : self.contact_fax
+  end
+  
+  def show_contact_email
+    self.contact_email.nil? ? "---" : self.contact_email
+  end
+
+  def show_website
+    self.website.nil? ? "---" : self.website
+  end
+
+  def show_sectors
     if self.sectors.nil? or self.sectors.size == 0
       "---"
     else
@@ -52,7 +65,7 @@ class Ngo < ActiveRecord::Base
     end
   end
   
-  def affiliation_names
+  def show_affiliations
     if self.affiliations.nil? or self.affiliations.size == 0
       "---"
     else

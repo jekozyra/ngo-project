@@ -10,4 +10,5 @@ User.create(:email => "Jillyh0@gmail.com",
             :password => "jek339",
             :first_name => "Jillian",
             :last_name => "Kozyra",
-            :user_type => "admin")
+            :user_type => "admin",
+            :approved => 1)

@@ -21,12 +21,12 @@
 
 	<% @ngos.each do |ngo| %>
 	  <tr>
-	    <td width="50px"><%= ngo.acronym %></td>
-	    <td width="350px"><%= ngo.name %></td>
-	    <td><%= ngo.country.name %></td>
-	    <td><%= ngo.district.name %></td>
-		  <td width="350px"><%= ngo.sector_names %></td>
-			<td><%= ngo.affiliation_names %></td>
+	    <td width="50px"><%= ngo.show_acronym %></td>
+	    <td width="350px"><%= ngo.show_name %></td>
+	    <td><%= ngo.show_country %></td>
+	    <td><%= ngo.show_district %></td>
+		  <td width="350px"><%= ngo.show_sectors %></td>
+			<td><%= ngo.show_affiliations %></td>
 		  <td><%= ngo.auto_update_value %></td>
 	    <td><%= link_to 'Details', ngo %></td>
 	    <td><%= link_to 'Edit', edit_ngo_path(ngo) %></td>
