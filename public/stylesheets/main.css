@@ -216,7 +216,7 @@ div.ctrlHolder select{width:49.7%;}
 #map_canvas{
 	position:relative;
 	width:auto;
-	height:950px;
+	height:620px;
 }
 
 #legend-container{
@@ -236,9 +236,9 @@ div.ctrlHolder select{width:49.7%;}
 }
 
 #results-panel-contents{
-	height:901px;
+	height:570px;
 	overflow:auto;
-	margin-top:4px;
+	padding-top:4px;
 	padding-left:45px;
 	padding-bottom:2px;
 	/*padding:4px 10px;*/
@@ -497,5 +497,17 @@ fieldset.login {
 #legend-btn:hover {cursor:pointer;}
 #legend-btn.on {background-color: #d20217; color: #fff;}
 
+/* help css */
+#help-select {position: absolute; right: 0;top:75px;}
+
+#help-content {background-color: #fff;margin: 0 auto;padding: 50px 10px;width: 700px;position:relative;}
+#help-content .property {padding: 4px 0 4px 30px;margin: -8px 0 8px 50px;border: 1px dashed #1974D2;background: #EFEED1;	color: #A9B2C3;}
+#help-content .property p {padding: 0;margin: 0;}
+#help-content .property p span {padding-left: 40px;}
+#help-content h1 {	margin-left: 0;padding-left: 0;}
+#help-content h4 {margin: 10px 0 8px 0;padding: 5px 0 0 2px;border-top:1px solid #EFEED1;font-variant: small-caps;}
+#help-content h1+h4 {padding-top: 10px;margin-top: 5px;}
+#help-content p {padding: 0 0 8px 4px;margin-bottom: 8px;}
+#help-content ul {padding-left: 50px;margin-bottom: 8px;}
 
 
