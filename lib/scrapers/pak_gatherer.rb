@@ -29,22 +29,22 @@ pak_data = Scrubyt::Extractor.define :agent => :firefox do
   
 end
 
-File.open("../summaries/pak_results2.txt", 'w') {|f| f.write(pak_data.to_xml) }
+File.open("../data/pak_data_xml", 'w') {|f| f.write(pak_data.to_xml) }
 
-result_string = Hpricot(get_file_as_string("../summaries/pak_results2.txt"))
+result_string = Hpricot(get_file_as_string("../data/pak_data_xml"))
 
-File.truncate("../summaries/pak_results3.txt", 0)
+File.truncate("../data/pak_data_parsed", 0)
 result_string.search("//result/result_body/") do |text|
-  File.open("../summaries/pak_results3.txt", 'a') {|f| f.write(text) }
+  File.open("../data/pak_data_parsed", 'a') {|f| f.write(text) }
 end
 
-parsed_page = result_string = Hpricot(get_file_as_string("../summaries/pak_results3.txt"))
+parsed_page = result_string = Hpricot(get_file_as_string("../data/pak_data_parsed"))
 
 id_array = []
 
-File.truncate("../summaries/pak_results4.txt", 0)
+File.truncate("../data/pak_data_id_file", 0)
 parsed_page.search("a.NgoSearch") do |text|
-  File.open("../summaries/pak_results4.txt", 'a') {|f| f.write("#{text.attributes['onclick'].split(",")[1]},") }
+  File.open("../data/pak_data_id_file", 'a') {|f| f.write("#{text.attributes['onclick'].split(",")[1]},") }
 end
 
 

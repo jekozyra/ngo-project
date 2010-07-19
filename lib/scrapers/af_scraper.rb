@@ -83,7 +83,7 @@ base_urls.each do |base_url|
 
     page_number += 1
 
-  end
+  end #end while
 
 
   ngo_search_results_hash.each do |key, item|
@@ -95,8 +95,8 @@ base_urls.each do |base_url|
       sector_array = []
     
       # if sector contains / or . or , split on based on these delimiters
-      if item[:sector].include?("/") or item[:sector].include?(",") or item[:sector].include?(".")
-        sector_array = item[:sector].split(/[,.\/]/)
+      if item[:sector].include?("/") or item[:sector].include?(",") or item[:sector].include?(".") or item[:sector].include?("&")
+        sector_array = item[:sector].split(/[,&.\/]/)
       else
         sector_array << item[:sector]
       end
@@ -106,6 +106,8 @@ base_urls.each do |base_url|
           sector = "Emergency Assistance"
         elsif sector.strip.chomp.casecmp("WATSAN") == 0
           sector = "Water Sanitation"
+        elsif sector.strip.chomp.casecmp("Emergency Assisatance") == 0
+          sector = "Emergency Assistance"
         elsif sector.strip.chomp.casecmp("Transprot") == 0
           sector = "Transport"
         elsif sector.strip.chomp.casecmp("Caoacity Building") == 0 or sector.strip.chomp.casecmp("CapacityBuilding") == 0
@@ -204,7 +206,7 @@ base_urls.each do |base_url|
               affiliation = Affiliation.create(:name => affiliation)
             end
       
-            unless @ngo.affiliation_names.include?(affiliation.name)
+            unless @ngo.show_affiliations.include?(affiliation.name)
               @ngo.affiliations << affiliation
             end
           end
@@ -223,7 +225,7 @@ base_urls.each do |base_url|
               sector = Sector.create(:name => sector)
             end
       
-            unless @ngo.sector_names.include?(sector.name)
+            unless @ngo.show_sectors.include?(sector.name)
               @ngo.sectors << sector
             end
           end
@@ -231,5 +233,5 @@ base_urls.each do |base_url|
       end # end of this if-else block
     end # end if @ngo.auto_update
 
-  end # end while loop
+  end # end ngo hash each
 end
