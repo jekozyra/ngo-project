@@ -1,0 +1,19 @@
+<div id="newForm">
+	
+	<h1>New province</h1>
+
+	<% form_for(@province) do |f| %>
+	<fieldset class="inlineLabels">
+	  <%= f.error_messages %>
+	
+		<%= render :partial => 'fields', :locals => {:f => f} %>
+
+	  <div class="buttonHolder">
+	    <%= f.submit 'Add' %>
+	  </div>
+	</fieldset>
+	<% end %>
+
+	<%= link_to 'Back', provinces_path %>
+	
+</div>

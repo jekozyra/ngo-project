@@ -1,0 +1,12 @@
+<div class="ctrlHolder">
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+<div class="ctrlHolder">
+  <%= f.label :country_id %>
+  <%= f.collection_select :country_id, Country.find(:all, :order => "name"), :id, :name %>
+</div>
+<div class="ctrlHolder">
+  <%= f.label :iso_code, "ISO 3166-2" %>
+  <%= f.text_field :iso_code %>
+</div>

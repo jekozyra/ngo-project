@@ -1,0 +1,26 @@
+<div id="newForm">
+	
+	<h1>Province Details</h1>
+	
+	<fieldset class="inlineLabels">
+		
+		<div class="ctrlHolder">
+		  <b>Province Name:</b>
+		  <%= @province.name %>
+		</div>
+
+		<div class="ctrlHolder">
+		  <b>Country:</b>
+		  <%= @province.country.name %>
+		</div>
+		
+		<div class="ctrlHolder">
+		  <b>ISO 3166-2:</b>
+		  <%= @province.iso_code %>
+		</div>
+
+	</fieldset>
+
+	<%= link_to 'Edit', edit_province_path(@province) %> |
+	<%= link_to 'Back', provinces_path %>
+</div>

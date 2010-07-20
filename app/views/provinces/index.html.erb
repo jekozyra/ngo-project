@@ -1,0 +1,29 @@
+<div id="titleHeader">
+	<h1 class="floatLeftWhite">The Mashera Project: Provinces</h1>
+</div>
+
+<table>
+  <tr>
+    <th>Name</th>
+		<th>Country</th>
+		<th>ISO 3166-2</th>
+		<th>Details</th>
+		<th>Edit</th>
+		<th>Destroy</th>
+  </tr>
+
+<% @provinces.each do |province| %>
+  <tr>
+    <td><%= province.name %></td>
+		<td><%= province.country.name %></td>
+		<td><%= province.iso_code %></td>
+    <td><%= link_to 'Details', province %></td>
+    <td><%= link_to 'Edit', edit_province_path(province) %></td>
+    <td><%= link_to 'Destroy', province, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New province', new_province_path %>
