@@ -1,0 +1,20 @@
+<div id="newForm">
+
+	<h1>Editing Contact</h1>
+
+	<% form_for(@contact) do |f| %>
+	<fieldset class="inlineLabels">
+	  <%= f.error_messages %>
+
+		<%= render :partial => "fields", :locals => {:f => f} %>
+
+	  <div class="buttonHolder">
+	    <%= f.submit 'Update' %>
+	  </div>
+	</fieldset>
+	<% end %>
+
+	<%= link_to 'Show', @contact %> |
+	<%= link_to 'Back', contacts_path %>
+
+</div>

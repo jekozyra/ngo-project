@@ -1,0 +1,37 @@
+<div id="newForm">
+	
+	<h1>Contact Details</h1>
+	
+	<fieldset class="inlineLabels">
+
+		<div class="ctrlHolder">
+		  <b>Name:</b>
+		  <%= @contact.show_name %>
+		</div>
+
+		<div class="ctrlHolder">
+		  <b>Title:</b>
+		  <%= @contact.show_title %>
+		</div>
+		
+		<div class="ctrlHolder">
+		  <b>Email:</b>
+		  <%= @contact.show_email %>
+		</div>
+		
+		<div class="ctrlHolder">
+		  <b>Phone:</b>
+		  <%= @contact.show_photo %>
+		</div>
+		
+		<div class="ctrlHolder">
+		  <b>NGO:</b>
+		  <%= @contact.show_ngos %>
+		</div>
+
+	</fieldset>
+
+	<%= link_to 'Edit', edit_contact_path(@contact) %> |
+	<%= link_to 'Back', contacts_path %>
+
+</div>

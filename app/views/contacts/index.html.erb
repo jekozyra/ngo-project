@@ -1,0 +1,33 @@
+<div id="titleHeader">
+	<h1 class="floatLeftWhite">The Mashera Project: Contacts</h1>
+</div>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Title</th>
+    <th>Email</th>
+    <th>Phone</th>
+		<th>NGO</th>
+		<th>Details</th>
+		<th>Edit</th>
+		<th>Destroy</th>
+  </tr>
+
+<% @contacts.each do |contact| %>
+  <tr>
+    <td><%= contact.show_name %></td>
+    <td><%= contact.show_title %></td>
+    <td><%= contact.show_email %></td>
+    <td><%= contact.show_phone %></td>
+		<td><%= contact.show_ngos %></td>
+    <td><%= link_to 'Details', contact %></td>
+    <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+    <td><%= link_to 'Destroy', contact, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New contact', new_contact_path %>
