@@ -18,6 +18,11 @@
 		  <label>Country:</label>
 		  <%= @ngo.show_country %>
 		</div>
+		
+		<div class="ctrlHolder">
+		  <label>Province:</label>
+		  <%= @ngo.show_province %>
+		</div>
 
 		<div class="ctrlHolder">
 		  <label>District:</label>
@@ -35,34 +40,42 @@
 		</div>
 
 		<div class="ctrlHolder">
-		  <label>Contact name:</label>
-			<%= @ngo.show_contact_name %>
-		</div>
-
-		<div class="ctrlHolder">
-		  <label>Contact position:</label>
-			<%= @ngo.show_contact_position %>
-		</div>
-
-		<div class="ctrlHolder">
-		  <label>Contact address:</label>
+		  <label>Address:</label>
 		  <%= @ngo.show_contact_address %>
 		</div>
 
 		<div class="ctrlHolder">
-		  <label>Contact phone:</label>
+		  <label>NGO Phone:</label>
 		  <%= @ngo.show_contact_phone %>
 		</div>
 
 		<div class="ctrlHolder">
-		  <label>Contact fax:</label>
+		  <label>Fax:</label>
 		  <%= @ngo.show_contact_fax %>
 		</div>
 		
 		<div class="ctrlHolder">
-		  <label>Contact email:</label>
+		  <label>NGO email:</label>
 		  <%= @ngo.show_contact_email %>
 		</div>
+		
+		<% @ngo.contacts.each do |contact| %>
+		<div class="ctrlHolder">
+		  <label>Contact:</label>
+			<% unless contact.name.nil? %>
+		  	<%= contact.show_name %>
+			<% end %>
+			<% unless contact.title.nil? %>
+				, <%= contact.show_title %>
+			<% end %>
+			<% unless contact.email.nil? %>
+				, <%= contact.show_email %>
+			<% end %>
+			<% unless contact.phone.nil? %>
+				, <%= contact.show_phone %>
+			<% end %>
+		</div>
+		<% end %>
 		
 		<div class="ctrlHolder">
 		  <label>Website:</label>

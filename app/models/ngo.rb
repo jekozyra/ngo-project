@@ -1,10 +1,11 @@
 class Ngo < ActiveRecord::Base
   
   belongs_to :country
+  belongs_to :province
   belongs_to :district
   has_and_belongs_to_many :affiliations
   has_and_belongs_to_many :sectors
-  
+  has_and_belongs_to_many :contacts
   
   def show_acronym
     self.acronym.nil? ? "---" : self.acronym
@@ -16,6 +17,10 @@ class Ngo < ActiveRecord::Base
   
   def show_country
     self.country_id.nil? ? "---" : self.country.name
+  end
+  
+  def show_province
+    self.province_id.nil? ? "---" : self.province.name
   end
   
   def show_district
@@ -86,6 +91,23 @@ class Ngo < ActiveRecord::Base
     else
       "No"
     end
+  end
+  
+  def has_contact?(contact)
+    has_contact = false
+    self.contacts.each do |ngo_contact|
+      has_contact = true if ngo_contact.id == contact.id
+    end
+    has_contact
+  end
+  
+  def find_contact?(name)
+    contact_ids = Contact.find(:all, :conditions => ["name = ?", name]).map{|contact| contact.id }
+    has_contact = false
+    contact_ids.each do |contact_id|
+      has_contact = true if self.contacts.map{|contact| contact.id}.include?(contact_id)
+    end
+    has_contact
   end
   
 end
