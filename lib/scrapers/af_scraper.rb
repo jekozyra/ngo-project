@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-ENV['RAILS_ENV'] = 'production'
+ENV['RAILS_ENV'] = 'development'
 
 require '../../config/environment' #only if you are using this within a rails app
 require 'rexml/document'
@@ -299,6 +299,7 @@ ngo_search_results_hash.each do |key, item|
         end
       end # end sectors loop
     end # end of this if-else block
+  end # end if @ngo.auto_update
 
 end # end ngo hash each
 
