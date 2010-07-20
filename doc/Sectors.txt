@@ -1,0 +1,182 @@
+SECTORS
+
+
+Pak Sectors
+------------
+Adult Education -> Education
+Advocacy
+Advocacy and Awareness
+Aging -> Elderly Welfare
+Agriculture -> Agriculture
+Aid Centre -> Emergency Services, General Welfare
+AIDS -> AIDS/HIV
+Beggars Welfare -> Welfare
+Blood Bank -> Health
+Book Bank -> Education (PERHAPS WE NEED A LITERACY CATEGORY? IDK)
+Burning issues -> ELIMINATE ALTOGETHER - NO NGO HAS THIS AS ITS ONLY CATEGORY
+Capacity Building -> Capacity Building
+Child labour -> Child Welfare
+Child Protection -> Child Welfare
+Child Sex Abuse -> Child Welfare
+Child Welfare -> Child Welfare
+Children Rights -> Child Welfare
+Civil Deffence -> ELIMINATE ALTOGETHER - NO NGO HAS THIS AS ITS ONLY CATEGORY
+Clinical Laboratory -> Health
+Clothing -> General Welfare
+Co ordination
+Communication and Media
+Community Welfare / Development
+Construction -> Capacity Building, Infrastructure Development
+Consumer Rights 
+Credit System
+Culture 
+Day Care Centre
+Deaf and Dumb -> Disability Services
+Destitute Welfare -> General Welfare
+Detoxification
+Development Of Village -> Capacity Building, Infrastructure Development
+Diabetic Patients -> Health, Disability Services
+Disabled Persons -> Health, Disability Services
+Dispensary
+Drinking Water -> Water Issues
+Drug Abuse 
+Drug Addicted Rehabilitation
+Ecology -> Environmental
+Economy 
+Education -> Education
+Emergency Relief Services -> Emergency Services
+Emergency Response -> Emergency Services
+Employment -> Employment
+Energy -> Energy Issues
+Entertainment -> Recreation
+Environment -> Environmental
+Eradication of poverty through provision of food -> General Welfare
+Eye Camp -> Health
+Eye health and capacity building -> Health, Capacity Building
+Family Planning
+Farmer field Schools -> Agriculture, Education
+Female Education -> Women's Issues
+Fish Farm -> Agriculture
+Fishermen Welfare -> Environmental, General Welfare
+Forest -> Environmental
+Gender -> Women's Issues
+General -> General Welfare
+General Welfare -> General Welfare
+Handicapped Welfare -> Disability Services
+Healing -> Health
+Health - Health
+Hiv -> Health, HIV/AIDS
+home economic -> Women's Issues [NO NGO HAS THIS ANYWAY]
+Human Rights
+Humanitarian Development
+Industrial Home
+Industrial Relations 
+Industrial School
+Information Dissemination
+Infrastructure Development -> Infrastructure Development
+Installation of Hand Pumps -> Water Issues
+Institution Building
+Institution Strengthening
+Juvenile Delinquents Welfare -> Child Welfare
+Labour Right
+Legal Aid
+Legal Assistance
+Library -> Education
+Literacy -> Education
+LIVESTOCK -> Agriculture
+Local -> ELIMINATE ALTOGETHER - NO NGO HAS THIS AS ITS ONLY CATEGORY
+MCH Centre
+Medical Facilities -> Health
+Mentally Retarded -> Health, Disability Services
+Multipurpose -> IGNORE, ARE YOU KIDDING ME?
+Narcotics Control
+Needy People -> General Welfare
+Non Formal Education -> Education
+Officers Welfare -> NO IDEA
+Old People Home
+Orphans -> Child Welfare
+Others -> IGNORE, AGAIN
+Patients Welfare -> Health, General Welfare
+Pavement of Streets -> Infrastructure
+Peace
+Physical and Mentally Handicap -> Health, Disability Services
+Physically Handicapped -> Health, Disability Services
+Political Awarness -> Education
+Poor People Welfare -> General Welfare
+Poor Student Welfare -> General Welfare, Child Welfare
+Population welfare -> General Welfare
+Population welfare -> General Welfare
+Poverty Allevation  -> General Welfare
+Primary Health -> Health
+Prisoners
+Psychological Support -> Health
+Reading Room -> Education
+Recreational -> Recreational
+Refugees Facilities -> General Welfare
+Rehabilitation -> Health
+Rehabilitation of Disables -> Health, Disability Services
+Religious Education -> Education
+Religious Publications -> Education
+Reproductive Health -> Health, Women's Issues
+Research 
+Resource Management
+Risk Reduction training -> Education
+Risk Reduction training -> Education
+Rural Development -> Capacity Building
+Sanitation -> Infrastructure
+School -> Education
+Senior Citizen -> Elderly Welfare
+Shelter -> General Welfare
+Skill Development -> Education
+Social Education -> Education
+Social Welfare -> General Welfare
+Sports Facility -> Recreation
+Stiching Center -> Health
+Supply of Eye Equipments -> Health
+Sustainable Community -> Capacity Building
+Sustainable Environment -> Environmental
+TB Patients -> Health
+Technical Education -> Education, Technology
+Technology -> Technology
+Traffic Management -> Infrastructure
+Training -> Education
+Training and Education -> Education
+Training and Recruitment of volunteers -> Education
+Training in Ophthalmologists -> Education, Health
+Transport Facilities -> Infrastructure
+Tution Center -> Education
+Unemployment -> General Welfare
+Urban Development -> Urban Development
+Vocational -> Education
+Vocational School -> Education
+Water Supply - Water Issues
+Welfare Of Aged -> Elderly Welfare
+Welfare of Blinds -> Disability Services
+Welfare of Deaf -> Disability Services
+Welfare Of Student -> Child Welfare, Education
+Women Empowerment -> Women's Issues
+Women Reproductive Health -> Women's Issues
+Women Rights -> Women's Issues
+Women Welfare -> Women's Issues
+Youngster Welfare -> Child Welfare
+Youth Welfare -> Child Welfare
+
+
+Af Sectors
+-----------
+Capacity Building
+Commerce & Industry
+Community Development
+Coordination
+Education
+Emergency Assistance
+Energy
+Environment -> Environmental
+Gender -> Women's Issues
+Governance
+Health
+Infrastructure
+Security
+Transport
+Water Sanitation - Water Issues
+
