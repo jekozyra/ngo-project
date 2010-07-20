@@ -1,0 +1,3 @@
+<div class="ctrlHolder" id="province_list"><%= render :partial => "list_provinces", :locals => {:provinces => provinces, :selected_provinces => selected_provinces} %></div>
+<div class="ctrlHolder" id="district_list"><%= render :partial => "list_districts", :locals => {:districts => districts, :selected_districts => selected_districts} %></div>
+<%= observe_form "search_form", :url => {:action => :update_form_fields}, :update => "provinces_districts" %>
