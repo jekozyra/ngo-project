@@ -5,8 +5,13 @@
 	<fieldset class="inlineLabels">
 		
 		<div class="ctrlHolder">
-		  <b>District Name:</b>
+		  <b>District:</b>
 		  <%= @district.name %>
+		</div>
+		
+		<div class="ctrlHolder">
+		  <b>Province:</b>
+		  <%= @district.province.name %>
 		</div>
 
 		<div class="ctrlHolder">
@@ -17,11 +22,6 @@
 		<div class="ctrlHolder">
 		  <b>Geo Data:</b>
 		  <%= @district.latlong %>
-		</div>
-		
-		<div class="ctrlHolder">
-		  <b>ISO 3166-2:</b>
-		  <%= @district.iso_code %>
 		</div>
 
 	</fieldset>

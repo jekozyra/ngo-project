@@ -1,0 +1,2 @@
+<%= label_tag :district_province_id, "Province" %>
+<%= select_tag :district_province_id, options_from_collection_for_select(provinces, :id, :name, district_province), {:name => "district[province_id]"} %>

@@ -1,0 +1,21 @@
+<div class="ctrlHolder">
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+<div class="ctrlHolder">
+  <%= f.label :country_id %>
+  <%= f.collection_select :country_id, Country.find(:all, :order => "name"), :id, :name %>
+</div>
+<%= observe_field "district_country_id",
+	:url => { :action => :update_provinces }, 
+	:update => 'province_list',
+	:with => "district_country_id"
+%>
+
+<div class="ctrlHolder" id="province_list">
+  <%= render :partial => "list_provinces", :locals => {:provinces => provinces, :district_province => district_province} %>
+</div>
+<div class="ctrlHolder">
+  <%= f.label :latlong %>
+  <%= f.text_field :latlong %>
+</div>

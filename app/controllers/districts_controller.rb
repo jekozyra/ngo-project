@@ -31,6 +31,7 @@ class DistrictsController < ApplicationController
   # GET /districts/new.xml
   def new
     @district = District.new
+    @provinces = []
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +42,7 @@ class DistrictsController < ApplicationController
   # GET /districts/1/edit
   def edit
     @district = District.find(params[:id])
+    @provinces = Province.find(:all, :conditions => ["country_id = ?", @district.country_id])
   end
 
   # POST /districts
@@ -87,5 +89,14 @@ class DistrictsController < ApplicationController
       format.html { redirect_to(districts_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  # get proper properties and values for language
+  def update_provinces
+    puts "*****************************************"
+    country_id = params[:district_country_id]
+    @provinces = Province.find(:all, :conditions => ["country_id = ?", country_id], :order => "name")
+    puts @provinces.size
+    render :partial => "list_provinces", :locals => {:provinces => @provinces, :district_province => nil}
   end
 end
