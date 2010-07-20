@@ -4,12 +4,9 @@ class SearchController < ApplicationController
   
   layout 'main_layout'
   
-  def index
-    
-#    puts "********************"
-#    puts link_to(:controller => "search", :action => "index")
-    
+  def index    
     @districts = []
+    @provinces = []
     @countries = Country.find(:all, :order => "name")
     @sectors = Sector.find(:all, :order => "name")
     @affiliations = Affiliation.find(:all, :order => "name")
@@ -19,16 +16,24 @@ class SearchController < ApplicationController
         
     @display_option = params[:display_option]
     
-    if(params.member?("country"))
-    	@countries = params[:country][:name]
+    if(params.member?("countries"))
+    	@countries = params[:countries]
     	country_array = @countries
       @countries = "(" + country_array.collect { |i| i }.inject { |i,j| i + ", " + j} + ")"
     else
       @countries = nil
     end
     
-    if(params.member?("district"))
-    	@districts = params[:district][:name]
+    if(params.member?("provinces"))
+    	@provinces = params[:provinces]
+    	province_array = @provinces
+      @provinces = "(" + province_array.collect { |i| i.to_s }.inject { |i,j| i + ", " + j} + ")"
+    else
+      @provinces = nil
+    end
+    
+    if(params.member?("districts"))
+    	@districts = params[:districts]
     	district_array = @districts
       @districts = "(" + district_array.collect { |i| i.to_s }.inject { |i,j| i + ", " + j} + ")"
     else
@@ -72,7 +77,7 @@ class SearchController < ApplicationController
        sql+= ", ngos_sectors"
     end
     
-    unless @countries.nil? and @districts.nil? and @sectors.nil? and @affiliations.nil? and @ngo_name == ""
+    unless @countries.nil? and @provinces.nil? @districts.nil? and @sectors.nil? and @affiliations.nil? and @ngo_name == ""
       sql += " WHERE"
     end
     
@@ -80,29 +85,36 @@ class SearchController < ApplicationController
       sql += " ngos.country_id IN #{@countries}"
     end
     
-    unless @districts.nil?
+    unless @provinces.nil?
       unless @countries.nil?
+        sql += " AND"
+      end
+      sql += " ngos.province_id IN #{@provinces}"
+    end
+    
+    unless @districts.nil?
+      unless @countries.nil? and @provinces.nil?
         sql += " AND"
       end
       sql += " ngos.district_id IN #{@districts}"
     end
     
     unless @affiliations.nil?
-      unless @countries.nil? and @districts.nil?
+      unless @countries.nil? and @provinces.nil? and @districts.nil?
         sql += " AND"
       end
       sql += " (affiliations_ngos.affiliation_id IN #{@affiliations} and affiliations_ngos.ngo_id = ngos.id)"
     end
     
     unless @ngo_name == ""
-      unless @countries.nil? and @districts.nil? and @affiliations.nil?
+      unless @countries.nil? and @provinces.nil? and @districts.nil? and @affiliations.nil?
         sql += " AND"
       end
       sql += " (ngos.name LIKE '%#{@ngo_name}%' or acronym LIKE '%#{@ngo_name}%')"
     end
     
     unless @sectors.nil?
-      unless @countries.nil? and @districts.nil? and @affiliations.nil? and @ngo_name == ""
+      unless @countries.nil? and @provinces.nil? and @districts.nil? and @affiliations.nil? and @ngo_name == ""
         sql += " AND"
       end
       sql += " (ngos_sectors.sector_id IN #{@sectors} and ngos_sectors.ngo_id = ngos.id)"
@@ -204,12 +216,51 @@ class SearchController < ApplicationController
   def results
   end
   
-  # get proper properties and values for language
-  def update_districts
+  
+  # update the fields of the search form on change
+  def update_form_fields
+    
+    params[:countries].nil? ? country_ids = [] : country_ids = params[:countries].collect{|id| id.to_i}
+    params[:provinces].nil? ? province_ids = [] : province_ids = params[:provinces].collect{|id| id.to_i}
+    params[:districts].nil? ? district_ids = [] : district_ids = params[:districts].collect{|id| id.to_i}
+    
+    unless country_ids.empty?
+      @provinces = Province.find(:all, :conditions => ["country_id IN (?)", country_ids], :order => "name")
+    end
+    unless province_ids.empty?
+      @districts = District.find(:all, :conditions => ["province_id IN (?)", province_ids], :order => "name")
+    else
+      @districts = District.find(:all, :conditions => ["country_id IN (?)", country_ids], :order => "name")
+    end
+
+    render :partial => "list_provinces_districts", :locals => {:provinces => @provinces, :districts => @districts, :selected_provinces => province_ids, :selected_districts => district_ids}
+    
+  end
+  
+  
+  # get proper provinces for countries selected
+  def update_provinces
     country_ids = params[:country_name].split(",")
+    @provinces = Province.find(:all, :conditions => ["country_id IN (?)", country_ids], :order => "name")
+    render :partial => "list_provinces", :locals => {:provinces => @provinces}
+  end
+  
+  # get proper districts for countries selected
+  def update_districts_country
+    country_ids = params[:country_name].split(",")
+    #province_ids = params[:province_name].split(",")
+    
     @districts = District.find(:all, :conditions => ["country_id IN (?)", country_ids], :order => "name")
     render :partial => "list_districts", :locals => {:districts => @districts}
   end
+
+  # get proper districts for provinces selected
+  def update_districts_province
+    province_ids = params[:province_name].split(",")
+    @districts = District.find(:all, :conditions => ["province_id IN (?)", province_ids], :order => "name")
+    render :partial => "list_districts", :locals => {:districts => @districts}
+  end
+
   
   private
   
