@@ -19,10 +19,6 @@
 	<%= render :partial => 'districts', :locals => {:f => f, :districts => @districts }%>
 </div>
 <div class="ctrlHolder">
-  <%= f.label :contact_address %>
-  <%= f.text_field :contact_address %>
-</div>
-<div class="ctrlHolder">
   <%= f.label :sectors, 'Sector(s)' %>
 	<%= collection_select :ngo, :sector_ids, @sectors, :id, :name, {}, :size => 7, :multiple => true %>
 </div>
