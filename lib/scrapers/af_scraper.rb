@@ -213,12 +213,18 @@ ngo_search_results_hash.each do |key, item|
     @country = Country.create(:name => item[:country]).id
   end
 
+  # if the district for the NGO does not exist, create it
+  if Province.exists?(:name => item[:district])
+    @province = Province.find_by_name(item[:district]).id
+  else
+    @province = Province.create(:name => item[:district], :country_id => @country).id
+  end
 
   # if the district for the NGO does not exist, create it
   if District.exists?(:name => item[:district])
     @district = District.find_by_name(item[:district]).id
   else
-    @district = District.create(:name => item[:district], :country_id => @country).id
+    @district = District.create(:name => item[:district], :province_id => @province, :country_id => @country).id
   end
 
   ngo_params = {:acronym => item[:acronym],
@@ -227,6 +233,7 @@ ngo_search_results_hash.each do |key, item|
                 :contact_phone => item[:contact_phone],
                 :contact_email => item[:contact_email],
                 :district_id => @district,
+                :province_id => @province,
                 :country_id => @country}
 
   # check to see if the ngo exists; if not, create it, otherwise, update it
