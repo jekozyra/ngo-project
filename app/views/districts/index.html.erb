@@ -16,7 +16,7 @@
 <% @districts.each do |district| %>
   <tr>
     <td><%= district.name %></td>
-		<td><%= district.province.name %></td>
+		<td><%= district.show_province %></td>
     <td><%= district.country.name %></td>
 		<td><%= district.latlong %></td>
     <td><%= link_to 'Details', district %></td>
