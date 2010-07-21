@@ -23,14 +23,6 @@
 	<%= collection_select :ngo, :sector_ids, @sectors, :id, :name, {}, :size => 7, :multiple => true %>
 </div>
 <div class="ctrlHolder">
-  <%= f.label :contact_name %>
-  <%= f.text_field :contact_name %>
-</div>
-<div class="ctrlHolder">
-  <%= f.label :contact_position %>
-  <%= f.text_field :contact_position %>
-</div>
-<div class="ctrlHolder">
   <%= f.label :contact_address %>
   <%= f.text_field :contact_address %>
 </div>
