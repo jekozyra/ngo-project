@@ -7,7 +7,7 @@
 
 		<fieldset class="inlineLabels">
 
-			<%= render 'fields', :f => f %>
+			<%= render :partial => 'fields', :locals => {:f => f } %>
 
 	  	<div class="buttonHolder">
 	    	<%= f.submit 'Update' %>
