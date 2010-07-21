@@ -239,7 +239,7 @@ if __FILE__ == $0
 
   pak_data = scrape(mode)
   
-  puts "DONE SCRAPING, WRITING DATA..."
+  puts "DONE SCRAPING, WRITING DATA... (#{Time.now})"
 
   File.open("../data/pak_data_xml", 'w') {|f| f.write(pak_data.to_xml) }
 
@@ -249,10 +249,12 @@ if __FILE__ == $0
     File.open("../data/pak_data_parsed", 'a') {|f| f.write(text) }
   end
 
+  puts "GETTING PARSED DATA... (#{Time.now})"
   parsed_page = result_string = Hpricot(get_file_as_string("../data/pak_data_parsed"))
 
   id_array = get_file_as_array("../data/pak_data_id_file")
 
+  puts "FINDING IDS... (#{Time.now})"
 #  File.truncate("../data/pak_data_id_file", 0)
   parsed_page.search("a.NgoSearch") do |text|
     id_array << text.attributes['onclick'].split(",")[1].to_i
@@ -260,6 +262,7 @@ if __FILE__ == $0
   
   id_array.uniq!
   
+  puts "WRITING IDS... (#{Time.now})"
   id_array.each do |id|
     File.open("../data/pak_data_id_file", 'a') {|f| f.write("#{id},") }
   end
