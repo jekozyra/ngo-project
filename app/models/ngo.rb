@@ -16,11 +16,27 @@ class Ngo < ActiveRecord::Base
   end
   
   def show_country
-    self.country_id.nil? ? "---" : self.country.name
+    if self.district_id.nil?
+      "---"
+    else
+      if self.district.country_id.nil?
+        "---"
+      else
+        self.district.show_country
+      end
+    end
   end
   
   def show_province
-    self.province_id.nil? ? "---" : self.province.name
+    if self.district_id.nil?
+      "---"
+    else
+      if self.district.province_id.nil?
+        "---"
+      else
+        self.district.show_province
+      end
+    end
   end
   
   def show_district
