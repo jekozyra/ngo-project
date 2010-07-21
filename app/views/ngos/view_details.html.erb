@@ -62,18 +62,7 @@
 		<% @ngo.contacts.each do |contact| %>
 		<div class="ctrlHolder">
 		  <label>Contact:</label>
-			<% unless contact.name.nil? %>
-		  	<%= contact.show_name %>
-			<% end %>
-			<% unless contact.title.nil? %>
-				, <%= contact.show_title %>
-			<% end %>
-			<% unless contact.email.nil? %>
-				, <%= contact.show_email %>
-			<% end %>
-			<% unless contact.phone.nil? %>
-				, <%= contact.show_phone %>
-			<% end %>
+			<%= contact.show_contact %>
 		</div>
 		<% end %>
 		

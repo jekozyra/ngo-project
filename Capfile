@@ -38,7 +38,11 @@ namespace :deploy do
   task :after_symlink, :roles => :app do
     run "rm -f ~/public_html;ln -s #{deploy_to}/current/public ~/public_html"
     run "ln -s #{deploy_to}/shared/database.yml #{deploy_to}/current/config/database.yml"
+    run "ln -s #{deploy_to}/shared/pak_data_id_file #{deploy_to}/current/lib/data/pak_data_id_file"
+    run "ln -s #{deploy_to}/shared/pak_data_id_file #{deploy_to}/current/lib/data/af_data_id_file"
+    run "chmod +x #{deploy_to}/current/lib/scrapers/af_gatherer.rb"
     run "chmod +x #{deploy_to}/current/lib/scrapers/af_scraper.rb"
+    run "chmod +x #{deploy_to}/current/lib/scrapers/pak_scraper.rb"
   end
 end
 

@@ -17,6 +17,23 @@ class Contact < ActiveRecord::Base
     self.email.nil? ? "---" : self.email
   end
   
+  def show_contact
+    contact = ""
+    unless self.name.nil?
+      contact += self.name
+    end
+    unless self.title.nil?
+      contact += ". #{self.title}"
+    end
+    unless self.phone.nil?
+      contact += ", #{self.phone}"
+    end
+    unless self.email.nil?
+      contact += ", #{self.email}"
+    end
+    contact
+  end
+  
   def show_ngos
     if self.ngos.nil? or self.ngos.size == 0
       "---"
