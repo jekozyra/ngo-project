@@ -301,7 +301,7 @@ ngo_search_results_hash.each do |key, item|
           end
     
           unless @ngo.sectors.include?(current_sector)
-            @ngo.sectors << sector
+            @ngo.sectors << current_sector
           end
         end
       end # end sectors loop
