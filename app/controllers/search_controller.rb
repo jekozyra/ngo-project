@@ -165,28 +165,15 @@ class SearchController < ApplicationController
           used_districts_affiliations[result.district_id] = []
         end
         
-        result.affiliations.each do |affiliation|
-            
-          group_name = ""
+        if result.affiliations.empty?
 
-          if affiliation.name == "Afghanistan" or affiliation.name == "Pakistan"
-            group_name = affiliation.name
-            country_name = result.country.name
-            district_name = result.district.name
-            if affiliation.name == "Pakistan"
-              lng = (result.district.latlong.split(",")[1].to_f + 0.14).to_s
-            else
-              lng = (result.district.latlong.split(",")[1].to_f - 0.13).to_s
-            end       
-          else
-            district_name = result.district.name
-            group_name = "Other"
-            country_name = "Other"
-            lng = result.district.latlong.split(",")[1]
-          end
-          
+          district_name = result.district.name
+          group_name = "Other"
+          country_name = "Other"
+          lng = result.district.latlong.split(",")[1]
+        
           @legend_info[group_name]["count"] += 1
-                      
+                    
           unless used_districts_affiliations[result.district_id].include?(group_name)
             used_districts_affiliations[result.district_id] << group_name
             lat = result.district.latlong.split(",")[0]
@@ -199,7 +186,43 @@ class SearchController < ApplicationController
                         "district_id" => result.district_id,
                         "country_id" => result.country_id}
           end
-        end # end result.affiliations.each do |affiliation|
+        else
+          result.affiliations.each do |affiliation|
+            
+            group_name = ""
+
+            if affiliation.name == "Afghanistan" or affiliation.name == "Pakistan"
+              group_name = affiliation.name
+              country_name = result.country.name
+              district_name = result.district.name
+              if affiliation.name == "Pakistan"
+                lng = (result.district.latlong.split(",")[1].to_f + 0.14).to_s
+              else
+                lng = (result.district.latlong.split(",")[1].to_f - 0.13).to_s
+              end       
+            else
+              district_name = result.district.name
+              group_name = "Other"
+              country_name = "Other"
+              lng = result.district.latlong.split(",")[1]
+            end
+          
+            @legend_info[group_name]["count"] += 1
+                      
+            unless used_districts_affiliations[result.district_id].include?(group_name)
+              used_districts_affiliations[result.district_id] << group_name
+              lat = result.district.latlong.split(",")[0]
+
+              @latlong << {"country" => country_name,
+                          "lat" => lat,
+                          "lng" => lng,
+                          "group" => group_name,
+                          "district" => result.district.name,
+                          "district_id" => result.district_id,
+                          "country_id" => result.country_id}
+            end
+          end # end result.affiliations.each do |affiliation|
+        end # end if result.affiliaions.nil?
       end
     end # end search_results.each loop
     
