@@ -4,12 +4,18 @@ class SearchController < ApplicationController
   
   layout 'main_layout'
   
-  def index    
+  
+  def index
+    
+    available_countries = Ngo.find(:all, :select => "distinct country_id").map{|ngo| ngo.country_id }
+    available_sectors = Ngo.find_by_sql("SELECT DISTINCT sector_id FROM ngos_sectors").map{|ngo| ngo.sector_id }
+    available_affiliations = Ngo.find_by_sql("SELECT DISTINCT affiliation_id FROM affiliations_ngos").map{|ngo| ngo.affiliation_id }
+
     @districts = []
     @provinces = []
-    @countries = Country.find(:all, :order => "name")
-    @sectors = Sector.find(:all, :order => "name")
-    @affiliations = Affiliation.find(:all, :order => "name")
+    @countries = Country.find(:all, :conditions => ["id in (?)", available_countries], :order => "name")
+    @sectors = Sector.find(:all, :conditions => ["id in (?)", available_sectors], :order => "name")
+    @affiliations = Affiliation.find(:all, :conditions => ["id in (?)", available_affiliations], :order => "name")
   end
   
   def search
@@ -153,7 +159,7 @@ class SearchController < ApplicationController
     used_districts_affiliations = {}    
     
     search_results.each do |result|
-      unless result.district_id.nil? or result.country_id.nil?
+      unless result.district_id.nil? or result.country_id.nil? or result.district.latlong.nil?
                 
         if used_districts_affiliations[result.district_id].nil?
           used_districts_affiliations[result.district_id] = []
@@ -193,7 +199,7 @@ class SearchController < ApplicationController
                         "district_id" => result.district_id,
                         "country_id" => result.country_id}
           end
-        end
+        end # end result.affiliations.each do |affiliation|
       end
     end # end search_results.each loop
     
@@ -220,17 +226,20 @@ class SearchController < ApplicationController
   # update the fields of the search form on change
   def update_form_fields
     
+    available_provinces = Ngo.find(:all, :select => "distinct province_id").map{|ngo| ngo.province_id}
+    available_districts = Ngo.find(:all, :select => "distinct district_id").map{|ngo| ngo.district_id}
+
     params[:countries].nil? ? country_ids = [] : country_ids = params[:countries].collect{|id| id.to_i}
     params[:provinces].nil? ? province_ids = [] : province_ids = params[:provinces].collect{|id| id.to_i}
     params[:districts].nil? ? district_ids = [] : district_ids = params[:districts].collect{|id| id.to_i}
     
     unless country_ids.empty?
-      @provinces = Province.find(:all, :conditions => ["country_id IN (?)", country_ids], :order => "name")
+      @provinces = Province.find(:all, :conditions => ["country_id IN (?) and id in (?)", country_ids, available_provinces], :order => "name")
     end
     unless province_ids.empty?
-      @districts = District.find(:all, :conditions => ["province_id IN (?)", province_ids], :order => "name")
+      @districts = District.find(:all, :conditions => ["province_id IN (?) and id in (?)", province_ids, available_districts], :order => "name")
     else
-      @districts = District.find(:all, :conditions => ["country_id IN (?)", country_ids], :order => "name")
+      @districts = District.find(:all, :conditions => ["country_id IN (?)  and id in (?)", country_ids, available_districts], :order => "name")
     end
 
     render :partial => "list_provinces_districts", :locals => {:provinces => @provinces, :districts => @districts, :selected_provinces => province_ids, :selected_districts => district_ids}
