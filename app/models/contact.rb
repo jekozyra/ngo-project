@@ -29,7 +29,7 @@ class Contact < ActiveRecord::Base
       contact += ", #{self.phone}"
     end
     unless self.email.nil?
-      contact += ", #{self.email}"
+      contact += ", <a href=\"mailto:#{self.email}\">#{self.email.gsub('@',' AT ')}</a>"
     end
     contact
   end

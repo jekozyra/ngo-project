@@ -56,7 +56,7 @@
 		
 		<div class="ctrlHolder">
 		  <label>NGO email:</label>
-		  <%= @ngo.show_contact_email %>
+		  <%= mail_to @ngo.show_contact_email, nil, :replace_at => " AT " %>
 		</div>
 		
 		<% @ngo.contacts.each do |contact| %>

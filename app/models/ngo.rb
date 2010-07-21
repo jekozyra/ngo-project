@@ -26,15 +26,7 @@ class Ngo < ActiveRecord::Base
   def show_district
     self.district_id.nil? ? "---" : self.district.name
   end
-  
-  def show_contact_name
-    self.contact_name.nil? ? "---" : self.contact_name
-  end
-  
-  def show_contact_position
-    self.contact_position.nil? ? "---" : self.contact_position
-  end
-  
+
   def show_contact_address
     self.contact_address.nil? ? "---" : self.contact_address
   end
