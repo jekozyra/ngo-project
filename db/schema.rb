@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100718215410) do
+ActiveRecord::Schema.define(:version => 20100720033252) do
 
   create_table "affiliations", :force => true do |t|
     t.string   "name"
@@ -20,6 +20,20 @@ ActiveRecord::Schema.define(:version => 20100718215410) do
   create_table "affiliations_ngos", :id => false, :force => true do |t|
     t.integer "ngo_id"
     t.integer "affiliation_id"
+  end
+
+  create_table "contacts", :force => true do |t|
+    t.string   "name"
+    t.string   "title"
+    t.string   "email"
+    t.string   "phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contacts_ngos", :id => false, :force => true do |t|
+    t.integer "contact_id"
+    t.integer "ngo_id"
   end
 
   create_table "countries", :force => true do |t|
@@ -34,7 +48,7 @@ ActiveRecord::Schema.define(:version => 20100718215410) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "latlong"
-    t.string   "iso_code"
+    t.integer  "province_id"
   end
 
   create_table "ngos", :force => true do |t|
@@ -42,21 +56,28 @@ ActiveRecord::Schema.define(:version => 20100718215410) do
     t.string   "name"
     t.integer  "country_id"
     t.integer  "district_id"
-    t.string   "contact_name"
-    t.string   "contact_position"
     t.string   "contact_address"
     t.string   "contact_phone"
     t.string   "contact_email"
-    t.boolean  "auto_update",      :default => true
+    t.boolean  "auto_update",     :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "contact_fax"
     t.string   "website"
+    t.integer  "province_id"
   end
 
   create_table "ngos_sectors", :id => false, :force => true do |t|
     t.integer "ngo_id"
     t.integer "sector_id"
+  end
+
+  create_table "provinces", :force => true do |t|
+    t.string   "name"
+    t.integer  "country_id"
+    t.string   "iso_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sectors", :force => true do |t|
