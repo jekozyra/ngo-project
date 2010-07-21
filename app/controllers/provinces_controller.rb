@@ -9,7 +9,7 @@ class ProvincesController < ApplicationController
   # GET /provinces
   # GET /provinces.xml
   def index
-    @provinces = Province.all
+    @provinces = Province.find(:all, :order => "countries.name, provinces.name", :include => [:country])
 
     respond_to do |format|
       format.html # index.html.erb
