@@ -77,7 +77,7 @@ class SearchController < ApplicationController
        sql+= ", ngos_sectors"
     end
     
-    unless @countries.nil? and @provinces.nil? @districts.nil? and @sectors.nil? and @affiliations.nil? and @ngo_name == ""
+    unless @countries.nil? and @provinces.nil? and @districts.nil? and @sectors.nil? and @affiliations.nil? and @ngo_name == ""
       sql += " WHERE"
     end
     
