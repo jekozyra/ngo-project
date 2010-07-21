@@ -8,7 +8,10 @@ class DistrictsController < ApplicationController
   # GET /districts
   # GET /districts.xml
   def index
-    @districts = District.find(:all, :order => "name")
+    
+    #Person.find(:all, :include => [ :account, :friends ])
+    
+    @districts = District.find(:all, :order => "countries.name, provinces.name, districts.name", :include => [:province, :country])
 
     respond_to do |format|
       format.html # index.html.erb

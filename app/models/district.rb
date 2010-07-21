@@ -6,4 +6,9 @@ class District < ActiveRecord::Base
   def show_province
     self.province.nil? ? "---" : self.province.name
   end
+  
+  def show_country
+    self.country.nil? ? "---" : self.country.name
+  end
+  
 end
