@@ -2,12 +2,12 @@
 	<table summary="query results">
 
 		<tr>
-			<th class="header-link"><%= link_to "Acronym", :controller => "search", :action => "search", :sort_by => "acronym" %></th>
-			<th class="header-link"><%= link_to "Name", :controller => "search", :action => "search", :sort_by => "name" %></th>
+			<th class="header-link">Acronym</th>
+			<th class="header-link">NGO</th>
 			<th>Sector</th>
-			<th class="header-link"><%= link_to "Country", :controller => "search", :action => "search", :sort_by => "country" %></th>
-			<th class="header-link"><%= link_to "Province", :controller => "search", :action => "search", :sort_by => "province" %></th>
-			<th class="header-link"><%= link_to "District", :controller => "search", :action => "search", :sort_by => "district" %></th>
+			<th class="header-link">District</th>
+			<th class="header-link">Province</th>
+			<th class="header-link">Country</th>
 			<th>Affiliation</th>
 			<th>NGO Details</th>
 		</tr>
@@ -18,9 +18,9 @@
 			<td width="50px"><%= result.show_acronym %></td>
 			<td width="300px"><%= result.show_name %></td>
 			<td><%= result.show_sectors %></td>
-			<td><%= result.show_country %></td>
-			<td><%= result.show_province %></td>
 			<td><%= result.show_district %></td>
+			<td><%= result.show_province %></td>
+			<td><%= result.show_country %></td>
 			<td><%= result.show_affiliations %></td>
 			<td width="100px"><%= link_to 'View Details', {:controller => "ngos", :action => "view_details", :id => result}, {:class => 'details-link'} %></td>
 		</tr>
