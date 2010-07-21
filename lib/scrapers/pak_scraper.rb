@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+
 ENV['RAILS_ENV'] = 'production'
 
 require '../../config/environment' #only if you are using this within a rails app
@@ -51,15 +52,10 @@ id_array.each do |id|
   contacts["2"] = {:name => contact_name2.to_plain_text.chomp.strip} unless contact_name2.nil?
   contact_name3 = page.at("#lblContectPerson3/")
   contacts["3"] = {:name => contact_name3.to_plain_text.chomp.strip} unless contact_name3.nil?
-  sectors = ""
+  sectors = []
   page.search("#listFoa/option/").each do |sector|
-    sectors += ", " unless sectors == ""
-    sectors += sector.to_plain_text.chomp.strip
+    sectors << sector.to_plain_text.chomp.strip unless sector.nil?
   end
-  
-  #puts contacts
-  
-  #puts location
   
   affiliation = nil
   
@@ -74,30 +70,24 @@ id_array.each do |id|
                                      :district => district,
                                      :province => province,
                                      :affiliation => affiliation,
-                                     :sector => sectors,
+                                     :sectors => sectors,
                                      :country => ""}
 end
 
+puts "STARTING TO CREATE/UPDATE..."
 
 ngo_search_results_hash.each do |key, item|
   
+  puts "READING #{item[:name]}..."
+  
   # since the sectors are entered as a string separated by , we need to parse them
   sectors = []
-  unless item[:sector].nil?
+  unless item[:sectors].empty?
   
-    sector_array = item[:sector].split(",")
+    #sector_array = item[:sectors].split(",")
 
-=begin
-(sector.strip.chomp.casecmp("") == 0)
-Culture  -> NO IDEA
-Officers Welfare -> NO IDEA, General Welfare?
-Peace -> NO IDEA HERE
-Urban Development -> Urban Development IDK HERE
-=end
-
-
-    sector_array.each do |sector|
-      
+    item[:sectors].each do |sector|
+            
       if (sector.strip.chomp.casecmp("Advocacy") == 0) or (sector.strip.chomp.casecmp("Advocacy and Awareness") == 0) or 
          (sector.strip.chomp.casecmp("Communication and Media") == 0) or (sector.strip.chomp.casecmp("Human Rights") == 0) or
          (sector.strip.chomp.casecmp("Information Dissemination") == 0) or (sector.strip.chomp.casecmp("Labour Right") == 0)
@@ -293,12 +283,10 @@ Urban Development -> Urban Development IDK HERE
       end
       
     end # sector_array.each do |sector|
-    
-    sector_array.uniq!
-
       
   end # end unless item[:sector].nil
 
+  sectors.uniq!
 
   # pak ngos are not given foreign affiliations
   affiliations = []
@@ -329,6 +317,10 @@ Urban Development -> Urban Development IDK HERE
     item[:province] = "Baluchistan"
   elsif item[:province].strip.chomp.casecmp("Sindh") == 0
     item[:province] = "Sind"
+  elsif item[:province].strip.chomp.casecmp("Azad Jamu  Kashmir") == 0
+    item[:province] = "Azad Kashmir"
+  elsif item[:province].strip.chomp.casecmp("Gilgit Baltistan") == 0
+    item[:province] = "Gilgit-Baltistan (Northern Areas)"
   end
   
   if Province.exists?(:name => item[:province])
@@ -409,20 +401,20 @@ Urban Development -> Urban Development IDK HERE
       end # end loop
     end
     
-    if item[:sector].nil?
+    if item[:sectors].empty?
       @sector = nil
     else  
       # if the sector(s) for the NGO does not exist, create it
       sectors.each do |sector|
         unless sector == ""
           if Sector.exists?(:name => sector)
-            sector = Sector.find_by_name(sector)
+            current_sector = Sector.find_by_name(sector)
           else
-            sector = Sector.create(:name => sector)
+            current_sector = Sector.create(:name => sector)
           end
-    
-          unless @ngo.sectors.map{|sector| sector.id }.include?(sector.id)
-            @ngo.sectors << sector
+          
+          unless @ngo.sectors.include?(current_sector)
+            @ngo.sectors << current_sector
           end
         end
       end # end sectors loop

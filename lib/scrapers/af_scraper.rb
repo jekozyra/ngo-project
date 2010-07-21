@@ -288,12 +288,12 @@ ngo_search_results_hash.each do |key, item|
       sectors.each do |sector|
         unless sector == ""
           if Sector.exists?(:name => sector)
-            sector = Sector.find_by_name(sector)
+            current_sector = Sector.find_by_name(sector)
           else
-            sector = Sector.create(:name => sector)
+            current_sector = Sector.create(:name => sector)
           end
     
-          unless @ngo.sectors.map{|sector| sector.id }.include?(sector.id)
+          unless @ngo.sectors.include?(current_sector)
             @ngo.sectors << sector
           end
         end
