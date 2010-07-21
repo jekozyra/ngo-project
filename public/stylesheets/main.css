@@ -394,6 +394,18 @@ fieldset.login {
 	font-weight: bold;
 }
 
+#help-content dl{
+	margin-left:5px;
+}
+
+#help-content dt{
+	font-weight:bold;
+}
+
+#help-content dd{
+	margin-left:10px;
+}
+
 #titleHeader h1, #titleHeader h2 {
 	color:#fff;
 }
