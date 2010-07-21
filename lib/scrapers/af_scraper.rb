@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-ENV['RAILS_ENV'] = 'development'
+ENV['RAILS_ENV'] = 'production'
 
 require '../../config/environment' #only if you are using this within a rails app
 require 'rexml/document'
@@ -250,7 +250,7 @@ ngo_search_results_hash.each do |key, item|
           contact.update_attributes(:name => contact_info[:name], :title => contact_info[:title], :phone => contact_info[:phone], :email => contact_info[:email])
         else
           unless contact_info[:name].nil?
-            contact = Contact.create(:name => contact_info[:name]) #, :title => contact_info[:title], :phone => contact_info[:phone], :email => contact_info[:email])
+            contact = Contact.create(:name => contact_info[:name], :title => contact_info[:title], :phone => contact_info[:phone], :email => contact_info[:email])
           end
         end
                 
