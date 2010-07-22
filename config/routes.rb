@@ -7,6 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.login 'login', :controller => 'authentication', :action => 'login'
   map.signup 'signup', :controller => 'users', :action => 'signup'
   map.about 'about', :controller => 'directory', :action => 'about'
+  map.stats 'stats', :controller => 'directory', :action => 'stats'
   map.approved_users 'users/approved', :controller => 'users', :action => 'approved'
   map.unapproved_users 'users/unapproved', :controller => 'users', :action => 'unapproved'
   map.signup_thanks 'signup_thanks', :controller => 'users', :action => 'signup_thanks'
