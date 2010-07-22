@@ -46,6 +46,25 @@ class DirectoryController < ApplicationController
     
     @charts[:entries] << sector_chart
     
+    # get the ngos per province per country
+    @countries = Country.find(:all, :conditions => ["id in (?)", countries])
+    @countries.each do |country|
+      provinces = Province.find(:all, :conditions => ["country_id = ?", country.id])
+      provinces_ngos = []
+      provinces.each do |province|
+        total_ngos = Ngo.count(:id, :distinct => true, :conditions => ["province_id = ?", province.id])
+        provinces_ngos << {:chart_label => province.name, :chart_number => total_ngos}
+      end
+      
+      province_chart = {:stats => provinces_ngos,
+                        :chart_title => "NGOs of #{country.name} by province",
+                        :chart_div => "chart_div_#{country.name}",
+                        :column_label => "Province",
+                        :numeric_label => "Number of Entries"}
+                        
+      @charts[:entries] << province_chart
+      
+    end # end @countries.each
     
     
     
