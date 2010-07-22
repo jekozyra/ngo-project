@@ -22,7 +22,7 @@ class DirectoryController < ApplicationController
       countries_ngos << {:chart_label => country_name, :chart_number => total_ngos}
     end
     country_chart = {:stats => countries_ngos,
-                      :chart_title => "By Country",
+                      :chart_title => "NGOs in the database by country",
                       :chart_div => "chart_div_country",
                       :column_label => "Country",
                       :numeric_label => "Number of Entries"}
@@ -39,7 +39,7 @@ class DirectoryController < ApplicationController
       sectors_ngos << {:chart_label => sector_name, :chart_number => total_ngos}
     end
     sector_chart = {:stats => sectors_ngos,
-                    :chart_title => "By Sector",
+                    :chart_title => "NGOs in the database by sector",
                     :chart_div => "chart_div_sector",
                     :column_label => "Sector",
                     :numeric_label => "Number of Entries"}
@@ -47,7 +47,7 @@ class DirectoryController < ApplicationController
     @charts[:entries] << sector_chart
     
     # get the ngos per province per country
-    @countries = Country.find(:all, :conditions => ["id in (?)", countries])
+    @countries = Country.find(:all, :conditions => ["id in (?)", countries], :order => "name")
     @countries.each do |country|
       provinces = Province.find(:all, :conditions => ["country_id = ?", country.id])
       provinces_ngos = []
