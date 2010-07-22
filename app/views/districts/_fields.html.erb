@@ -6,14 +6,11 @@
   <%= f.label :country_id %>
   <%= f.collection_select :country_id, Country.find(:all, :order => "name"), :id, :name %>
 </div>
-<%= observe_field "district_country_id",
-	:url => { :action => :update_provinces }, 
-	:update => 'province_list',
-	:with => "district_country_id"
-%>
+
+<%= observe_field :district_country_id, :url => { :action => :update_list_provinces }, :update => :province_list, :with => :district_country_id %>
 
 <div class="ctrlHolder" id="province_list">
-  <%= render :partial => "list_provinces", :locals => {:provinces => provinces, :district_province => district_province} %>
+  <%= render :partial => "list_provinces", :locals => {:provinces => provinces, :province_id => district.province_id} %>
 </div>
 <div class="ctrlHolder">
   <%= f.label :latlong %>

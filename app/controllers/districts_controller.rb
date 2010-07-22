@@ -68,10 +68,16 @@ class DistrictsController < ApplicationController
   # PUT /districts/1
   # PUT /districts/1.xml
   def update
+        
     @district = District.find(params[:id])
-
+    
     respond_to do |format|
       if @district.update_attributes(params[:district])
+        @district.ngos.each do |ngo|
+          ngo.country_id = @district.country_id
+          ngo.province_id = @district.province_id
+        end
+        
         flash[:notice] = 'District was successfully updated.'
         format.html { redirect_to(@district) }
         format.xml  { head :ok }
@@ -95,11 +101,9 @@ class DistrictsController < ApplicationController
   end
   
   # get proper properties and values for language
-  def update_provinces
-    puts "*****************************************"
+  def update_list_provinces
     country_id = params[:district_country_id]
     @provinces = Province.find(:all, :conditions => ["country_id = ?", country_id], :order => "name")
-    puts @provinces.size
-    render :partial => "list_provinces", :locals => {:provinces => @provinces, :district_province => nil}
+    render :partial => "list_provinces", :locals => {:provinces => @provinces, :province_id => nil}
   end
 end
