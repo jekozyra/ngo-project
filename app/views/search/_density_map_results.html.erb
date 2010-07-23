@@ -1,0 +1,15 @@
+<div id="page">
+	
+	<div id="results-panel">
+		<div id="results-panel-title">
+			<span id="results-panel-h3"><h3>Search Results</h3></span>
+		</div>
+		<div id="results-panel-contents">
+			<%= render :partial => "results_panel_results", :locals => {:search => search} %>
+		</div>
+	</div>
+	<div id="country-maps">
+		<%= render :partial => "density_map", :collection => @results, :as => :result %>
+	</div>
+	
+</div>

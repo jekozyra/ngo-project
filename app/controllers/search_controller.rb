@@ -135,19 +135,93 @@ class SearchController < ApplicationController
     end
     sql += @sort_by
     
+    
     if @display_option == "table"
       @search = Ngo.paginate_by_sql(sql, :page => params[:page], :per_page => 50)
     elsif @display_option == "location_map"
       @search = Ngo.find_by_sql(sql)
       location_map(@search)
       render :layout => 'maps_layout'
-    else
+    elsif @display_option == "density_map"
       @search = Ngo.find_by_sql(sql)
+      @results = density_map(@search)
+      render :layout => 'vis_layout'
+    else
+      @search = Ngo.paginate_by_sql(sql, :page => params[:page], :per_page => 50)
     end
     
     return @search
     
   end # end function search
+  
+  
+  # do the density mapping
+  def density_map(search_results)
+        
+    # {"entries":[{"region_id":"PK","map_div":"density_canvas","locations":[{"map_label":"PK-IS","map_number":39},{"map_label":"PK-BA","map_number":95}],"column_label":"Region","numeric_label":"Number of Entries"},{"region_id":"AF","map_div":"density_canvas2","locations":[{"map_label":"AF-KAB","map_number":39},{"map_label":"AF-HEL","map_number":30},{"map_label":"AF-KAN","map_number":30}],"column_label":"Region","numeric_label":"Number of Entries"}]}
+    
+    @maps = {:maps => []}
+    results = []
+    result_hash = {}
+    
+    # go through the search results
+    search_results.each do |result|
+            
+      unless result.district.province.id.nil?
+                      
+        # get the iso code of the result's province
+        province = Province.find(result.district.province.id)
+
+        unless province.iso_code.nil?
+          
+          short_iso = province.iso_code.split("-")[0]
+          
+          if result_hash[short_iso].nil? # has the country been added to the hash yet?
+            
+            results << DensityResult.new(short_iso, province.country.name)
+            
+            result_hash[short_iso] = {:country_name => province.country.name,
+                                      :locations => {}}
+            result_hash[short_iso][:locations][province.iso_code] = 1
+          else
+      
+            if result_hash[short_iso][:locations][province.iso_code].nil? # is the province already in the province hash?
+              result_hash[short_iso][:locations][province.iso_code] = 1
+            else
+              result_hash[short_iso][:locations][province.iso_code] += 1
+            end
+      
+          end # end result_hash[short_iso].nil?
+        end # end unless
+      end # end unless
+    end # end search_results.each do |result|
+    
+    result_hash.each do |country_iso, detail_hash|
+      
+      new_map = {:region_id => country_iso,
+                 :map_div => "map_div_#{country_iso.downcase}",
+                 :column_label => "Region",
+                 :number_label => "Number of Entries",
+                 :locations => []
+                }
+                
+      detail_hash[:locations].each do |province_iso, count|
+        new_map[:locations] << {:map_label => province_iso, :map_number => count}
+      end
+      
+      @maps[:maps] << new_map
+      
+    end
+    
+    # now that we ahve our results_hash, we need to get the json
+    my_file = File.open("#{RAILS_ROOT}/public/data/vis.json", File::WRONLY|File::TRUNC|File::CREAT)
+    my_file.puts @maps.to_json.to_s
+    my_file.close
+    
+    return results
+    
+  end # end function density_map
+
   
   
   # do the location mapping
@@ -292,7 +366,7 @@ class SearchController < ApplicationController
     @districts = District.find(:all, :conditions => ["province_id IN (?)", province_ids], :order => "name")
     render :partial => "list_districts", :locals => {:districts => @districts}
   end
-
+  
   
   private
   

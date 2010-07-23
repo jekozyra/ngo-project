@@ -12,7 +12,6 @@ ActionController::Routing::Routes.draw do |map|
   map.unapproved_users 'users/unapproved', :controller => 'users', :action => 'unapproved'
   map.signup_thanks 'signup_thanks', :controller => 'users', :action => 'signup_thanks'
 
-  
   map.resources :users
 
   map.resources :sectors

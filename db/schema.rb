@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100720033252) do
+ActiveRecord::Schema.define(:version => 20100723041847) do
 
   create_table "affiliations", :force => true do |t|
     t.string   "name"
@@ -96,6 +96,8 @@ ActiveRecord::Schema.define(:version => 20100720033252) do
     t.boolean  "approved",        :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "who"
+    t.text     "how"
   end
 
 end
