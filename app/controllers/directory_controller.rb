@@ -25,7 +25,7 @@ class DirectoryController < ApplicationController
                       :chart_title => "NGOs in the database by country",
                       :chart_div => "chart_div_country",
                       :column_label => "Country",
-                      :numeric_label => "Number of Entries"}
+                      :numeric_label => "NGOs"}
     
     @charts[:entries] << country_chart
 
@@ -42,7 +42,7 @@ class DirectoryController < ApplicationController
                     :chart_title => "NGOs in the database by sector",
                     :chart_div => "chart_div_sector",
                     :column_label => "Sector",
-                    :numeric_label => "Number of Entries"}
+                    :numeric_label => "NGOs"}
     
     @charts[:entries] << sector_chart
     
@@ -60,7 +60,7 @@ class DirectoryController < ApplicationController
                         :chart_title => "NGOs of #{country.name} by province",
                         :chart_div => "chart_div_#{country.name}",
                         :column_label => "Province",
-                        :numeric_label => "Number of Entries"}
+                        :numeric_label => "NGOs"}
                         
       @charts[:entries] << province_chart
       

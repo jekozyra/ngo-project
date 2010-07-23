@@ -201,7 +201,7 @@ class SearchController < ApplicationController
       new_map = {:region_id => country_iso,
                  :map_div => "map_div_#{country_iso.downcase}",
                  :column_label => "Region",
-                 :number_label => "Number of Entries",
+                 :number_label => "NGOs",
                  :locations => []
                 }
                 
