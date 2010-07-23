@@ -10,14 +10,9 @@
   <%= f.label :country_id, 'Country' %>
 	<%= collection_select :ngo, :country_id, @countries, :id, :name %>
 </div>
-<%= observe_field 'ngo_country_id',
-	:url => { :action => :update_districts }, 
-	:update => 'district_list',
-	:with => 'ngo_country_id'
-%>
-<div class="ctrlHolder" id="district_list">
-	<%= render :partial => 'districts', :locals => {:f => f, :districts => @districts }%>
-</div>
+
+<%= render :partial => "districts_provinces", :locals => {:f => f, :districts => @districts, :provinces => @provinces }%>
+
 <div class="ctrlHolder">
   <%= f.label :sectors, 'Sector(s)' %>
 	<%= collection_select :ngo, :sector_ids, @sectors, :id, :name, {}, :size => 7, :multiple => true %>

@@ -1,2 +1,7 @@
 <%= label_tag 'district_id', 'District' %>
 <%= collection_select :ngo, :district_id, districts, :id, :name %>
+
+<%= observe_field 'ngo_province_id',
+		:url => { :action => :update_districts }, 
+		:update => 'district_list',
+		:with => "'ngo_province_id=' + encodeURIComponent(value)" %>

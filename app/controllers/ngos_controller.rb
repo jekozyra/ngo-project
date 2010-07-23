@@ -33,7 +33,8 @@ class NgosController < ApplicationController
   def new
     @ngo = Ngo.new
     @countries = Country.find(:all, :order => "name")
-    @districts = District.find(:all, :conditions => ["country_id = ?", @countries.first.id])
+    @provinces = Province.find(:all, :conditions => ["country_id = ?", @countries.first.id])
+    @districts = District.find(:all, :conditions => ["country_id = ? and province_id = ?", @countries.first.id, @provinces.first.id])
     @sectors = Sector.find(:all, :order => "name")
     @affiliations = Affiliation.find(:all, :order => "name")
 
@@ -47,7 +48,8 @@ class NgosController < ApplicationController
   def edit
     @ngo = Ngo.find(params[:id])
     @countries = Country.find(:all, :order => "name")
-    @districts = District.find(:all, :conditions => ["country_id = ?", @countries.first.id])
+    @districts = District.find(:all, :conditions => ["country_id = ?",  @ngo.country_id])
+    @provinces = Province.find(:all, :conditions => ["country_id = ?", @ngo.country_id])
     @sectors = Sector.find(:all, :order => "name")
     @affiliations = Affiliation.find(:all, :order => "name")
   end
@@ -110,8 +112,14 @@ class NgosController < ApplicationController
   end
   
   
+  def update_districts_provinces
+    @provinces = Province.find(:all, :conditions => ["country_id = ?", params[:ngo_country_id].to_i], :order => "name")
+    @districts = District.find(:all, :conditions => ["country_id = ? and province_id = ?", params[:ngo_country_id].to_i, @provinces.first.id], :order => "name")
+    render :partial => "districts_provinces", :locals => {:districts => @districts, :provinces => @provinces}
+  end
+  
   def update_districts
-    @districts = District.find(:all, :conditions => ["country_id = ?", params[:ngo_country_id].to_i], :order => "name")
+    @districts = District.find(:all, :conditions => ["province_id = ?", params[:ngo_province_id].to_i], :order => "name")
     render :partial => "districts", :locals => {:districts => @districts}
   end
   

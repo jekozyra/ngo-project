@@ -1,0 +1,16 @@
+<span id="districts_provinces">
+	
+<%= observe_field 'ngo_country_id',
+		:url => { :action => :update_districts_provinces }, 
+		:update => 'districts_provinces',
+		:with => "'ngo_country_id=' + encodeURIComponent(value) + '&ngo_province_id='+ encodeURIComponent(value)" %>
+
+<div class="ctrlHolder" id="province_list">
+	<%= render :partial => 'provinces', :locals => {:provinces => provinces }%>
+</div>
+
+<div class="ctrlHolder" id="district_list">
+	<%= render :partial => 'districts', :locals => {:districts => districts }%>
+</div>
+
+</span>
