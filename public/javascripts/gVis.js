@@ -11,7 +11,7 @@ function drawMap() {
 				var data = new google.visualization.DataTable();
 
 				data.addColumn('string', map_data.column_label);
-			  data.addColumn('number', map_data.numeric_label);
+			  data.addColumn('number', "NGOs");
 
 				jQuery.each(map_data.locations, function(index, value){
 					data.addRows(1);
