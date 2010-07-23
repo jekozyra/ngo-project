@@ -72,13 +72,8 @@ class DirectoryController < ApplicationController
     my_file.puts @charts.to_json.to_s
     my_file.close
     
-    render :layout => "vis_layout"
+    render :layout => "stats_layout"
   end
 
-=begin
-  def test
-    render :layout => "density_layout"
-  end
-=end
 
 end
