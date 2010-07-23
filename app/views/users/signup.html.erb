@@ -1,37 +1,42 @@
 <div id="newForm">
 
-	<h1>Sign up</h1>
+	<h1>Join The Mashera Project</h1>
 
 	<% form_for(@user) do |f| %>
 	  <%= f.error_messages %>
 	
 		<fieldset class="inlineLabels">
 
-	  <div class="ctrlHolder">
-	    <%= f.label :email %>
-	    <%= f.text_field :email %>
-	  </div>
-	  <div class="ctrlHolder">
-	    <%= f.label :first_name %>
-	    <%= f.text_field :first_name %>
-	  </div>
-	  <div class="ctrlHolder">
-	    <%= f.label :last_name %>
-	    <%= f.text_field :last_name %>
-	  </div>
-	  <div class="ctrlHolder">
-	    <%= f.label :password, 'Password' %>
-	    <%= f.password_field :password %>
-	  </div>
-	  <div class="ctrlHolder">
-	    <%= f.label :password_confirmation, 'Confirm Password' %>
-	    <%= f.password_field :password_confirmation %>
-	  </div>
+		<%= render :partial => "fields", :locals => {:f => f} %>
+		
+		<div class="ctrlHolder">
+		  <%= f.label :password, 'Password' %>
+		  <%= f.password_field :password %>
+		</div>
+		
+		<div class="ctrlHolder">
+		  <%= f.label :password_confirmation, 'Confirm Password' %>
+		  <%= f.password_field :password_confirmation %>
+		</div>
+		
+		<div class="ctrlHolder">
+		  <%= f.label :who, 'Who are you?' %>
+		  <%= f.text_field :who %>
+		</div>
+		
+		<div class="ctrlHolder">
+		  <%= f.label :how, 'How did you hear about us?' %>
+		  <%= f.text_area :how %>
+		</div>
+		
+
 	  <div class="buttonHolder">
 	    <%= f.submit 'Join' %>
 	  </div>
 	
 		</fieldset>
 	<% end %>
+
+	<%= link_to 'Back', users_path %>
 
 </div>
