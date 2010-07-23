@@ -4,6 +4,8 @@
   <tr>
 		<th>Name</th>
     <th>Email</th>
+		<th>Who</th>
+		<th>How</th>
 		<th>Role</th>
 		<th>Approved?</th>
 		<th>User details</th>
@@ -15,6 +17,8 @@
   <tr>
 	  <td><%= user.full_name %></td>
     <td><%= user.email %></td>
+		<td><%= user.who %></td>
+		<td><%= user.how %></td>
 		<td><%= user.user_type %></td>
 		<td><% if user.approved %>Yes<% else %>No<% end %></td>
     <td><%= link_to 'View details', user %></td>

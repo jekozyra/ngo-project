@@ -5,13 +5,23 @@
 	<fieldset class="inlineLabels">
 		
 		<div class="ctrlHolder">
-		  <label>Email:</label>
-		  <%=h @user.email %>
-		</div>
-
-		<div class="ctrlHolder">
 		  <label>Name:</label>
 		  <%= @user.full_name %>
+		</div>
+		
+		<div class="ctrlHolder">
+		  <label>Email:</label>
+		  <%= @user.email %>
+		</div>
+		
+		<div class="ctrlHolder">
+		  <label>Who:</label>
+		  <%= @user.show_who %>
+		</div>
+		
+		<div class="ctrlHolder">
+		  <label>How:</label>
+		  <%= @user.show_how %>
 		</div>
 		
 		<div class="ctrlHolder">

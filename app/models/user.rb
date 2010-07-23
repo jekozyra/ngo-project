@@ -2,7 +2,7 @@ require 'digest/sha1'
 
 class User < ActiveRecord::Base
   
-  validates_presence_of :email, :first_name, :last_name
+  validates_presence_of :email, :first_name, :last_name, :who, :how
   validates_uniqueness_of :email
   
   attr_accessor :password_confirmation
@@ -37,6 +37,14 @@ class User < ActiveRecord::Base
     return if pwd.blank?
     create_new_salt
     self.hashed_password = User.encrypted_password(self.password, self.salt)
+  end
+  
+  def show_who
+    self.who.nil? ? "---" : self.who
+  end
+  
+  def show_how
+    self.how.nil? ? "---" : self.how
   end
   
   #implement in your user model 
