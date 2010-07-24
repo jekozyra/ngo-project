@@ -1,12 +1,10 @@
 #!/usr/bin/env ruby
 
-ENV['RAILS_ENV'] = 'development'
+ENV['RAILS_ENV'] = 'production'
 
 require '../../config/environment' #only if you are using this within a rails app
-require 'rexml/document'
 require 'rubygems'
-require 'hpricot'
-require 'scrubyt'
+require 'nokogiri'
 require 'open-uri'
 
 def get_file_as_string(filename)
