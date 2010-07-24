@@ -25,6 +25,8 @@ ngo_search_results_hash = {}
 
 id_array.each do |id|
   
+  puts "CURRENTLY SCRAPING #{id}..."
+  
   page = Hpricot(open("http://www.ngosinfo.gov.pk/ViewNgoDetails.aspx?id=#{id}"))
   
   full_name = page.at("#lblNgoName/")

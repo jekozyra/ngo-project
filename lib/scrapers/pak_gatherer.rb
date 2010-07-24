@@ -1,10 +1,9 @@
 #!/usr/bin/env ruby
 
-require 'rexml/document'
 require 'rubygems'
-require 'hpricot'
-require 'scrubyt'
+require 'nokogiri'
 require 'open-uri'
+require 'firewatir'
 
 $valid_ids = [67,120,153,123,2,99,151,75,78,95,189,133,201,205,152,4,163,200,157,128,79,185,60,57,6,184,8,96,77,88,197,149,111,
               68,83,177,11,119,12,13,14,134,165,52,15,69,17,126,92,131,42,188,73,166,168,187,202,41,36,108,127,20,196,206,21,136,
@@ -170,40 +169,38 @@ $Ngo_sectors = "Adult Education (67) - 271 entries
                 Youngster Welfare (98) - 19 entries
                 Youth Welfare (34) - 3279 entries"
 
-def get_file_as_string(filename)
-  data = ''
-  f = File.open(filename, "r") 
-  f.each_line do |line|
-    data += line
-  end
-  return data
-end
 
-def get_file_as_array(filename)
-  data = ''
-  f = File.open(filename, "r") 
-  f.each_line do |line|
-    data += line
-  end
-  return data.split(",")
-end
+
 
 def scrape(mode)
+  
+  mode == "all" ? url = "http://www.ngosinfo.gov.pk/SearchResults.aspx?name=&foa=0" : url = "http://www.ngosinfo.gov.pk/SearchResults.aspx?name=&foa=#{mode}"
 
-  pak_data = Scrubyt::Extractor.define :agent => :firefox do
- 
-    mode == "all" ? url = "http://www.ngosinfo.gov.pk/SearchResults.aspx?name=&foa=0" : url = "http://www.ngosinfo.gov.pk/SearchResults.aspx?name=&foa=#{mode}"
-    fetch url
+  ff = FireWatir::Firefox.new
+  
+  #Open the site 
+  ff.goto(url)
+  more_pages = true
 
-    result "/html" do
-      result_body "/body", :type => :html_subtree
+
+  while more_pages
+    # convert the HTML to a Nokogiri doc
+    @doc = Nokogiri::HTML(ff.html)
+
+    ids = @doc.xpath("//a[@class='NgoSearch']").map{|link| link.attribute('onclick').to_s.split(",")[1]}
+
+    #puts "WRITING THE IDS FOR #{mode.to_s}... (#{Time.now})"
+    File.open("../data/pak_data_id_file", "a"){|f| f.write "#{ids.join(',')},"}
+  
+    # quit unless the next page link exists
+    if ff.link(:id, "ctl00_ContentPlaceHolder1_Pager1_Next").exists?
+      ff.link(:id, "ctl00_ContentPlaceHolder1_Pager1_Next").click
+    else
+      more_pages = false
+      ff.close
     end
-
-    next_page 'Next' #, :limit => 10
   end
-  
-  return pak_data
-  
+
 end
 
 
@@ -218,16 +215,21 @@ if __FILE__ == $0
     
     option = gets
     option.strip!.chomp!
+    options = option.split(" ")
   
-    if option.to_i == 0
+    if options[0].to_i == 0
       if option == "all"
-        mode = option
+        mode = options[0]
         invalid_option = false
       end
     else
-      if $valid_ids.include?(option.to_i)
-        invalid_option = false
-        mode = option.to_i
+      invalid_option = false
+      options.each do |current_option|
+        if $valid_ids.include?(option.to_i)
+          mode = option.to_i
+        else
+          invalid_option= true
+        end
       end
     end
     
@@ -237,37 +239,10 @@ if __FILE__ == $0
     
   end
 
-  pak_data = scrape(mode)
-  
-  puts "DONE SCRAPING, WRITING DATA... (#{Time.now})"
-
-  File.open("../data/pak_data_xml", 'w') {|f| f.write(pak_data.to_xml) }
-
-  result_string = Hpricot(get_file_as_string("../data/pak_data_xml"))
-
-  result_string.search("//result/result_body/") do |text|
-    File.open("../data/pak_data_parsed", 'a') {|f| f.write(text) }
+  options.each do |mode|
+    puts "SCRAPING #{mode.to_s}... (#{Time.now})"
+    pak_data = scrape(mode)
+    puts "DONE SCRAPING #{mode.to_s}... (#{Time.now})"
   end
-
-  puts "GETTING PARSED DATA... (#{Time.now})"
-  parsed_page = result_string = Hpricot(get_file_as_string("../data/pak_data_parsed"))
-
-  id_array = get_file_as_array("../data/pak_data_id_file")
-
-  puts "FINDING IDS... (#{Time.now})"
-#  File.truncate("../data/pak_data_id_file", 0)
-  parsed_page.search("a.NgoSearch") do |text|
-    id_array << text.attributes['onclick'].split(",")[1].to_i
-  end
-  
-  id_array.uniq!
-  
-  puts "WRITING IDS... (#{Time.now})"
-  id_array.each do |id|
-    File.open("../data/pak_data_id_file", 'a') {|f| f.write("#{id},") }
-  end
-  
-  File.delete("../data/pak_data_xml", "../data/pak_data_parsed")
 
 end
-
