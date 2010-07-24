@@ -3,8 +3,10 @@
 ENV['RAILS_ENV'] = 'production'
 
 require '../../config/environment' #only if you are using this within a rails app
+require 'rexml/document'
 require 'rubygems'
-require 'nokogiri'
+require 'hpricot'
+require 'scrubyt'
 require 'open-uri'
 
 def get_file_as_string(filename)
@@ -19,46 +21,44 @@ end
 
 id_array = get_file_as_string("../data/pak_data_id_file").split(",")
 
-
 ngo_search_results_hash = {}
 
 id_array.each do |id|
   
   puts "CURRENTLY SCRAPING #{id}..."
   
-  page = Nokogiri::HTML(open("http://www.ngosinfo.gov.pk/ViewNgoDetails.aspx?id=#{id}"))
-  puts page
+  page = Hpricot(open("http://www.ngosinfo.gov.pk/ViewNgoDetails.aspx?id=#{id}"))
   
-  full_name = page.at_css("#lblNgoName").content
-  full_name = full_name.chomp.strip unless full_name.nil?
-  acronym = page.at_css("#lblAcronym").content
-  acronym = acronym.chomp.strip unless acronym.nil?
-  address = page.at_css("#lblAddress").content
-  address = address.chomp.strip unless address.nil?
-  district = page.at_css("#lblDistrict").content
-  district = district.chomp.strip unless district.nil?
-  province = page.at_css("#lblProvince").content
-  province = province.chomp.strip unless province.nil?
-  office_phone = page.at_css("#lblPhoneNo").content
-  office_phone = office_phone.chomp.strip unless office_phone.nil?
-  office_fax = page.at_css("#lblFaxNo").content
-  office_fax = office_fax.chomp.strip unless office_fax.nil?
-  office_email = page.at_css("#lblEmail").content
-  office_email = office_email.chomp.strip unless office_email.nil?
-  office_website = page.at_css("#lblUrl").content
-  office_website = office_website.chomp.strip unless office_website.nil?
+  full_name = page.at("#lblNgoName/")
+  full_name = full_name.to_plain_text.chomp.strip unless full_name.nil?
+  acronym = page.at("#lblAcronym/")
+  acronym = acronym.to_plain_text.chomp.strip unless acronym.nil?
+  address = page.at("#lblAddress/")
+  address = address.to_plain_text.chomp.strip unless address.nil?
+  district = page.at("#lblDistrict/")
+  district = district.to_plain_text.chomp.strip unless district.nil?
+  province = page.at("#lblProvince/")
+  province = province.to_plain_text.chomp.strip unless province.nil?
+  office_phone = page.at("#lblPhoneNo/")
+  office_phone = office_phone.to_plain_text.chomp.strip unless office_phone.nil?
+  office_fax = page.at("#lblFaxNo/")
+  office_fax = office_fax.to_plain_text.chomp.strip unless office_fax.nil?
+  office_email = page.at("#lblEmail/")
+  office_email = office_email.to_plain_text.chomp.strip unless office_email.nil?
+  office_website = page.at("#lblUrl/")
+  office_website = office_website.to_plain_text.chomp.strip unless office_website.nil?
   contacts = {}
-  contact_name1 = page.at_css("#lblContectPerson1").content
-  contacts["1"] =  {:name => contact_name1.chomp.strip} unless contact_name1.nil?
-  contact_name2 = page.at_css("#lblContectPerson2").content
-  contacts["2"] = {:name => contact_name2.chomp.strip} unless contact_name2.nil?
-  contact_name3 = page.at_css("#lblContectPerson3").content
-  contacts["3"] = {:name => contact_name3.chomp.strip} unless contact_name3.nil?
+  contact_name1 = page.at("#lblContectPerson1/")
+  contacts["1"] =  {:name => contact_name1.to_plain_text.chomp.strip} unless contact_name1.nil?
+  contact_name2 = page.at("#lblContectPerson2/")
+  contacts["2"] = {:name => contact_name2.to_plain_text.chomp.strip} unless contact_name2.nil?
+  contact_name3 = page.at("#lblContectPerson3/")
+  contacts["3"] = {:name => contact_name3.to_plain_text.chomp.strip} unless contact_name3.nil?
   sectors = []
-  page.css("#listFoa/option").each do |sector|
-    sectors << sector.content.chomp.strip unless sector.nil?
+  page.search("#listFoa/option/").each do |sector|
+    sectors << sector.to_plain_text.chomp.strip unless sector.nil?
   end
-    
+  
   affiliation = nil
   
   ngo_search_results_hash[full_name] ={:acronym => acronym, 
@@ -338,7 +338,7 @@ ngo_search_results_hash.each do |key, item|
   else
     @district = District.create(:name => item[:district], :province_id => @province, :country_id => @country).id
   end
-  
+
   item[:acronym] = nil if item[:acronym] = ""
   item[:contact_address] = nil if item[:contact_address] = ""
   item[:contact_phone] = nil if item[:contact_phone] = ""
