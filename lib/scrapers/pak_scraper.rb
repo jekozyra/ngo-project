@@ -19,6 +19,7 @@ end
 
 id_array = get_file_as_string("../data/pak_data_id_file").split(",")
 
+
 ngo_search_results_hash = {}
 
 id_array.each do |id|
