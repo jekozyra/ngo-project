@@ -27,6 +27,7 @@ id_array.each do |id|
   puts "CURRENTLY SCRAPING #{id}..."
   
   page = Nokogiri::HTML(open("http://www.ngosinfo.gov.pk/ViewNgoDetails.aspx?id=#{id}"))
+  puts page
   
   full_name = page.at_css("#lblNgoName").content
   full_name = full_name.chomp.strip unless full_name.nil?
