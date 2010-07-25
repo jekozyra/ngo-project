@@ -78,9 +78,10 @@ end
 
 puts "STARTING TO CREATE/UPDATE..."
 
+count = 1
 ngo_search_results_hash.each do |key, item|
   
-  puts "READING #{item[:name]}..."
+  puts "READING #{count} of #{ngo_search_results_hash.size}: #{item[:name]}..."
   
   # since the sectors are entered as a string separated by , we need to parse them
   sectors = []
@@ -429,6 +430,8 @@ ngo_search_results_hash.each do |key, item|
       end # end sectors loop
     end # end of this if-else block
   end # end if @ngo.auto_update
+  
+  count += 1
 
 end # end ngo hash each
 
