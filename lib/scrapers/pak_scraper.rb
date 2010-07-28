@@ -6,7 +6,6 @@ require '../../config/environment' #only if you are using this within a rails ap
 require 'rexml/document'
 require 'rubygems'
 require 'hpricot'
-require 'scrubyt'
 require 'open-uri'
 
 def get_file_as_string(filename)
@@ -160,7 +159,8 @@ ngo_search_results_hash.each do |key, item|
          (sector.strip.chomp.casecmp("School") == 0) or (sector.strip.chomp.casecmp("Skill Development") == 0) or
          (sector.strip.chomp.casecmp("Social Education") == 0) or (sector.strip.chomp.casecmp("Technical Education") == 0) or 
          (sector.strip.chomp.casecmp("Training") == 0) or (sector.strip.chomp.casecmp("Training and Education") == 0) or
-         (sector.strip.chomp.casecmp("Training and Recruitment of volunteers") == 0) or (sector.strip.chomp.casecmp("Training in Ophthalmologists") == 0)
+         (sector.strip.chomp.casecmp("Training and Recruitment of volunteers") == 0) or (sector.strip.chomp.casecmp("Training in Ophthalmologists") == 0) or
+         (sector.strip.chomp.casecmp("Education") == 0)
         sectors << "Education"
       end
       
