@@ -1,7 +1,3 @@
-<div id="titleHeader">
-	<h1 class="floatLeftWhite">The Mashera Project: Sectors</h1>
-</div>
-
 <table>
   <tr>
     <th>Name</th>
@@ -11,7 +7,7 @@
   </tr>
 
 <% @sectors.each do |sector| %>
-  <tr>
+<tr class="<%= cycle('alt', '') %>">
     <td><%= sector.name %></td>
     <td><%= link_to 'Details', sector %></td>
     <td><%= link_to 'Edit', edit_sector_path(sector) %></td>
@@ -22,4 +18,4 @@
 
 <br />
 
-<%= link_to 'New sector', new_sector_path %>
+<%= link_to '+ Add New Sector', new_sector_path %>

@@ -1,8 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :contacts
-
-  map.resources :provinces
-
   
   map.login 'login', :controller => 'authentication', :action => 'login'
   map.signup 'signup', :controller => 'users', :action => 'signup'
@@ -11,7 +7,16 @@ ActionController::Routing::Routes.draw do |map|
   map.approved_users 'users/approved', :controller => 'users', :action => 'approved'
   map.unapproved_users 'users/unapproved', :controller => 'users', :action => 'unapproved'
   map.signup_thanks 'signup_thanks', :controller => 'users', :action => 'signup_thanks'
-
+  map.browse_sectors 'browse/sectors', :controller => 'browse', :action => 'sector_index'
+  map.by_sector 'browse/sector/:id', :controller => 'browse', :action => 'by_sector'
+  map.browse_countries 'browse/countries', :controller => 'browse', :action => 'country_index'
+  map.by_country 'browse/country/:id', :controller => 'browse', :action => 'by_country'
+  map.by_province 'browse/country/province/:id', :controller => 'browse', :action => 'by_province'
+  map.analyze 'analyze', :controller => 'analyze', :action => 'index'
+  map.save_image 'analyze/save_image', :controller => 'analyze', :action => 'save_image'
+  map.contact 'contact', :controller => 'directory', :action => 'contact'
+  
+  
   map.resources :users
 
   map.resources :sectors
@@ -23,6 +28,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :ngos
   
   map.resources :data_files
+
+  map.resources :contacts
+
+  map.resources :provinces
 
   # The priority is based upon order of creation: first created -> highest priority.
 

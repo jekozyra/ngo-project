@@ -1,4 +1,10 @@
-<div class="ctrlHolder">
+<ol>
+<li>
   <%= f.label :filename %>
   <%= f.file_field :filename %>
-</div>
+</li>
+<li>
+  <%= f.label :file_type %>
+  <%= f.select :file_type, ["Scraping Dump File","ACBAR File"] %>
+</li>
+</ol>

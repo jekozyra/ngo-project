@@ -1,46 +1,47 @@
-<div id="detailsPage">
-	
-	<h1>User Details</h1>
-	
-	<fieldset class="inlineLabels">
+<div id="mashera-form">
 		
-		<div class="ctrlHolder">
+	<fieldset>
+		<ol>
+		<li>
 		  <label>Name:</label>
 		  <%= @user.full_name %>
-		</div>
+		</li>
 		
-		<div class="ctrlHolder">
+		<li>
 		  <label>Email:</label>
 		  <%= @user.email %>
-		</div>
+		</li>
 		
-		<div class="ctrlHolder">
+		<li>
 		  <label>Who:</label>
 		  <%= @user.show_who %>
-		</div>
+		</li>
 		
-		<div class="ctrlHolder">
+		<li>
 		  <label>How:</label>
 		  <%= @user.show_how %>
-		</div>
+		</li>
 		
-		<div class="ctrlHolder">
+		<li>
 		  <label>User Type:</label>
 		  <%= @user.user_type %>
-		</div>
+		</li>
 		
-		<div class="ctrlHolder">
+		<li>
 		  <label>Approved:</label>
 		  <% if @user.approved %>
 				Yes
 			<% else %>
 				No
 			<% end %>
-		</div>
+		</li>
+		</ol>
 
 	</fieldset>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+	
+	<div id="page-links">
+	<%= link_to 'Edit', edit_user_path(@user) %> |
+	<%= link_to 'Back', users_path %>
+	</div>
 
 </div>

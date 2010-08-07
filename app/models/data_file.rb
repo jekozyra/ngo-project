@@ -9,6 +9,7 @@ class DataFile < ActiveRecord::Base
   column :filename, :string
   column :data, :text
   column :table_name, :string
+  column :file_type, :string
 
 #  validates_format_of :filename, :with => %r{\.txt$}i, :message => "- File format must be text (.txt)"
   

@@ -1,47 +1,68 @@
-<div class="ctrlHolder">
-  <%= f.label :acronym %>
-  <%= f.text_field :acronym %>
-</div>
-<div class="ctrlHolder">
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-</div>
-<div class="ctrlHolder">
-  <%= f.label :country_id, 'Country' %>
-	<%= collection_select :ngo, :country_id, @countries, :id, :name %>
-</div>
+<ol>
 
-<%= render :partial => "districts_provinces", :locals => {:f => f, :districts => @districts, :provinces => @provinces }%>
 
-<div class="ctrlHolder">
-  <%= f.label :sectors, 'Sector(s)' %>
-	<%= collection_select :ngo, :sector_ids, @sectors, :id, :name, {}, :size => 7, :multiple => true %>
-</div>
-<div class="ctrlHolder">
-  <%= f.label :contact_address %>
-  <%= f.text_field :contact_address %>
-</div>
-<div class="ctrlHolder">
-  <%= f.label :contact_phone %>
-  <%= f.text_field :contact_phone %>
-</div>
-<div class="ctrlHolder">
-  <%= f.label :contact_fax %>
-  <%= f.text_field :contact_fax %>
-</div>
-<div class="ctrlHolder">
-  <%= f.label :contact_email %>
-  <%= f.text_field :contact_email %>
-</div>
-<div class="ctrlHolder">
-  <%= f.label :website %>
-  <%= f.text_field :website %>
-</div>
-<div class="ctrlHolder">
-  <%= f.label :affiliations, 'Affiliation' %>
-	<%= collection_select :ngo, :affiliation_ids, @affiliations, :id, :name, {}, :size => 5, :multiple => true %>
-</div>
-<div class="ctrlHolder">
-  <%= f.label :auto_update, "Auto-update?" %>
-  <%= f.check_box :auto_update %>
-</div>
+<% if controller.action_name == "edit" %>
+	<li>
+	  <%= f.label :acronym %>
+	  <%= f.text_field :acronym, {:disabled => true} %>
+	</li>
+	<li>
+	  <%= f.label :name %>
+	  <%= f.text_field :name, {:disabled => true} %>
+	</li>
+<% else %>
+	<li>
+	  <%= f.label :acronym %>
+	  <%= f.text_field :acronym %>
+	</li>
+	<li>
+	  <%= f.label :name %>
+	  <%= f.text_field :name %>
+	</li>
+<% end %>	
+
+	<li>
+	  <%= f.label :country_id, 'Country' %>
+		<%= collection_select :ngo, :country_id, @countries, :id, :name %>
+		<%= f.check_box :auto_update_country %>
+	</li>
+
+	<%= render :partial => "districts_provinces", :locals => {:f => f, :districts => @districts, :provinces => @provinces, :ngo => @ngo }%>
+
+	<li>
+	  <%= f.label :sectors, 'Sector(s)' %>
+		<%= collection_select :ngo, :sector_ids, @sectors, :id, :name, {}, :size => 7, :multiple => true %>
+		<%= f.check_box :auto_update_sectors %>
+	</li>
+	<li>
+	  <%= f.label :contact_address %>
+	  <%= f.text_field :contact_address %>
+		<%= f.check_box :auto_update_contact_address %>
+	</li>
+	<li>
+	  <%= f.label :contact_phone %>
+	  <%= f.text_field :contact_phone %>
+		<%= f.check_box :auto_update_contact_phone %>
+	</li>
+	<li>
+	  <%= f.label :contact_fax %>
+	  <%= f.text_field :contact_fax %>
+		<%= f.check_box :auto_update_contact_fax %>
+	</li>
+	<li>
+	  <%= f.label :contact_email %>
+	  <%= f.text_field :contact_email %>
+		<%= f.check_box :auto_update_contact_email %>
+	</li>
+	<li>
+	  <%= f.label :website %>
+	  <%= f.text_field :website %>
+		<%= f.check_box :auto_update_website %>
+	</li>
+	<li>
+	  <%= f.label :affiliations, 'Affiliation' %>
+		<%= collection_select :ngo, :affiliation_ids, @affiliations, :id, :name, {}, :size => 5, :multiple => true %>
+		<%= f.check_box :auto_update_affiliation %>
+	</li>
+
+</ol>

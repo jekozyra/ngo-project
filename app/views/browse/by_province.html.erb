@@ -1,0 +1,17 @@
+<div id="page-title">
+	<% if @province.nil? %>
+		<h1>NGOs of <%= @country.name %></h1>
+	<% else %>
+		<h1>NGOs of <%= @province.name%>, <%= @country.name %></h1>
+	<% end %>
+</div>
+
+<div id="article-content">
+	<ol>
+<% @ngos.each do |ngo| %>
+	<li><%= link_to ngo.name,{:controller => "ngos", :action => "view_details", :id => ngo.id} %></li>
+<% end %>
+	</ol>
+</div>
+
+<%= will_paginate @ngos %>

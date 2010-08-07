@@ -1,22 +1,24 @@
-<div id="newForm">
-
-	<h1>Editing country</h1>
+<div id="mashera-form">
 
 	<% form_for(@country) do |f| %>
-	<fieldset class="inlineLabels">
+	<fieldset>
 	  <%= f.error_messages %>
-
-	  <div class="ctrlHolder">
-	    <%= f.label :name %><br />
-	    <%= f.text_field :name %>
-	  </div>
+	
+		<ol>
+		  <li>
+		    <%= f.label :name %><br />
+		    <%= f.text_field :name %>
+		  </li>
+		</ol>
 	  <div class="buttonHolder">
 	    <%= f.submit 'Update' %>
 	  </div>
 	</fieldset>
 	<% end %>
 
+	<div id="page-links">
 	<%= link_to 'Show', @country %> |
 	<%= link_to 'Back', countries_path %>
+	</div>
 
 </div>

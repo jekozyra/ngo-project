@@ -1,18 +1,20 @@
-<div id="newForm">
+<div id="mashera-form">
 	
-	<h1>Sector Details</h1>
+	<fieldset>
 
-	<fieldset class="inlineLabels">
-
-		<div class="ctrlHolder">
+		<ol>
+		<li>
 		  <b>Name:</b>
 		  <%= @sector.name %>
-		</div>
+		</li>
+		</ol>
 	
 	</fieldset>
 
 
+	<div id="page-links">
 	<%= link_to 'Edit', edit_sector_path(@sector) %> |
 	<%= link_to 'Back', sectors_path %>
+	</div>
 
 </div>

@@ -19,140 +19,52 @@ class SearchController < ApplicationController
   end
   
   def search
-        
+    
     @display_option = params[:display_option]
+    @keywords = params[:keywords]
+    conditions_hash = {}
     
-    if(params.member?("countries"))
-    	@countries = params[:countries]
-    	country_array = @countries
-      @countries = "(" + country_array.collect { |i| i }.inject { |i,j| i + ", " + j} + ")"
-    else
-      @countries = nil
-    end
-    
-    if(params.member?("provinces"))
-    	@provinces = params[:provinces]
-    	province_array = @provinces
-      @provinces = "(" + province_array.collect { |i| i.to_s }.inject { |i,j| i + ", " + j} + ")"
-    else
-      @provinces = nil
-    end
-    
-    if(params.member?("districts"))
-    	@districts = params[:districts]
-    	district_array = @districts
-      @districts = "(" + district_array.collect { |i| i.to_s }.inject { |i,j| i + ", " + j} + ")"
-    else
-      @districts = nil
-    end
-    
-    if(params.member?("sector"))
-    	@sectors = params[:sector][:name]
-    	sector_array = @sectors
-      @sectors = "(" + sector_array.collect { |i| i }.inject { |i,j| i + ", " + j} + ")"
-    else
-      @sectors = nil
-    end
-    
-    if(params.member?("affiliation"))
-    	@affiliations = params[:affiliation][:name]
-    	affiliation_array = @affiliations
-      @affiliations = "(" + affiliation_array.collect { |i| i }.inject { |i,j| i + ", " + j} + ")"
-    else
-      @affiliations = nil
-    end
-    
-    if(params.member?("sort_by"))
-      @sort_by = " order by #{params[:sort_by]}, name"
-    else
-      @sort_by = " order by name"
-    end
+    # covering the bases here
+    if params.member?("advanced")
+      conditions_hash[:country_id] = params["advanced"]["countries"] unless params["advanced"]["countries"].nil?
+      conditions_hash[:province_id] = params["advanced"]["provinces"] unless params["advanced"]["provinces"].nil?
+      conditions_hash[:district_id] = params["advanced"]["districts"] unless params["advanced"]["districts"].nil?
+      conditions_hash[:country_id] = params["advanced"]["country_id"] unless params["advanced"]["country_id"].nil?
+      conditions_hash[:province_id] = params["advanced"]["province_id"] unless params["advanced"]["province_id"].nil?
+      conditions_hash[:district_id] = params["advanced"]["district_id"] unless params["advanced"]["district_id"].nil?
+    end        
 
-    @ngo_name = params[:ngo_name]
-    sql = "SELECT ngos.* FROM ngos"
-    
-    if params[:sort_by] == "country"
-      sql+= ", countries"
-    elsif params[:sort_by] == "district"
-      sql+= ", districts"
-    end
-    if params[:sort_by] == "affiliation" or params.member?("affiliation")
-      sql+= ", affiliations_ngos"
-    end
-    if params[:sort_by] == "sector" or params.member?("sector")
-       sql+= ", ngos_sectors"
-    end
-    
-    unless @countries.nil? and @provinces.nil? and @districts.nil? and @sectors.nil? and @affiliations.nil? and @ngo_name == ""
-      sql += " WHERE"
-    end
-    
-    unless @countries.nil?
-      sql += " ngos.country_id IN #{@countries}"
-    end
-    
-    unless @provinces.nil?
-      unless @countries.nil?
-        sql += " AND"
-      end
-      sql += " ngos.province_id IN #{@provinces}"
-    end
-    
-    unless @districts.nil?
-      unless @countries.nil? and @provinces.nil?
-        sql += " AND"
-      end
-      sql += " ngos.district_id IN #{@districts}"
-    end
-    
-    unless @affiliations.nil?
-      unless @countries.nil? and @provinces.nil? and @districts.nil?
-        sql += " AND"
-      end
-      sql += " (affiliations_ngos.affiliation_id IN #{@affiliations} and affiliations_ngos.ngo_id = ngos.id)"
-    end
-    
-    unless @ngo_name == ""
-      unless @countries.nil? and @provinces.nil? and @districts.nil? and @affiliations.nil?
-        sql += " AND"
-      end
-      sql += " (ngos.name LIKE '%#{@ngo_name}%' or acronym LIKE '%#{@ngo_name}%')"
-    end
-    
-    unless @sectors.nil?
-      unless @countries.nil? and @provinces.nil? and @districts.nil? and @affiliations.nil? and @ngo_name == ""
-        sql += " AND"
-      end
-      sql += " (ngos_sectors.sector_id IN #{@sectors} and ngos_sectors.ngo_id = ngos.id)"
-    end
-    
-    if params[:sort_by] == "country"
-      sql += " AND ngos.country_id = countries.id"
-      @sort_by = " order by countries.name"
-    elsif params[:sort_by] == "district"
-      sql += " AND ngos.district_id = districts.id"
-      @sort_by = " order by districts.name"
-    end
-    sql += @sort_by
-    
-    
+
     if @display_option == "table"
-      @search = Ngo.paginate_by_sql(sql, :page => params[:page], :per_page => 50)
-    elsif @display_option == "location_map"
-      @search = Ngo.find_by_sql(sql)
+      @search = Ngo.search(@keywords,
+                          :include => [:country, :province, :district],
+                          :with => conditions_hash,
+                          :match_mode => :any, 
+                          :page => params[:page], :per_page => 30)
+    else
+      @search = Ngo.search(@keywords,
+                          :include => [:country, :province, :district],
+                          :with => conditions_hash,
+                          :match_mode => :any,
+                          :page => params[:page],
+                          :per_page => 40000)
+    end
+    
+
+    if @display_option == "location_map"
       location_map(@search)
       render :layout => 'maps_layout'
     elsif @display_option == "density_map"
-      @search = Ngo.find_by_sql(sql)
       @results = density_map(@search)
       render :layout => 'vis_layout'
-    else
-      @search = Ngo.paginate_by_sql(sql, :page => params[:page], :per_page => 50)
     end
+
+    @advanced = conditions_hash
     
     return @search
-    
+
   end # end function search
+  
   
   
   # do the density mapping
@@ -167,10 +79,10 @@ class SearchController < ApplicationController
     # go through the search results
     search_results.each do |result|
             
-      unless result.district.province.id.nil?
+      unless result.district.province_id.nil?
                       
         # get the iso code of the result's province
-        province = Province.find(result.district.province.id)
+        province = Province.find(result.district.province_id)
 
         unless province.iso_code.nil?
           
@@ -227,86 +139,42 @@ class SearchController < ApplicationController
   # do the location mapping
   def location_map(search_results)
     
-    @latlongs = []
+    @latlongs = {}
     @latlong = []
-    @legend_info = { "Afghanistan" => {"group" => "Afghanistan", "count" => 0}, "Pakistan" => {"group" => "Pakistan", "count" => 0}, "Other" => {"group" => "Other", "count" => 0} }
-    used_districts_affiliations = {}    
+    used_districts = []   
     
     search_results.each do |result|
-      unless result.district_id.nil? or result.country_id.nil? or result.district.latlong.nil?
-                
-        if used_districts_affiliations[result.district_id].nil?
-          used_districts_affiliations[result.district_id] = []
-        end
+      unless result.district_id.nil? or result.country_id.nil? or result.district.latlong.nil? or result.district.latlong == ""
         
-        if result.affiliations.empty?
-
-          district_name = result.district.name
-          group_name = "Other"
-          country_name = "Other"
-          lng = result.district.latlong.split(",")[1]
-        
-          @legend_info[group_name]["count"] += 1
-                    
-          unless used_districts_affiliations[result.district_id].include?(group_name)
-            used_districts_affiliations[result.district_id] << group_name
-            lat = result.district.latlong.split(",")[0]
-
-            @latlong << {"country" => country_name,
-                        "lat" => lat,
-                        "lng" => lng,
-                        "group" => group_name,
-                        "district" => result.district.name,
-                        "district_id" => result.district_id,
-                        "country_id" => result.country_id}
-          end
-        else
-          result.affiliations.each do |affiliation|
-            
-            group_name = ""
-
-            if affiliation.name == "Afghanistan" or affiliation.name == "Pakistan"
-              group_name = affiliation.name
-              country_name = result.country.name
-              district_name = result.district.name
-              if affiliation.name == "Pakistan"
-                lng = (result.district.latlong.split(",")[1].to_f + 0.14).to_s
-              else
-                lng = (result.district.latlong.split(",")[1].to_f - 0.13).to_s
-              end       
-            else
-              district_name = result.district.name
-              group_name = "Other"
-              country_name = "Other"
-              lng = result.district.latlong.split(",")[1]
-            end
+        if used_districts.include?(result.district_id) # just increase the count
+          @latlongs["#{result.district_id}"][:count] += 1
           
-            @legend_info[group_name]["count"] += 1
-                      
-            unless used_districts_affiliations[result.district_id].include?(group_name)
-              used_districts_affiliations[result.district_id] << group_name
-              lat = result.district.latlong.split(",")[0]
-
-              @latlong << {"country" => country_name,
-                          "lat" => lat,
-                          "lng" => lng,
-                          "group" => group_name,
-                          "district" => result.district.name,
-                          "district_id" => result.district_id,
-                          "country_id" => result.country_id}
-            end
-          end # end result.affiliations.each do |affiliation|
-        end # end if result.affiliaions.nil?
+        else # add it to the latlongs
+          
+          used_districts << result.district_id
+          district = District.find(result.district_id)
+          district.province_id.nil? ? province = nil : province = Province.find(district.province_id)
+          district.country_id.nil? ? country = nil : country = Country.find(district.country_id)
+          
+          @latlongs["#{result.district_id}"] = {:country => country.name,
+                                                :province => province.name,
+                                                :district => district.name,
+                                                :count => 1,
+                                                :lat => district.latlong.split(",")[0],
+                                                :lng => district.latlong.split(",")[1]}
+          
+        end      
+        
       end
     end # end search_results.each loop
     
-    @latlong.sort!{|item1, item2| item1["group"] <=> item2["group"]}
     my_file = File.open("#{RAILS_ROOT}/public/data/map.json", File::WRONLY|File::TRUNC|File::CREAT)
-    my_file.puts "{\"markers\":" + @latlong.to_json.to_s + ",\"legend_info\":" + @legend_info.to_json.to_s + "}"
+    my_file.puts "{\"markers\": #{@latlongs.to_json.to_s} }"
     my_file.close
 
    # render :text => @latlong.to_json
   end # end function location_map
+  
   
   
   def specify
@@ -326,9 +194,17 @@ class SearchController < ApplicationController
     available_provinces = Ngo.find(:all, :select => "distinct province_id").map{|ngo| ngo.province_id}
     available_districts = Ngo.find(:all, :select => "distinct district_id").map{|ngo| ngo.district_id}
 
-    params[:countries].nil? ? country_ids = [] : country_ids = params[:countries].collect{|id| id.to_i}
-    params[:provinces].nil? ? province_ids = [] : province_ids = params[:provinces].collect{|id| id.to_i}
-    params[:districts].nil? ? district_ids = [] : district_ids = params[:districts].collect{|id| id.to_i}
+    if params.member?(:advanced) and (!params[:advanced][:countries].nil? or !params[:advanced][:provinces].nil? or !params[:advanced][:districts].nil?)
+      params[:advanced][:countries].nil? ? country_ids = [] : country_ids = params[:advanced][:countries].collect{|id| id.to_i}
+      params[:advanced][:provinces].nil? ? province_ids = [] : province_ids = params[:advanced][:provinces].collect{|id| id.to_i}
+      params[:advanced][:districts].nil? ? district_ids = [] : district_ids = params[:advanced][:districts].collect{|id| id.to_i}
+    else
+      country_ids = []
+      province_ids = []
+      district_ids = []
+      @provinces = []
+      @districts = []
+    end
     
     unless country_ids.empty?
       @provinces = Province.find(:all, :conditions => ["country_id IN (?) and id in (?)", country_ids, available_provinces], :order => "name")
@@ -346,7 +222,7 @@ class SearchController < ApplicationController
   
   # get proper provinces for countries selected
   def update_provinces
-    country_ids = params[:country_name].split(",")
+    country_ids = params[:advanced][:countrie].split(",")
     @provinces = Province.find(:all, :conditions => ["country_id IN (?)", country_ids], :order => "name")
     render :partial => "list_provinces", :locals => {:provinces => @provinces}
   end

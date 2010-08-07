@@ -1,11 +1,13 @@
-<div id="newForm">
-
-	<h1>New NGO</h1>
+<div id="mashera-form">
 
 	<% form_for(@ngo) do |f| %>
 	  <%= f.error_messages %>
+	
+		<div id="third-col-title">
+			Auto-update?
+		</div>
 
-		<fieldset class="inlineLabels">
+		<fieldset>
 
 			<%= render :partial => 'fields', :locals => {:f => f} %>
 
@@ -18,7 +20,9 @@
 	<% end %>
 
 
+	<div id="page-links">
 	<%= link_to 'Show', @ngo %> |
 	<%= link_to 'Back', ngos_path %>
+	</div>
 
 </div>

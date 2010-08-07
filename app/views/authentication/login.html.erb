@@ -1,24 +1,29 @@
-<div id="newForm">
-	
+<div id="page-title">
 	<h1>Please log in.</h1>
-	<p>Because The Mashera Project is in beta, we ask that you login in order to use it. If you do not currently have access, you may sign up <%= link_to "here", signup_url %>. We appreciate your cooperation.</p>
+</div>
+
+<p>Because The Mashera Project is in beta, we ask that you register order to use it. If you do not currently have access, you may sign up <%= link_to "here", signup_url %>. We appreciate your cooperation.</p>
+
+<div id="mashera-form">
+	
 	<% form_tag do %>
-		<fieldset class="inlineLabels login">
+		<fieldset>
+			<ol>
+				<li>
+					<label for="email">Email</label>
+					<%= text_field_tag :email, params[:email] %>
+				</li>
 			
-			<div class="ctrlHolder">
-				<label for="email">Email</label>
-				<%= text_field_tag :email, params[:email] %>
-			</div>
+				<li>
+					<label for="password">Password</label>
+					<%= password_field_tag :password, params[:password] %>
+				</li>
 			
-			<div class="ctrlHolder">
-				<label for="password">Password</label>
-				<%= password_field_tag :password, params[:password] %>
-			</div>
-			
-			<div class="buttonHolder">
-				<%= submit_tag "Login" %>
-			</div>
+				<div class="buttonHolder">
+					<%= submit_tag "Login" %>
+				</div>
+			</ol>
 		</fieldset>
 	<% end %>
-	
+		
 </div>

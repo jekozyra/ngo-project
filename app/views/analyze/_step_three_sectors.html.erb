@@ -1,0 +1,3 @@
+<div id="chart_sector_constraints_select">
+	<%= select "chart", "sector_constraints", sector_constraints.collect{|sector_data| [ sector_data.name, sector_data.id ] }, {}, {:multiple => true, :size => 7} %>
+</div>

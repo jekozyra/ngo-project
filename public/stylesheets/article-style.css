@@ -1,0 +1,83 @@
+@font-face {
+	font-family: 'TwCenMTRegular';
+	src: url('../fonts/tw_cen_mt-webfont.eot');
+	src: local('☺'), url('../fonts/tw_cen_mt-webfont.woff') format('woff'), url('../fonts/tw_cen_mt-webfont.ttf') format('truetype'), url('../fonts/tw_cen_mt-webfont.svg#webfontejY6JHnQ') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* article-style pages */
+
+/*=========================================================*/
+/*================ layout formatting ======================*/
+/*=========================================================*/
+
+#article-select{
+	clear:both;
+	float:right;
+}
+
+#article-content{
+	margin:0px 20px;
+}
+
+#article-content p{
+	margin:5px 0 0 0;
+	padding:0px;
+}
+
+#article-content ol{
+	margin:0;
+	padding:0;
+}
+
+#article-content ol li{
+	margin:5px 0px;
+}
+
+#article-content dl{
+	margin:5px 0px;
+}
+
+#article-content dt{
+	margin:3px 0px 0px 0px;
+}
+
+#article-content dd{
+	margin:0px 10px;
+}
+
+.article-entry{
+	clear:both;
+	margin-bottom:10px;
+}
+
+.top-link{
+	margin-top:5px;
+}
+
+/*=========================================================*/
+/*================= style formatting ======================*/
+/*=========================================================*/
+
+#article-content ol li{
+	list-style: none;
+}
+
+#article-content dt, #article-content dd, #article-content ol li{
+	color:#1c284e;
+	font-family: Geneva,Verdana,sans-serif;
+	font-size:13px;
+	line-height:15px;}
+
+.article-entry{
+	border-bottom: 1px solid #CCE2E8;
+}
+
+.article-entry h4{
+	font-size:17px;
+}
+
+.top-link{
+	text-align:right;
+}

@@ -1,18 +1,20 @@
-<div class="ctrlHolder">
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-</div>
-<div class="ctrlHolder">
-  <%= f.label :country_id %>
-  <%= f.collection_select :country_id, Country.find(:all, :order => "name"), :id, :name %>
-</div>
+<ol>
+	<li>
+	  <%= f.label :name %>
+	  <%= f.text_field :name %>
+	</li>
+	<li>
+	  <%= f.label :country_id %>
+	  <%= f.collection_select :country_id, Country.find(:all, :order => "name"), :id, :name %>
+	</li>
 
-<%= observe_field :district_country_id, :url => { :action => :update_list_provinces }, :update => :province_list, :with => :district_country_id %>
+	<%= observe_field :district_country_id, :url => { :action => :update_list_provinces }, :update => :province_list, :with => :district_country_id %>
 
-<div class="ctrlHolder" id="province_list">
-  <%= render :partial => "list_provinces", :locals => {:provinces => provinces, :province_id => district.province_id} %>
-</div>
-<div class="ctrlHolder">
-  <%= f.label :latlong %>
-  <%= f.text_field :latlong %>
-</div>
+	<li id="province_list">
+	  <%= render :partial => "list_provinces", :locals => {:provinces => provinces, :province_id => district.province_id} %>
+	</li>
+	<li>
+	  <%= f.label :latlong %>
+	  <%= f.text_field :latlong %>
+	</li>
+</ol>

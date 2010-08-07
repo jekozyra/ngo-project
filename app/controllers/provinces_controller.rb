@@ -68,6 +68,11 @@ class ProvincesController < ApplicationController
 
     respond_to do |format|
       if @province.update_attributes(params[:province])
+        ngo_params = {:country_id => @province.country_id}
+        @province.ngos.each do |ngo|
+          ngo.update_attributes(ngo_params)
+        end
+        
         flash[:notice] = 'Province was successfully updated.'
         format.html { redirect_to(@province) }
         format.xml  { head :ok }

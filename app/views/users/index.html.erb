@@ -1,5 +1,5 @@
-<h1>Listing users</h1>
-
+<div id="results">
+	
 <table>
   <tr>
 		<th>Name</th>
@@ -14,8 +14,8 @@
   </tr>
 
 <% @users.each do |user| %>
-  <tr>
-	  <td><%= user.full_name %></td>
+	<tr class="<%= cycle('alt', '') %>">
+		<td><%= user.full_name %></td>
     <td><%= user.email %></td>
 		<td><%= user.who %></td>
 		<td><%= user.how %></td>
@@ -28,6 +28,9 @@
 <% end %>
 </table>
 
-<br />
 
-<%= link_to '&nbsp;+ Add new user', new_user_path %>
+<div id="page-links">
+<%= link_to '+ Add new user', new_user_path %>
+</div>
+
+</div>

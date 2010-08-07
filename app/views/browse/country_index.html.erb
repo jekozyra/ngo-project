@@ -1,0 +1,11 @@
+<div id="page-title">
+	<h1>Browse by Country</h1>
+</div>
+
+<div id="article-content">
+	<ol>
+<% @countries.each do |country| %>
+	<li><%= link_to country.name, by_country_url(:id => country.id) %></li>
+<% end %>
+	</ol>
+</div>

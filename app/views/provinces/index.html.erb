@@ -1,7 +1,4 @@
-<div id="titleHeader">
-	<h1 class="floatLeftWhite">The Mashera Project: Provinces</h1>
-</div>
-
+<div id="results">
 <table>
   <tr>
     <th>Name</th>
@@ -13,7 +10,7 @@
   </tr>
 
 <% @provinces.each do |province| %>
-  <tr>
+<tr class="<%= cycle('alt', '') %>">
     <td><%= province.name %></td>
 		<td><%= province.country.name %></td>
 		<td><%= province.iso_code %></td>
@@ -24,6 +21,7 @@
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New province', new_province_path %>
+	<div id="page-links">
+	<%= link_to '+ Add New province', new_province_path %>
+	</div>
+</div>

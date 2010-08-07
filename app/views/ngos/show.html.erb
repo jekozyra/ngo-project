@@ -1,69 +1,72 @@
-<div id="detailsPage">
+<div id="mashera-form">
 
-	<h1>NGO Details</h1>
+	<fieldset>
+		
+		<ol>
 
-	<fieldset class="inlineLabels">
-
-		<div class="ctrlHolder">
+		<li>
 		  <label>Acronym:</label>
 		  <%= @ngo.show_acronym %>
-		</div>
+		</li>
 
-		<div class="ctrlHolder">
+		<li>
 		  <label>Name:</label>
 		  <%= @ngo.show_name %>
-		</div>
+		</li>
 
-		<div class="ctrlHolder">
+		<li>
 		  <label>Country:</label>
 		  <%= @ngo.show_country %>
-		</div>
+		</li>
 
-		<div class="ctrlHolder">
+		<li>
 		  <label>District:</label>
 		  <%= @ngo.show_district %>
-		</div>
+		</li>
 
-		<div class="ctrlHolder">
+		<li>
 		  <label>Sector:</label>
 		  <%= @ngo.show_sectors %>
-		</div>
+		</li>
 
-		<div class="ctrlHolder">
+		<li>
 		  <label>Affiliation:</label>
 		  <%= @ngo.show_affiliations %>
-		</div>
+		</li>
 
-		<div class="ctrlHolder">
+		<li>
 		  <label>Contact address:</label>
 		  <%= @ngo.show_contact_address %>
-		</div>
+		</li>
 
-		<div class="ctrlHolder">
+		<li>
 		  <label>Contact phone:</label>
 		  <%= @ngo.show_contact_phone %>
-		</div>
+		</li>
 
-		<div class="ctrlHolder">
+		<li>
 		  <label>Contact fax:</label>
 		  <%= @ngo.show_contact_fax %>
-		</div>
+		</li>
 
-		<div class="ctrlHolder">
+		<li>
 		  <label>Contact email:</label>
 		  <%= @ngo.show_contact_email %>
-		</div>
+		</li>
 		
-		<div class="ctrlHolder">
+		<li>
 		  <label>Website:</label>
 		  <%= @ngo.show_website %>
-		</div>
-			
+		</li>
+		
+		</ol>
+		
 	</fieldset>
 		
 
+	<div id="page-links">
 	<%= link_to 'Edit', edit_ngo_path(@ngo) %> |
 	<%= link_to 'Back', ngos_path %>
+	</div>
 	
 </div>
-

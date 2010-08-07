@@ -1,42 +1,43 @@
-<div id="newForm">
-
-	<h1>The Mashera Project: New User</h1>
+<div id="mashera-form">
 
 	<% form_for(@user) do |f| %>
 	  <%= f.error_messages %>
 	
-		<fieldset class="inlineLabels">
+		<fieldset>
 
-		<%= render :partial => "fields", :locals => {:f => f} %>
+			<ol>
+				
+			<%= render :partial => "fields", :locals => {:f => f} %>
 		
-		<div class="ctrlHolder">
-		  <%= f.label :password, 'Password' %>
-		  <%= f.password_field :password %>
-		</div>
+			<li>
+			  <%= f.label :password, 'Password' %>
+			  <%= f.password_field :password %>
+			</li>
 		
-		<div class="ctrlHolder">
-		  <%= f.label :password_confirmation, 'Confirm Password' %>
-		  <%= f.password_field :password_confirmation %>
-		</div>
+			<li>
+			  <%= f.label :password_confirmation, 'Confirm Password' %>
+			  <%= f.password_field :password_confirmation %>
+			</li>
 		
-		<div class="ctrlHolder">
-		  <%= f.label :who, 'Who are you?' %>
-		  <%= f.text_field :who %>
-		</div>
+			<li>
+			  <%= f.label :who, 'Who are you?' %>
+			  <%= f.text_field :who %>
+			</li>
 		
-		<div class="ctrlHolder">
-		  <%= f.label :how, 'How did you hear about us?' %>
-		  <%= f.text_area :how %>
-		</div>
+			<li>
+			  <%= f.label :how, 'How did you hear about us?' %>
+			  <%= f.text_area :how %>
+			</li>
 		
-
-	  <div class="buttonHolder">
-	    <%= f.submit 'Join' %>
-	  </div>
+		  <div class="buttonHolder">
+		    <%= f.submit 'Add' %>
+		  </div>
 	
 		</fieldset>
 	<% end %>
-
+  
+	<div id="page-links">
 	<%= link_to 'Back', users_path %>
+	</div>
 
 </div>

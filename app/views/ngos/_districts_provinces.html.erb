@@ -3,14 +3,16 @@
 <%= observe_field 'ngo_country_id',
 		:url => { :action => :update_districts_provinces }, 
 		:update => 'districts_provinces',
-		:with => "'ngo_country_id=' + encodeURIComponent(value) + '&ngo_province_id='+ encodeURIComponent(value)" %>
+		:with => f %>
 
-<div class="ctrlHolder" id="province_list">
+<li id="province_list">
 	<%= render :partial => 'provinces', :locals => {:provinces => provinces }%>
-</div>
+	<%= check_box_tag :ngo_auto_update_province, ngo.auto_update_province, ngo.auto_update_province, {:name => "ngo[auto_update_province]"}  %>
+</li>
 
-<div class="ctrlHolder" id="district_list">
+<li id="district_list">
 	<%= render :partial => 'districts', :locals => {:districts => districts }%>
-</div>
+	<%= check_box_tag :ngo_auto_update_district, ngo.auto_update_district, ngo.auto_update_district, {:name => "ngo[auto_update_district]"}  %>
+</li>
 
 </span>

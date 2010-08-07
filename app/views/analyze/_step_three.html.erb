@@ -1,0 +1,16 @@
+<div id="chart_constraint_select">
+	
+	<label>Countries</label>
+	<label>Provinces</label>
+	<label>Districts</label>
+	
+	
+	<%= render :partial => "step_three_countries", :locals => {:country_constraints => country_constraints} %>
+	<%= render :partial => "step_three_provinces", :locals => {:province_constraints => province_constraints} %>
+	<%= render :partial => "step_three_districts", :locals => {:district_constraints => district_constraints} %>
+	<label>Sectors</label>
+	<%= render :partial => "step_three_sectors", :locals => {:sector_constraints => sector_constraints} %>
+		
+</div>
+
+

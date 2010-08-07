@@ -1,0 +1,39 @@
+<div class="article-entry">
+	<h4 id="step-1">1. Select a visualization type.</h4>
+	<%= render :partial => "step_one", :locals => {:chart_type => chart_type } %>
+	<h5 class="top-link"></h5>
+</div>
+
+<div class="article-entry">
+	<h4 id="step-2">2. Choose your dataset.</h4>
+	<p></p>
+	<%= render :partial => "step_two", :locals => {:chart_type => chart_type} %>
+	<p></p>
+	<h5 class="top-link"></h5>
+</div>
+
+<div id="constraints-div" class="article-entry">
+	<h4 id="step-3">3. Apply constraints. (optional)</h4>
+	<p>Select any geographical and sector type constraints here.</p>	
+	<%= render :partial => "step_three", :locals => {:chart_type => chart_type, 
+																									 :xdata_constraints => xdata_constraints, 
+																									 :country_constraints => country_constraints, 
+																									 :province_constraints => province_constraints, 
+																									 :district_constraints => district_constraints,
+																									 :sector_constraints => sector_constraints} %>
+	<p></p>
+	<h5 class="top-link"></h5>
+</div>
+
+<div class="article-entry">
+	<h4 id="step-4">4. Title your vizualisation. (optional)</h4>
+	<%= text_field_tag 'chart[title]'%>
+	<h5 class="top-link"></h5>
+</div>
+
+<div class="article-entry">
+	<h4 id="step-4">5. Generate your visualization.</h4>
+	<p><%= submit_tag "Generate" %></p>
+	<h5 class="top-link"></h5>
+</div>
+

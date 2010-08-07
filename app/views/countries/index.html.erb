@@ -1,7 +1,5 @@
-<div id="titleHeader">
-	<h1 class="floatLeftWhite">The Mashera Project: Countries</h1>
-</div>
-
+<div id="results">
+	
 <table>
   <tr>
     <th>Name</th>
@@ -11,8 +9,8 @@
   </tr>
 
 <% @countries.each do |country| %>
-  <tr>
-    <td><%=h country.name %></td>
+  <tr class="<%= cycle('alt', '') %>">
+    <td><%= country.name %></td>
     <td><%= link_to 'Details', country %></td>
     <td><%= link_to 'Edit', edit_country_path(country) %></td>
     <td><%= link_to 'Destroy', country, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -22,4 +20,6 @@
 
 <br />
 
-<%= link_to 'New country', new_country_path %>
+<%= link_to '+ Add new country', new_country_path %>
+
+</div>

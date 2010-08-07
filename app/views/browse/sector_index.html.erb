@@ -1,0 +1,11 @@
+<div id="page-title">
+	<h1>Browse by Sector</h1>
+</div>
+
+<div id="article-content">
+	<ol>
+<% @sectors.each do |sector| %>
+	<li><%= link_to sector.name, by_sector_url(:id => sector.id) %></li>
+<% end %>
+</ol>
+</div>

@@ -5,27 +5,19 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>The Mashera Project</title>
-  <%= stylesheet_link_tag 'main' %>
+  <%= stylesheet_link_tag 'main', 'nav-bar', 'maps' %>
 	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
   <%= javascript_include_tag :defaults, "jQuery", "gVis" %>
 	<script type="text/javascript" >
     jQuery.noConflict();
   </script>
-	<script type="text/javascript">
-
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-17637580-1']);
-	  _gaq.push(['_trackPageview']);
-
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-
-	</script>
 </head>
 <body>
+	
+	<%= render :partial => "shared/title_bar"%>
+	
+	<%= render :partial => "shared/nav_bar" %>
+	
 	<div id="wrapper">
 		<% if flash[:notice] %>
 		  	<div id="flash-notice">
@@ -41,14 +33,13 @@
 			</div>			
 		<% end %>
 		
-		<%= render :partial => "shared/top_menu"%>
-
+		<div id="content">
 		<%= yield %>
+		</div>
 
 	</div>
 		
-	<div id="footer">
-		Copyright &copy; 2010 The Mashera Project, all rights reserved.
-	</div>
+	<%= render :partial => "shared/footer" %>	
+
 </body>
 </html>

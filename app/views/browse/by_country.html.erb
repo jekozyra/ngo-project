@@ -1,0 +1,14 @@
+<div id="page-title">
+	<h1>Provinces of <%= @country.name %>
+</div>
+
+<div id="article-content">
+		<p>Narrow by province or <%= link_to "list all", by_province_url(:province_id => nil, :country_id => @country.id) %>.</p><br />
+		
+			<ol>
+		<% @country.provinces.each do |province| %>
+			<li><%= link_to province.name, by_province_url(:province_id => province.id, :country_id => @country.id) %></li>
+		<% end %>
+			</ol>	
+
+</div>

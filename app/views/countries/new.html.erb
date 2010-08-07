@@ -1,21 +1,23 @@
-<div id="newForm">
-
-	<h1>New country</h1>
+<div id="mashera-form">
 
 	<% form_for(@country) do |f| %>
-	<fieldset class="inlineLabels">
+	<fieldset>
 	  <%= f.error_messages %>
-
-	  <div class="ctrlHolder">
-	    <%= f.label :name %><br />
-	    <%= f.text_field :name %>
-	  </div>
+	
+		<ol>
+		  <li>
+		    <%= f.label :name %><br />
+		    <%= f.text_field :name %>
+		  </li>
+		</ol>
 	  <div class="buttonHolder">
 	    <%= f.submit 'Add' %>
 	  </div>
 	</fieldset>
 	<% end %>
 
+	<div id="page-links">
 	<%= link_to 'Back', countries_path %>
+	</div>
 
 </div>

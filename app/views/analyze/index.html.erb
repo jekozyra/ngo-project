@@ -1,0 +1,24 @@
+<div id="page-title">
+	<h1>Analyze</h1>
+</div>
+
+<div id="chart-form">
+<%form_tag ({:controller => "analyze", :action => "build_visualization"}, :id => "visualization_form") do %>
+<fieldset>
+
+<div id="article-content">
+	
+	<%= render :partial => "create_steps", :locals => {:chart_type => @chart_type, 
+																										 :xdata_constraints => @xdata_constraints, 
+																										 :country_constraints => @country_constraints,
+																										 :province_constraints => @province_constraints,
+																										 :district_constraints => @district_constraints,
+																										 :sector_constraints => @sector_constraints } %>
+
+</div>
+
+
+</fieldset>
+
+<% end %>
+</div>

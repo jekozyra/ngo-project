@@ -1,7 +1,4 @@
-<div id="titleHeader">
-	<h1 class="floatLeftWhite">The Mashera Project: Contacts</h1>
-</div>
-
+<div id="results">
 <table>
   <tr>
     <th>Name</th>
@@ -15,7 +12,7 @@
   </tr>
 
 <% @contacts.each do |contact| %>
-  <tr>
+<tr class="<%= cycle('alt', '') %>">
     <td><%= contact.show_name %></td>
     <td><%= contact.show_title %></td>
     <td><%= contact.show_email %></td>
@@ -28,6 +25,10 @@
 <% end %>
 </table>
 
-<br />
+<%= will_paginate %>
 
-<%= link_to 'New contact', new_contact_path %>
+<div id="page-links">
+<%= link_to '+ Add New contact', new_contact_path %>
+</div>
+
+</div>

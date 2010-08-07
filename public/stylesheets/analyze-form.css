@@ -1,0 +1,28 @@
+#chart-form select{
+	width:255px;
+	float:left;
+	margin:5px 15px 10px 2px;
+}
+
+#chart-form select, #chart-form input{
+	width:255px;
+	margin:10px 15px 10px 2px;
+}
+
+#chart-form label{
+	width:260px;
+	margin:10px 2px 0px 5px;
+}
+
+#chart-image{
+	clear:both;
+}
+
+#chart-form input[type="text"]{
+	width:500px;
+	margin:5px 15px 10px 2px;
+}
+
+#chart-form input[type="button"], #chart-form input[type="submit"]{
+	width:80px;
+}

@@ -1,0 +1,16 @@
+<div id="chart_district_constraints_select">
+	<%= select "chart", "district_constraints", district_constraints.collect{|district_data| [ district_data.name, district_data.id ] }, {}, {:multiple => true, :size => 7} %>
+</div>
+
+
+<%= observe_field 'chart_country_constraints',
+		:url => { :action => :update_third_step_districts }, 
+		:update => 'chart_district_constraints_select',
+		:with => 'chart_country_constraints',
+		:loading => "Element.show('loading')",
+		:complete => "Element.hide('loading')" %>
+		
+<%= observe_field 'chart_province_constraints',
+		:url => { :action => :update_third_step_districts }, 
+		:update => 'chart_district_constraints_select',
+		:with => 'chart_province_constraints' %>

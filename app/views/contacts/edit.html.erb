@@ -1,6 +1,4 @@
-<div id="newForm">
-
-	<h1>Editing Contact</h1>
+<div id="mashera-form">
 
 	<% form_for(@contact) do |f| %>
 	<fieldset class="inlineLabels">
@@ -14,7 +12,9 @@
 	</fieldset>
 	<% end %>
 
+	<div id="page-links">
 	<%= link_to 'Show', @contact %> |
 	<%= link_to 'Back', contacts_path %>
+	</div>
 
 </div>

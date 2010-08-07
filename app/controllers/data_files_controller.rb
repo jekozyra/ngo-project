@@ -9,11 +9,12 @@ class DataFilesController < ApplicationController
   # GET /data_files/new.xml
   def new
     @data_file = DataFile.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @data_file }
     end
+    
   end
 
 
@@ -23,6 +24,7 @@ class DataFilesController < ApplicationController
     
     @data_file = DataFile.new
     @data_file.filename = params[:data_file][:filename].original_filename
+    @data_file.filename = params[:data_file][:file_type]
 
     respond_to do |format|
 
@@ -34,7 +36,11 @@ class DataFilesController < ApplicationController
         # write the file
         File.open(path, "wb") { |f| f.write(params[:data_file]['filename'].read) }
         
-        read_file(@data_file.table_name, @data_file.filename)
+        if @data_file.file_type == "ACBAR File"
+          read_acbar_file(@data_file.filename)
+        else
+          read_scraped_file(@data_file.filename)
+        end
       end
         
       format.html { redirect_to ngos_url }
@@ -48,7 +54,7 @@ class DataFilesController < ApplicationController
   
   
   
-  def read_file(table_name, filename)
+  def read_acbar_file(filename)
 
     line_number = 0
     error_messages = []

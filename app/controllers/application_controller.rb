@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   #filter_parameter_logging :password
   
   def current_user
-    @current_user ||= ((session[:user_id] && User.find_by_id(session[:user_id])) || 0)
+    current_user ||= ((session[:user_id] && User.find_by_id(session[:user_id])) || 0)
   end
   
   def logged_in?

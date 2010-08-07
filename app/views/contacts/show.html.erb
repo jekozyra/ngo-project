@@ -1,37 +1,39 @@
-<div id="newForm">
-	
-	<h1>Contact Details</h1>
-	
-	<fieldset class="inlineLabels">
+<div id="mashera-form">
+		
+	<fieldset>
 
-		<div class="ctrlHolder">
+		<ol>
+		<li>
 		  <b>Name:</b>
 		  <%= @contact.show_name %>
-		</div>
+		</li>
 
-		<div class="ctrlHolder">
+		<li>
 		  <b>Title:</b>
 		  <%= @contact.show_title %>
-		</div>
+		</li>
 		
-		<div class="ctrlHolder">
+		<li>
 		  <b>Email:</b>
 		  <%= @contact.show_email %>
-		</div>
+		</li>
 		
-		<div class="ctrlHolder">
+		<li>
 		  <b>Phone:</b>
 		  <%= @contact.show_phone %>
-		</div>
+		</li>
 		
-		<div class="ctrlHolder">
+		<li>
 		  <b>NGO:</b>
 		  <%= @contact.show_ngos %>
-		</div>
+		</li>
+		</ol>
 
 	</fieldset>
 
+	<div id="page-links">
 	<%= link_to 'Edit', edit_contact_path(@contact) %> |
 	<%= link_to 'Back', contacts_path %>
+	</div>
 
 </div>

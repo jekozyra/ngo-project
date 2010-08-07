@@ -1,0 +1,36 @@
+<div id="chart_data_select">
+	
+	<% if chart_type == "Pie chart" %>
+	
+	<label>Pie Chart Body</label>
+
+	<div id="chart_xdata_select">
+		<%= select "chart", "xdata", ["Countries", "Provinces", "Districts", "Sectors"], {:include_blank => true} %>
+	</div>
+	
+	<% else %>
+
+	<% if chart_type == "Horizontal bar chart" %>
+	<label>Vertical Axis</label>
+	<% else %>
+	<label>Horizontal Axis</label>
+	<% end %>
+	<label>Geographical Grouping</label>
+
+	<div id="chart_xdata_select">
+		<%= select "chart", "xdata", ["Sectors"] %>
+	</div>
+	<div id="chart_ydata_select">
+		<%= select "chart", "ydata", ["Countries", "Provinces", "Districts"], {:selected => "Countries"} %>
+	</div>
+	
+	<% end %>
+
+	<%= observe_field 'chart_type',
+			:url => { :action => :update_second_step_info }, 
+			:update => 'chart_data_select',
+			:with => "chart_type" %>
+		
+</div>
+
+

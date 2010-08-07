@@ -1,0 +1,5 @@
+<li class="ngo-result">
+	<div><%= link_to "#{result.show_name_and_acronym}", {:controller => "ngos", :action => "view_details", :id => result}, {:class => 'details-link'} %></div>
+	<p><%= result.show_district %>, <%= result.show_province %>, <%= result.show_country %></p>
+	<p><%= result.show_sectors %></p>
+</li>

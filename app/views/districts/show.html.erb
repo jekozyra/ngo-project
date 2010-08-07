@@ -1,31 +1,39 @@
-<div id="newForm">
-	
+<div id="page-title">
 	<h1>District Details</h1>
-	
-	<fieldset class="inlineLabels">
+</div>
+
+<div id="mashera-form">
 		
-		<div class="ctrlHolder">
+	<fieldset>
+		
+		<ol>
+		<li>
 		  <b>District:</b>
 		  <%= @district.name %>
-		</div>
+		</li>
 		
-		<div class="ctrlHolder">
+		<li>
 		  <b>Province:</b>
 		  <%= @district.province.name %>
-		</div>
+		</li>
 
-		<div class="ctrlHolder">
+		<li>
 		  <b>Country:</b>
 		  <%= @district.country.name %>
-		</div>
+		</li>
 
-		<div class="ctrlHolder">
+		<li>
 		  <b>Geo Data:</b>
 		  <%= @district.latlong %>
-		</div>
+		</li>
+		
+		</ol>
 
 	</fieldset>
 
+	<div id="page-links">
 	<%= link_to 'Edit', edit_district_path(@district) %> |
 	<%= link_to 'Back', districts_path %>
+	</div>
+	
 </div>

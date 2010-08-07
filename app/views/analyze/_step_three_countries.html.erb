@@ -1,0 +1,3 @@
+<div id="chart_country_constraints_select">
+	<%= select "chart", "country_constraints", country_constraints.collect{|country_data| [ country_data.name, country_data.id ] }, {}, {:multiple => true, :size => 7} %>
+</div>

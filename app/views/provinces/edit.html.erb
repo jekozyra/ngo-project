@@ -1,7 +1,5 @@
-<div id="newForm">
+<div id="mashera-form">
 	
-	<h1>Editing province</h1>
-
 	<% form_for(@province) do |f| %>
 	<fieldset class="inlineLabels">
 	  <%= f.error_messages %>
@@ -13,8 +11,10 @@
 	  </div>
 	</fieldset>
 	<% end %>
-
+	
+	<div id="page-links">
 	<%= link_to 'Show', @province %> |
 	<%= link_to 'Back', provinces_path %>
+	</div>
 	
 </div>

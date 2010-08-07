@@ -1,22 +1,24 @@
-<div id="newForm">
-
-	<h1>New sector</h1>
+<div id="mashera-form">
 
 	<% form_for(@sector) do |f| %>
 	<fieldset class="inlineLabels">
 	  <%= f.error_messages %>
 
-	  <div class="ctrlHolder">
-	    <%= f.label :name %><br />
-	    <%= f.text_field :name %>
-	  </div>
+		<ol>
+		  <li>
+		    <%= f.label :name %>
+		    <%= f.text_field :name %>
+		  </li>
+		</ol>
 	  <div class="buttonHolder">
-	    <%= f.submit 'Update' %>
+	    <%= f.submit 'Add' %>
 	  </div>
 	
 	</fieldset>
 	<% end %>
 
+	<div id="page-links">
 	<%= link_to 'Back', sectors_path %>
+	</div>
 
 </div>

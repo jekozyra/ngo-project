@@ -1,0 +1,101 @@
+/* errors and notices */
+#flash-notice {
+	width:650px;
+	margin:15px auto;
+	min-height:40px;
+	padding:5px 5px;
+}
+
+#flash-warning {
+	width:650px;
+	margin:15px auto;
+	min-height:40px;
+	padding:5px 5px;
+}
+
+#flash-error{
+	width:650px;
+	margin:15px auto;
+	min-height:40px;
+	padding:5px 5px;
+}
+
+#errorExplanation {
+	width:650px;
+	margin:15px auto;
+	padding:5px 5px;
+	min-height:40px;
+}
+
+#errorExplanation ul{
+	list-style-type:none;
+	font-family: "Constantia", "Georgia", serif;
+}
+
+.fieldWithErrors, .fieldWithErrors input, .fieldWithErrors textarea{
+	display: inline-block;
+}
+
+
+
+/*=========================================================*/
+/*================= style formatting ======================*/
+/*=========================================================*/
+
+#flash-notice{
+	background-color:#3c3;
+	color:#fff;
+}
+
+#flash-notice h3 {
+	color:#fff;
+	padding: 11px;
+}
+
+#flash-warning{
+	background-color:#fde910;
+	color:#fff;
+}
+
+#flash-warning h3 {
+	color:#000;
+	padding: 11px;
+}
+
+#flash-error, #errorExplanation{
+	background-color:red;
+	color:#fff;
+}
+
+#flash-error h3 {
+	color:#fff;
+	padding: 11px;
+}
+
+#flash-notice {
+	border:1px solid green;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+}
+
+#flash-warning {
+	border:1px solid #ffcc33;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+}
+
+#flash-error{
+	border:1px solid #cc3300;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+}
+
+#errorExplanation {
+	border:1px solid #cc3300;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+}
+
+.fieldWithErrors input, .fieldWithErrors textarea{
+	border:1px solid #cc3300;
+}

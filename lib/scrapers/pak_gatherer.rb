@@ -190,7 +190,7 @@ def scrape(mode)
     ids = @doc.xpath("//a[@class='NgoSearch']").map{|link| link.attribute('onclick').to_s.split(",")[1]}
 
     #puts "WRITING THE IDS FOR #{mode.to_s}... (#{Time.now})"
-    File.open("../data/pak_data_id_file", "a"){|f| f.write "#{ids.join(',')},"}
+    File.open("../data/pak_data_id_file]", "a"){|f| f.write "#{ids.join(',')},"}
   
     # quit unless the next page link exists
     if ff.link(:id, "ctl00_ContentPlaceHolder1_Pager1_Next").exists?

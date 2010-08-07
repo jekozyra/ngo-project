@@ -7,12 +7,43 @@ class Ngo < ActiveRecord::Base
   has_and_belongs_to_many :sectors
   has_and_belongs_to_many :contacts
   
+  # this is used for the full text searching
+  define_index do
+    indexes :acronym
+    indexes :name
+    indexes country(:name), :as => :country_name
+    indexes province(:name), :as => :province_name
+    indexes district(:name), :as => :district_name
+    indexes affiliations(:name), :as => :affiliation_name
+    indexes sectors(:name), :as => :sector_name
+    
+    has country_id
+    has province_id
+    has district_id
+    
+    set_property :field_weights => {
+      :name => 10,
+      :sector_name    => 5,
+      :country_name => 2,
+      :province_name => 2,
+      :district_name => 2
+    }
+    
+  end
+  
   def show_acronym
     self.acronym.nil? ? "---" : self.acronym
   end
   
   def show_name
     self.name.nil? ? "---" : self.name
+  end
+  
+  def show_name_and_acronym
+    name_and_acronym = ""
+    name_and_acronym += self.name unless self.name.nil?
+    name_and_acronym += " (#{self.acronym})" unless self.acronym.nil?
+    name_and_acronym
   end
   
   def show_country
@@ -28,15 +59,7 @@ class Ngo < ActiveRecord::Base
   end
   
   def show_province
-    if self.district_id.nil?
-      "---"
-    else
-      if self.district.province_id.nil?
-        "---"
-      else
-        self.district.show_province
-      end
-    end
+    self.province_id.nil? ? "---" : self.province.name
   end
   
   def show_district

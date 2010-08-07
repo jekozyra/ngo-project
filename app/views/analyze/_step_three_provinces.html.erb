@@ -1,0 +1,10 @@
+<div id="chart_province_constraints_select">
+	<%= select "chart", "province_constraints", province_constraints.collect{|province_data| [ province_data.name, province_data.id ] }, {}, {:multiple => true, :size => 7} %>
+</div>
+
+<%= observe_field 'chart_country_constraints',
+		:url => { :action => :update_third_step_provinces }, 
+		:update => 'chart_province_constraints_select',
+		:with => 'chart_country_constraints',
+		:loading => "Element.show('loading')",
+		:complete => "Element.hide('loading')" %>

@@ -5,52 +5,44 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>The Mashera Project</title>
-  <%= stylesheet_link_tag 'main' %>
-  <%= javascript_include_tag :defaults %>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script type='text/javascript' src='http://www.google.com/jsapi'></script>
-<%= javascript_include_tag "gMaps", "jQuery" %>
-<script type="text/javascript">
+  <%= stylesheet_link_tag 'main', 'nav-bar', 'maps' %>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	<%= javascript_include_tag "jQuery", "gMaps" %>
+	<%= javascript_include_tag :defaults %>
+	<script type="text/javascript" >
+	  jQuery.noConflict();
+	</script>
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-17637580-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-<script type="text/javascript" >
-    jQuery.noConflict();
-  </script>
 </head>
 <body>
-<div id="wrapper">
-<% if flash[:notice] %>
-<div id="flash-notice">
-<h3><%= flash[:notice] %></h3>
-</div>
-<% elsif flash[:warning] %>
-<div id="flash-warning">
-<h3><%= flash[:warning] %></h3>
-</div>
-<% elsif flash[:error] %>
-<div id="flash-error">
-<h3><%= flash[:error] %></h3>
-</div>
-<% end %>
+	
+	
+	<%= render :partial => "shared/title_bar"%>
+	
+	<%= render :partial => "shared/nav_bar" %>
+	
+	
+		<% if flash[:notice] %>
+		<div id="flash-notice">
+		<h3><%= flash[:notice] %></h3>
+		</div>
+		<% elsif flash[:warning] %>
+		<div id="flash-warning">
+		<h3><%= flash[:warning] %></h3>
+		</div>
+		<% elsif flash[:error] %>
+		<div id="flash-error">
+		<h3><%= flash[:error] %></h3>
+		</div>
+		<% end %>
 
-<%= render :partial => "shared/top_menu"%>
+		<%= yield %>
+		
+		<%= render :partial => "shared/footer" %>
 
-<%= yield %>
 
-</div>
 
-<div id="footer">
-Copyright &copy; 2010 The Mashera Project, all rights reserved.
-</div>
+
+
 </body>
 </html>

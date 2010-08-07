@@ -73,9 +73,9 @@ class DistrictsController < ApplicationController
     
     respond_to do |format|
       if @district.update_attributes(params[:district])
+        ngo_params = {:country_id => @district.country_id, :province_id => @district.province_id}
         @district.ngos.each do |ngo|
-          ngo.country_id = @district.country_id
-          ngo.province_id = @district.province_id
+          ngo.update_attributes(ngo_params)
         end
         
         flash[:notice] = 'District was successfully updated.'

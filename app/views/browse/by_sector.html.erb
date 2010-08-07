@@ -1,0 +1,13 @@
+<div id="page-title">
+	<h1>Sector: <%= @sector.name %></h1>
+</div>
+
+<div id="article-content">
+	<ol>
+<% @ngos.each do |ngo| %>
+	<li><%= link_to ngo.name,{:controller => "ngos", :action => "view_details", :id => ngo.id} %></li>
+<% end %>
+	</ol>
+</div>
+
+<%= will_paginate @ngos %>

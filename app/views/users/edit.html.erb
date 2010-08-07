@@ -1,32 +1,35 @@
-<div id="newForm">
-
-	<h1>Edit user</h1>
+<div id="mashera-form">
 
 	<% form_for(@user) do |f| %>
 	  <%= f.error_messages %>
 	
 		<fieldset class="inlineLabels">
 
-		<%= render :partial => "fields", :locals => {:f => f} %>
+			<ol>
+				<%= render :partial => "fields", :locals => {:f => f} %>
 		
-		<div class="ctrlHolder">
-	    <%= f.label :user_type %>
-			<%= f.select :user_type, ["user", "admin"], {:selected => @user.user_type} %>
-	  </div>
+				<li>
+			    <%= f.label :user_type %>
+					<%= f.select :user_type, ["user", "admin"], {:selected => @user.user_type} %>
+			  </li>
 	
-		<div class="ctrlHolder">
-		  <%= f.label :approved, "Approved?" %>
-		  <%= f.check_box :approved %>
-		</div>
+				<li>
+				  <%= f.label :approved, "Approved?" %>
+				  <%= f.check_box :approved %>
+				</li>
 
-	  <div class="buttonHolder">
-	    <%= f.submit 'Update' %>
-	  </div>
+			  <div class="buttonHolder">
+			    <%= f.submit 'Update' %>
+			  </div>
+			</ol>
 	
 		</fieldset>
 	<% end %>
-
+	
+	
+	<div id="page-links">
 	<%= link_to 'Show', @user %> |
 	<%= link_to 'Back', users_path %>
+	</div>
 
 </div>

@@ -1,0 +1,19 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "gStats" %>
+<% end %>
+
+<div id="page-title">
+	<h1>Your Visualization (interactive)</h1>
+</div>
+
+<span id="top"></span>
+<div id="article-content">
+
+	<div class="article-entry">
+		<h4 id="country"></h4>
+		<p><div id="chart_div"></div></p>
+		<h5 class="top-link"><% if @chart_type == "Pie chart"%><%= link_to "Download as image", save_image_url(:image_link => @download_link) %><% end %></h5>
+	</div>
+
+</div>
+

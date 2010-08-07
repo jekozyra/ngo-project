@@ -1,26 +1,29 @@
-<div id="newForm">
-	
-	<h1>Province Details</h1>
-	
-	<fieldset class="inlineLabels">
+<div id="mashera-form">
 		
-		<div class="ctrlHolder">
+	<fieldset class="inlineLabels">
+		<ol>
+			
+		<li>
 		  <b>Province Name:</b>
 		  <%= @province.name %>
-		</div>
+		</li>
 
-		<div class="ctrlHolder">
+		<li>
 		  <b>Country:</b>
 		  <%= @province.country.name %>
-		</div>
+		</li>
 		
-		<div class="ctrlHolder">
+		<li>
 		  <b>ISO 3166-2:</b>
 		  <%= @province.iso_code %>
-		</div>
-
+		</li>
+		
+		</ol>
 	</fieldset>
-
+	
+	<div id="page-links">
 	<%= link_to 'Edit', edit_province_path(@province) %> |
 	<%= link_to 'Back', provinces_path %>
+	</div>
+	
 </div>

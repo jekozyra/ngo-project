@@ -1,77 +1,78 @@
-<div id="detailsPage">
+<div id="page-title">
+	<h1><%= @ngo.name %>: Details</h1>
+</div>
 
-	<h1>NGO Details</h1>
+<div id="article-content">
+	<fieldset>
 
-	<fieldset class="inlineLabels">
+		<ol>
+			<li>
+			  <label>Acronym:</label>
+			  <%= @ngo.show_acronym %>
+			</li>
 
-		<div class="ctrlHolder">
-		  <label>Acronym:</label>
-		  <%= @ngo.show_acronym %>
-		</div>
+			<li>
+			  <label>Name:</label>
+			  <%= @ngo.show_name %>
+			</li>
 
-		<div class="ctrlHolder">
-		  <label>Name:</label>
-		  <%= @ngo.show_name %>
-		</div>
-
-		<div class="ctrlHolder">
-		  <label>Country:</label>
-		  <%= @ngo.district.show_country %>
-		</div>
+			<li>
+			  <label>Country:</label>
+			  <%= @ngo.district.show_country %>
+			</li>
 		
-		<div class="ctrlHolder">
-		  <label>Province:</label>
-		  <%= @ngo.district.show_province %>
-		</div>
+			<li>
+			  <label>Province:</label>
+			  <%= @ngo.district.show_province %>
+			</li>
 
-		<div class="ctrlHolder">
-		  <label>District:</label>
-		  <%= @ngo.show_district %>
-		</div>
+			<li>
+			  <label>District:</label>
+			  <%= @ngo.show_district %>
+			</li>
 
-		<div class="ctrlHolder">
-		  <label>Sector(s):</label>
-		  <%= @ngo.show_sectors %>
-		</div>
+			<li>
+			  <label>Sector(s):</label>
+			  <%= @ngo.show_sectors %>
+			</li>
 
-		<div class="ctrlHolder">
-		  <label>Affiliation(s):</label>
-		  <%= @ngo.show_affiliations %>
-		</div>
+			<li>
+			  <label>Affiliation(s):</label>
+			  <%= @ngo.show_affiliations %>
+			</li>
 
-		<div class="ctrlHolder">
-		  <label>Address:</label>
-		  <%= @ngo.show_contact_address %>
-		</div>
+			<li>
+			  <label>Address:</label>
+			  <%= @ngo.show_contact_address %>
+			</li>
 
-		<div class="ctrlHolder">
-		  <label>NGO Phone:</label>
-		  <%= @ngo.show_contact_phone %>
-		</div>
+			<li>
+			  <label>NGO Phone:</label>
+			  <%= @ngo.show_contact_phone %>
+			</li>
 
-		<div class="ctrlHolder">
-		  <label>Fax:</label>
-		  <%= @ngo.show_contact_fax %>
-		</div>
+			<li>
+			  <label>Fax:</label>
+			  <%= @ngo.show_contact_fax %>
+			</li>
 		
-		<div class="ctrlHolder">
-		  <label>NGO email:</label>
-		  <%= mail_to @ngo.show_contact_email, nil, :replace_at => " AT " %>
-		</div>
+			<li>
+			  <label>NGO email:</label>
+			  <%= mail_to @ngo.show_contact_email, nil, :replace_at => " AT " %>
+			</li>
 		
-		<% @ngo.contacts.each do |contact| %>
-		<div class="ctrlHolder">
-		  <label>Contact:</label>
-			<%= contact.show_contact %>
-		</div>
-		<% end %>
+			<% @ngo.contacts.each do |contact| %>
+			<li>
+			  <label>Contact:</label>
+				<%= contact.show_contact %>
+			</li>
+			<% end %>
 		
-		<div class="ctrlHolder">
-		  <label>Website:</label>
-		  <%= @ngo.show_website %>
-		</div>
-		
-	</fieldset>
+			<li>
+			  <label>Website:</label>
+			  <%= @ngo.show_website %>
+			</li>
+		</ol>
 			
 </div>
 

@@ -1,0 +1,13 @@
+<div id="chart_type_select">
+<% if chart_type == "Pie chart" %>
+	<p>Pie charts are best for displaying parts of a whole.</p>
+<% elsif chart_type == "Vertical bar chart" or chart_type == "Horizontal bar chart" %>
+	<p>Bar charts are best for comparing across groups or tracking changes over time.</p>
+<% end %>
+	
+<%= select "chart", "type", ["Horizontal bar chart", "Vertical bar chart", "Pie chart"], {:selected => chart_type} %>
+<%= render :partial => "step_one_image", :locals => {:chart_type => chart_type }%>
+
+
+</div>
+

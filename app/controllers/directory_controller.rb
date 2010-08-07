@@ -9,7 +9,14 @@ class DirectoryController < ApplicationController
     @total_districts = Ngo.count(:district_id, :distinct => 'true')
   end
   
+  
+  def contact
+    
+  end
+  
+  
   def stats
+
     
     @charts = {:entries => []}
     
@@ -19,13 +26,14 @@ class DirectoryController < ApplicationController
     countries.each do |country|
       total_ngos = Ngo.count(:id, :distinct => 'true', :conditions => ["country_id = ?", country])
       country_name = Country.find(country).name
-      countries_ngos << {:chart_label => country_name, :chart_number => total_ngos}
+      countries_ngos << [country_name, total_ngos]
     end
     country_chart = {:stats => countries_ngos,
                       :chart_title => "NGOs in the database by country",
                       :chart_div => "chart_div_country",
                       :column_label => "Country",
-                      :numeric_label => "NGOs"}
+                      :numeric_label => "NGOs",
+                      :chart_type => "Pie chart"}
     
     @charts[:entries] << country_chart
 
@@ -36,13 +44,14 @@ class DirectoryController < ApplicationController
     sectors.each do |sector|
       total_ngos = Ngo.count_by_sql("SELECT COUNT(distinct ngo_id) FROM ngos_sectors WHERE sector_id = #{sector.id}")
       sector_name = sector.name
-      sectors_ngos << {:chart_label => sector_name, :chart_number => total_ngos}
+      sectors_ngos << [sector_name, total_ngos]
     end
     sector_chart = {:stats => sectors_ngos,
                     :chart_title => "NGOs in the database by sector",
                     :chart_div => "chart_div_sector",
                     :column_label => "Sector",
-                    :numeric_label => "NGOs"}
+                    :numeric_label => "NGOs",
+                    :chart_type => "Pie chart"}
     
     @charts[:entries] << sector_chart
     
@@ -53,14 +62,15 @@ class DirectoryController < ApplicationController
       provinces_ngos = []
       provinces.each do |province|
         total_ngos = Ngo.count(:id, :distinct => true, :conditions => ["province_id = ?", province.id])
-        provinces_ngos << {:chart_label => province.name, :chart_number => total_ngos}
+        provinces_ngos << [province.name, total_ngos]
       end
       
       province_chart = {:stats => provinces_ngos,
                         :chart_title => "NGOs of #{country.name} by province",
                         :chart_div => "chart_div_#{country.name}",
                         :column_label => "Province",
-                        :numeric_label => "NGOs"}
+                        :numeric_label => "NGOs",
+                        :chart_type => "Pie chart"}
                         
       @charts[:entries] << province_chart
       
@@ -72,7 +82,7 @@ class DirectoryController < ApplicationController
     my_file.puts @charts.to_json.to_s
     my_file.close
     
-    render :layout => "stats_layout"
+    #render :layout => "stats_layout"
   end
 
 

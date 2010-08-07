@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100723041847) do
+ActiveRecord::Schema.define(:version => 20100725061903) do
 
   create_table "affiliations", :force => true do |t|
     t.string   "name"
@@ -59,12 +59,22 @@ ActiveRecord::Schema.define(:version => 20100723041847) do
     t.string   "contact_address"
     t.string   "contact_phone"
     t.string   "contact_email"
-    t.boolean  "auto_update",     :default => true
+    t.boolean  "auto_update",                 :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "contact_fax"
     t.string   "website"
     t.integer  "province_id"
+    t.boolean  "auto_update_country",         :default => true
+    t.boolean  "auto_update_province",        :default => true
+    t.boolean  "auto_update_district",        :default => true
+    t.boolean  "auto_update_sectors",         :default => true
+    t.boolean  "auto_update_contact_address", :default => true
+    t.boolean  "auto_update_contact_phone",   :default => true
+    t.boolean  "auto_update_contact_fax",     :default => true
+    t.boolean  "auto_update_contact_email",   :default => true
+    t.boolean  "auto_update_website",         :default => true
+    t.boolean  "auto_update_affiliation",     :default => true
   end
 
   create_table "ngos_sectors", :id => false, :force => true do |t|

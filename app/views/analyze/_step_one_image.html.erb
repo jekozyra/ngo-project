@@ -1,0 +1,14 @@
+<div id="chart-image">
+<% if chart_type == "Pie chart" %>
+	<%= image_tag "/images/pie_chart_sample.png"%>
+<% elsif chart_type == "Horizontal bar chart" %>
+	<%= image_tag "/images/horizontal_bar_chart_sample.png"%>
+<% elsif chart_type == "Vertical bar chart" %>
+	<%= image_tag "/images/vertical_bar_chart_sample.png"%>
+<% end %>
+</div>
+
+<%= observe_field 'chart_type',
+		:url => { :action => :update_chart_type_image }, 
+		:update => 'chart_type_select',
+		:with => "chart_type" %>
