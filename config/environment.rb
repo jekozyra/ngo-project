@@ -26,7 +26,7 @@ Rails::Initializer.run do |config|
     :version => '1.3.18'  )
 
 
-  
+  config.gem('riddle', :version => '1.0.12')  
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
