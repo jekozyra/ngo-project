@@ -24,7 +24,7 @@ class AnalyzeController < ApplicationController
     params[:chart][:country_constraints].nil? ? country_constraints = Country.all.collect{|country| country.id } : country_constraints = params[:chart][:country_constraints]
     params[:chart][:province_constraints].nil? ? province_constraints = Province.all.collect{|province| province.id} : province_constraints = params[:chart][:province_constraints]
     params[:chart][:district_constraints].nil? ? district_constraints = District.all.collect{|district| district.id} : district_constraints = params[:chart][:district_constraints]
-    params[:chart][:sector_constraints].nil? ? sector_constraints = Sector.all.collect{|sector| sector.id} : sector_constraints = params[:chart][:sector_constraints]
+    params[:chart][:sector_constraints].nil? ? sector_constraints = nil : sector_constraints = params[:chart][:sector_constraints]
     @chart_type = params[:chart][:type]
     chart_xdata = params[:chart][:xdata]
     chart_ydata = params[:chart][:ydata]
@@ -73,14 +73,29 @@ class AnalyzeController < ApplicationController
     
     charts = {:entries => []}
     
+    country_string = country_constraints.join(",")
+    province_string = province_constraints.join(",")
+    district_string = district_constraints.join(",")
+    
     if chart_xdata == "Countries"
       # get the ngos per country
-      countries = Ngo.find(:all, 
-                           :select => "distinct country_id",
-                           :conditions => ["country_id in (?) and province_id in (?) and district_id in (?)", country_constraints, province_constraints, district_constraints]).map{|ngo| ngo.country_id}
+      countries = Ngo.find(:all, :select => "distinct country_id", :conditions => ["country_id in (?)", country_constraints]).map{|ngo| ngo.country_id}
+
       countries_ngos = []
       countries.each do |country|
-        total_ngos = Ngo.count(:id, :distinct => 'true', :conditions => ["country_id = ?", country])
+        
+        total_ngos = []
+        unless sector_constraints.nil?
+          total_ngos = Ngo.count_by_sql("SELECT count(distinct ngos.id) FROM ngos, ngos_sectors 
+                                         WHERE ngos.country_id = #{country}
+                                         AND ngos.province_id IN (#{province_string}) 
+                                         AND ngos.district_id IN (#{district_string}) 
+                                         AND ngos.id = ngos_sectors.ngo_id 
+                                         AND ngos_sectors.sector_id IN (#{sector_constraints.join(",")})")
+        else
+          total_ngos = Ngo.count(:id, :distinct => 'true', :conditions => ["country_id = ? AND province_id in (?) AND district_id IN (?)", country, province_constraints, district_constraints])
+        end
+        #total_ngos = Ngo.count(:id, :distinct => 'true', :conditions => ["country_id = ? and p", country])
         country_name = Country.find(country).name
         countries_ngos << [country_name, total_ngos]
       end
@@ -99,7 +114,19 @@ class AnalyzeController < ApplicationController
                            :conditions => ["country_id in (?) and province_id in (?) and district_id in (?)", country_constraints, province_constraints, district_constraints]).map{|ngo| ngo.province_id}
       provinces_ngos = []
       provinces.each do |province|
-        total_ngos = Ngo.count(:id, :distinct => 'true', :conditions => ["province_id = ?", province])
+        
+        total_ngos = []
+         unless sector_constraints.nil?
+           total_ngos = Ngo.count_by_sql("SELECT count(distinct ngos.id) FROM ngos, ngos_sectors 
+                                          WHERE ngos.province_id = #{province}
+                                          AND ngos.country_id IN (#{country_string}) 
+                                          AND ngos.district_id IN (#{district_string}) 
+                                          AND ngos.id = ngos_sectors.ngo_id 
+                                          AND ngos_sectors.sector_id IN (#{sector_constraints.join(",")})")
+         else
+           total_ngos = Ngo.count(:id, :distinct => 'true', :conditions => ["province_id = ? AND country_id in (?) AND district_id IN (?)", province, country_constraints, district_constraints])
+         end
+        
         province_name = Province.find(province).name
         provinces_ngos << [province_name, total_ngos]
       end
@@ -115,10 +142,22 @@ class AnalyzeController < ApplicationController
       # get the ngos per district
       districts = Ngo.find(:all, 
                            :select => "distinct district_id", 
-                           :conditions => ["country_id in (?) and province_id in (?) and district_id in (?)", country_constraints, province_constraints, district_constraints]).map{|ngo| ngo.district}
+                           :conditions => ["country_id in (?) and province_id in (?) and district_id in (?)", country_constraints, province_constraints, district_constraints]).map{|ngo| ngo.district_id}
       districts_ngos = []
       districts.each do |district|
-        total_ngos = Ngo.count(:id, :distinct => 'true', :conditions => ["district_id = ?", district])
+        
+        total_ngos = []
+         unless sector_constraints.nil?
+           total_ngos = Ngo.count_by_sql("SELECT count(distinct ngos.id) FROM ngos, ngos_sectors 
+                                          WHERE ngos.district_id = #{district}
+                                          AND ngos.province_id IN (#{province_string}) 
+                                          AND ngos.country_id IN (#{country_string}) 
+                                          AND ngos.id = ngos_sectors.ngo_id 
+                                          AND ngos_sectors.sector_id IN (#{sector_constraints.join(",")})")
+         else
+           total_ngos = Ngo.count(:id, :distinct => 'true', :conditions => ["district_id = ? AND province_id in (?) AND country_id IN (?)", district, province_constraints, country_constraints])
+         end
+        
         district_name = District.find(district).name
         districts_ngos << [district_name, total_ngos]
       end
@@ -133,16 +172,22 @@ class AnalyzeController < ApplicationController
       
     elsif chart_xdata == "Sectors"
       
-      sectors = Sector.find(:all, :conditions => ["id IN (?)", sector_constraints], :order => :name)
+      sectors = []
+      if sector_constraints.nil?
+        sectors = Sector.find(:all, :order => :name)
+      else
+        sectors = Sector.find(:all, :conditions => ["id IN (?)", sector_constraints], :order => :name)
+      end
       
       country_constraints_string = country_constraints.join(",")
       province_constraints_string = province_constraints.join(",")
       district_constraints_string = district_constraints.join(",")
-      
+
       sectors_ngos = []
       sectors.each do |sector|
         total_ngos = Ngo.count_by_sql("SELECT COUNT(distinct ngos_sectors.ngo_id) FROM ngos, ngos_sectors 
-                                       WHERE ngos.id = ngos_sectors.ngo_id and ngos_sectors.sector_id = #{sector.id} 
+                                       WHERE ngos.id = ngos_sectors.ngo_id 
+                                       AND ngos_sectors.sector_id = #{sector.id} 
                                        AND ngos.country_id IN (#{country_constraints_string}) 
                                        AND ngos.province_id IN (#{province_constraints_string}) 
                                        AND ngos.district_id IN (#{district_constraints_string})")
