@@ -13,12 +13,27 @@ class BrowseController < ApplicationController
     @countries = Country.all
   end
   
-  def by_sector
-    @sector = Sector.find(params[:id])
-    @ngos = Ngo.paginate_by_sql(["SELECT ngos.* FROM ngos, ngos_sectors, sectors WHERE sectors.id =  #{@sector.id} AND ngos_sectors.sector_id = #{@sector.id} and ngos.id = ngos_sectors.ngo_id ORDER BY ngos.name"],
-                                :page => params[:page],
-                                :per_page => 40)
+  
+  def narrow_sector_by_country
+    @sector_id = params[:sector_id]
+    @countries = Country.all
   end
+  
+  def by_sector
+    @sector = Sector.find(params[:sector_id])
+    country_id = params[:country_id].to_i
+    
+    if country_id == 0
+      @ngos = Ngo.paginate_by_sql(["SELECT ngos.* FROM ngos, ngos_sectors, sectors WHERE sectors.id =  #{@sector.id} AND ngos_sectors.sector_id = #{@sector.id} and ngos.id = ngos_sectors.ngo_id ORDER BY ngos.name"],
+                                  :page => params[:page],
+                                  :per_page => 40)
+    else
+      @ngos = Ngo.paginate_by_sql(["SELECT ngos.* FROM ngos, ngos_sectors, sectors WHERE ngos.country_id = #{country_id} AND sectors.id =  #{@sector.id} AND ngos_sectors.sector_id = #{@sector.id} and ngos.id = ngos_sectors.ngo_id ORDER BY ngos.name"],
+                                  :page => params[:page],
+                                  :per_page => 40)      
+    end
+  end
+  
 
   def by_country
     @country = Country.find(params[:id], :include => [:provinces])

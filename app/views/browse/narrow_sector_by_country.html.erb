@@ -1,0 +1,14 @@
+<div id="page-title">
+	<h1>Sectors</h1>
+</div>
+
+<div id="article-content">
+		<p>Narrow by country or <%= link_to "list all", by_sector_url(:sector_id => @sector_id, :country_id => 0) %>.</p><br />
+		
+			<ol>
+		<% @countries.each do |country| %>
+			<li><%= link_to country.name, by_sector_url(:sector_id => @sector_id, :country_id => country.id) %></li>
+		<% end %>
+			</ol>	
+
+</div>

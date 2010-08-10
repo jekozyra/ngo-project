@@ -5,7 +5,7 @@
 <div id="article-content">
 	<ol>
 <% @sectors.each do |sector| %>
-	<li><%= link_to sector.name, by_sector_url(:id => sector.id) %></li>
+	<li><%= link_to sector.name, narrow_sector_by_country_url(:sector_id => sector.id) %></li>
 <% end %>
 </ol>
 </div>
