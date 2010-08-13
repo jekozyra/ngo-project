@@ -22,6 +22,8 @@ function drawMap() {
 				var options = {};
 		    options['dataMode'] = 'regions';
 				options['region'] = map_data.region_id;
+				options['width'] = '400';
+				options['height'] = '270';
 
 		    var container = document.getElementById(map_data.map_div);
 		    var geomap = new google.visualization.GeoMap(container);

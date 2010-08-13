@@ -1,13 +1,17 @@
-<div id="results-panel">
-	<div id="results-panel-title">
-		<span id="results-panel-h3"><h3>Search Results</h3></span>
-		<span id="results-panel-btn"></span>
-	</div>
-	<div id="results-panel-contents">
-		<%= render :partial => "results_panel_results", :locals => {:search => search} %>
-	</div>
-</div>
 <div id="country-maps">
 	<%= render :partial => "density_map", :collection => @results, :as => :result %>
 </div>
-	
+
+
+<div id="density-results-panel">
+	<div id="density-results-panel-title">
+		<span id="density-results-panel-h3"><h3>Search Results</h3></span>
+		<span id="density-results-panel-btn"></span>
+	</div>
+	<div id="density-results-panel-contents">
+		<%= render :partial => "results_panel_results", :locals => {:search => search} %>
+	</div>
+</div>
+
+<div id="clear-div">
+</div>

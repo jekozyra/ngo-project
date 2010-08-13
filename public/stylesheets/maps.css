@@ -3,6 +3,28 @@
 /*=========================================================*/
 
 
+#density-results-panel{
+	float:right;
+	width:350px;
+	border-left:1px solid #233161;
+}
+
+#density-results-panel-contents{
+	height:618px;
+	overflow:auto;
+	padding: 4px 10px 5px 45px;
+}
+
+#density-result-panel-contents li{
+	margin-bottom:5px;
+}
+
+#density-results-panel-title{
+	position:relative;
+	padding:4px 25px;
+}
+
+
 #results-panel{
 	position:absolute;
 	left:0;
@@ -30,6 +52,13 @@
 	padding:4px 25px;
 }
 
+#wrapper, #content{
+	padding:0px;
+}
+
+#clear-div{
+	clear:both;
+}
 
 
 
@@ -44,10 +73,9 @@
 }
 
 #result-panel-contents{
-	border-right:1px solid #000;
-	border-bottom:1px solid #000;
+	border-right:1px solid #233161;
+	border-bottom:1px solid #233161;
 }
-
 
 #results-panel-title{
 	background:#4B7FAD;
@@ -65,6 +93,37 @@
 #results-panel ul, #result-panel-contents ul{
 	list-style:decimal;
 	font-family:'TwCenMTRegular', sans-serif !important;
+}
+
+
+
+#density-result-panel-contents{
+	border-right:1px solid #233161;
+	border-left:1px solid #233161;
+}
+
+
+#density-results-panel-title{
+	background:#4B7FAD;
+	color:#fff;
+}
+
+#density-results-panel-title h3{
+	background:#4B7FAD;
+	color:#fff;
+	font-variant:small-caps;
+	font-weight:normal;
+	font-size:20px;
+}
+
+#density-results-panel ul, #density-result-panel-contents ul{
+	list-style:decimal;
+	font-family:'TwCenMTRegular', sans-serif !important;
+}
+
+#density-results-panel li{
+	list-style:decimal;
+	margin-bottom:5px;
 }
 
 
