@@ -1,16 +1,16 @@
 #chart-form select{
-	width:255px;
+	width:206px;
 	float:left;
 	margin:5px 15px 10px 2px;
 }
 
 #chart-form select, #chart-form input{
-	width:255px;
+	width:206px;
 	margin:10px 15px 10px 2px;
 }
 
 #chart-form label{
-	width:260px;
+	width:210px;
 	margin:10px 2px 0px 5px;
 }
 

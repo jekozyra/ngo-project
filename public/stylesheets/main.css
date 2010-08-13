@@ -88,7 +88,7 @@ input[type="checkbox"]{
 
 #wrapper{
 	clear:both;
-	width:900px;
+	width:750px;
 	margin:0 auto;
 	min-height:500px;
 }
@@ -96,7 +96,7 @@ input[type="checkbox"]{
 #content{
 	margin:40px auto 10px auto;
 	padding:15px;
-	width:900px;
+	width:750px;
 	min-height:100px;
 }
 
