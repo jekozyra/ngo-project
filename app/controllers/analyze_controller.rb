@@ -24,7 +24,7 @@ class AnalyzeController < ApplicationController
     params[:chart][:country_constraints].nil? ? country_constraints = Country.all.collect{|country| country.id } : country_constraints = params[:chart][:country_constraints]
     params[:chart][:province_constraints].nil? ? province_constraints = Province.all.collect{|province| province.id} : province_constraints = params[:chart][:province_constraints]
     params[:chart][:district_constraints].nil? ? district_constraints = District.all.collect{|district| district.id} : district_constraints = params[:chart][:district_constraints]
-    params[:chart][:sector_constraints].nil? ? sector_constraints = nil : sector_constraints = params[:chart][:sector_constraints]
+    params[:chart][:sector_constraints].nil? ? sector_constraints = Sector.all.collect{|sector| sector.id} : sector_constraints = params[:chart][:sector_constraints]
     @chart_type = params[:chart][:type]
     chart_xdata = params[:chart][:xdata]
     chart_ydata = params[:chart][:ydata]
@@ -46,10 +46,12 @@ class AnalyzeController < ApplicationController
 
     if @chart_type == "Pie chart"
       data_length =  @charts[:entries].first[:stats].size
-      chart_labels = @charts[:entries].first[:stats].collect{|datum| "#{datum[0]} (#{datum[1]})"}.join("|")
-      chart_dataset = @charts[:entries].first[:stats].collect{|datum| datum[1]}.join(",")
+      total_ngos = 0
+      @charts[:entries].first[:stats].each{|num| total_ngos += num[1]}
+      chart_labels = @charts[:entries].first[:stats].collect{|datum| "#{datum[0]} (#{sprintf('%.1f', datum[1].to_f/total_ngos.to_f*100)}%)"}.join("|")
+      chart_dataset = @charts[:entries].first[:stats].collect{|datum| datum[1].to_f/total_ngos.to_f*100}.join(",")
       
-      @download_link = "http://chart.apis.google.com/chart?chs=500x600&cht=p&chco=#{available_colors[0..data_length-1].join(',')}&chd=t:#{chart_dataset}&chdl=#{chart_labels}&chtt=#{chart_title}&chp=4.72"
+      @download_link = "http://chart.apis.google.com/chart?chs=600x500&cht=p&chd=t:#{chart_dataset}&chdl=#{chart_labels}&chp=4.72&chco=#{available_colors[0..data_length-1].join(',')}"
     elsif @chart_type == "Horizonal bar chart"
     elsif @chart_type == "Vertical bar chart"
       data_length =  @charts[:entries].first[:stats].size
@@ -64,6 +66,8 @@ class AnalyzeController < ApplicationController
       
       #http://chart.apis.google.com/chart?chxt=y&chbh=a&chs=300x225&cht=bvg&chco=A2C180,3D7930&chd=t:10,50,60,80,40,60,30|50,60,100,40,20,40,30&chtt=Vertical+bar+chart
     end
+    
+    render :layout => 'analyze_layout'
     
   end
   
@@ -210,7 +214,7 @@ class AnalyzeController < ApplicationController
   
   
   def two_axis(chart_title, country_constraints, province_constraints, district_constraints, sector_constraints, chart_type, chart_xdata, chart_ydata)
-    
+        
     charts = {:entries => []}
     
     sectors_chart = {:stats => [],
