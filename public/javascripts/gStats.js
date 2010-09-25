@@ -10,7 +10,8 @@ google.setOnLoadCallback(drawChart);
 // instantiates the pie chart, passes in the data and
 // draws it.
 function drawChart() {
-		
+	
+
 	// Create our data table.
 	jQuery.getJSON('/data/stats.json', function(stat_data) {
 		
@@ -19,7 +20,7 @@ function drawChart() {
 			var data = new google.visualization.DataTable();
 			
 			if (chart_info.chart_type == "Pie chart"){
-			
+
 				data.addColumn('string', chart_info.column_label);
 				data.addColumn('number', chart_info.numeric_label);
 			
@@ -27,12 +28,13 @@ function drawChart() {
 			
 				for (var i=0; i < chart_info.stats.length; i++){
 					for(var j=0; j < chart_info.stats[i].length; j++){
-						data.setValue(i, j, chart_info.stats[i][j])
+						data.setValue(i, j, chart_info.stats[i][j]);
 					}
 				}
-			
+							
 				var chart = new google.visualization.PieChart(document.getElementById(chart_info.chart_div));
-				chart.draw(data, {width: 850, height: 500, title: chart_info.chart_title});
+				chart.draw(data, {width: 750, height: 500, title: chart_info.chart_title});
+				
 			}
 			else{
 				
