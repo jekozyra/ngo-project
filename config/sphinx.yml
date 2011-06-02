@@ -1,3 +1,1 @@
 production:
-  pid_file: /home/themasheraproject/ngo-project/shared/log/searchd.production.pid
-  searchd_file_path: /home/themasheraproject/ngo-project/db/sphinx

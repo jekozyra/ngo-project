@@ -1,6 +1,6 @@
 set :application, "ngo-project"
 set :domain, "themasheraproject.org"                           # The URL for your app
-set :user, "p316755r"                                 # Your HostingRails username
+set :user, "themasheraproject"                                 # Your HostingRails username
 set :scm_username, "jekozyra"                   #if http
 
 # For a Subversion repository
