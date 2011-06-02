@@ -35,10 +35,11 @@ namespace :deploy do
     run "touch #{deploy_to}/current/tmp/restart.txt"
   end
 
+
   task :after_symlink, :roles => :app do
     run "rm -rf ~/public_html;ln -s #{deploy_to}/current/public ~/public_html"
     run "rm -f #{deploy_to}/current/config/database.yml"
-		run "rm -rf "#{deploy_to}/current/log"
+		run "rm -rf #{deploy_to}/current/log"
     run "ln -s #{deploy_to}/shared/database.yml #{deploy_to}/current/config/database.yml"
     run "ln -s #{deploy_to}/shared/log #{deploy_to}/current/log"
 #    run "ln -s #{deploy_to}/shared/production.sphinx.conf #{deploy_to}/current/config/production.sphinx.conf"
@@ -47,7 +48,7 @@ namespace :deploy do
 #    run "chmod +x #{deploy_to}/current/lib/scrapers/af_gatherer.rb"
 #    run "chmod +x #{deploy_to}/current/lib/scrapers/af_scraper.rb"
 #    run "chmod +x #{deploy_to}/current/lib/scrapers/pak_scraper.rb"
-#    run "cd #{deploy_to}/current; rake thinking_sphinx:restart RAILS_ENV=production"
+    run "cd #{deploy_to}/current; rake thinking_sphinx:restart RAILS_ENV=production"
   end
 end
 
